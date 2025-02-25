@@ -1,9 +1,10 @@
-import { FaFacebookF, FaXTwitter, FaLinkedinIn, FaYoutube, FaLocationDot, FaPaperPlane } from "react-icons/fa6";
+import { FaLocationDot, FaPaperPlane } from "react-icons/fa6";
 import { MdEmail, MdPhone } from "react-icons/md";
+import Image from "next/image";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white px-6 py-10 md:px-20 lg:px-32">
+    <footer className="bg-black text-white px-6 py-10 md:px-20 lg:px-32 relative">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 pb-8">
 
         {/* Location */}
@@ -31,10 +32,18 @@ export default function Footer() {
         <div className="flex flex-col items-center md:items-start">
           <p className="text-sm mb-2">Follow on</p>
           <div className="flex gap-3">
-            <FaFacebookF />
-            <FaXTwitter />
-            <FaLinkedinIn />
-            <FaYoutube />
+            <a href="#" className="hover:text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path opacity=".4" d="M14 9.3v2.95h2.63c.19 0 .33.17.29.36l-.38 1.9c-.03.14-.15.24-.29.24H14V22h-3v-7.25H9.3c-.17 0-.3-.13-.3-.3v-1.9c0-.17.13-.3.3-.3H11V9c0-1.66 1.34-3 3-3h2.7c.17 0 .3.13.3.3v2.4c0 .17-.13.3-.3.3h-2.4c-.17 0-.3.13-.3.3Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round"></path><path d="M15 22H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h6c5 0 7 2 7 7v6c0 5-2 7-7 7Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+            <a href="#" className="hover:text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M5.46 2H4.05c-.93 0-1.4 1.13-.74 1.79l5.73 5.73a4.189 4.189 0 0 0 5.93 0l5.73-5.73c.66-.66.19-1.79-.74-1.79h-1.41c-.83 0-1.63.33-2.22.92L12.75 6.5c-.41.41-1.07.41-1.48 0L7.69 2.92C7.09 2.33 6.29 2 5.46 2Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path opacity=".4" d="M5.46 21.969H4.05c-.93 0-1.4-1.13-.74-1.79l5.73-5.73a4.189 4.189 0 0 1 5.93 0l5.73 5.73c.66.66.19 1.79-.74 1.79h-1.41c-.83 0-1.63-.33-2.22-.92l-3.58-3.58c-.41-.41-1.07-.41-1.48 0l-3.58 3.58c-.6.59-1.4.92-2.23.92Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+            <a href="#" className="hover:text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 22h6c5 0 7-2 7-7V9c0-5-2-7-7-7H9C4 2 2 4 2 9v6c0 5 2 7 7 7Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path opacity=".34" d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path opacity=".34" d="M17.636 7h.012" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
+            <a href="#" className="hover:text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M17 20H7c-3 0-5-2-5-5V9c0-3 2-5 5-5h10c3 0 5 2 5 5v6c0 3-2 5-5 5Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path opacity=".4" d="m11.42 9.49 2.47 1.48c.94.57.94 1.49 0 2.06l-2.47 1.48c-1 .6-1.82.14-1.82-1.03v-2.97c0-1.16.82-1.62 1.82-1.02Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            </a>
           </div>
         </div>
 
@@ -73,6 +82,13 @@ export default function Footer() {
           <p>Terms & Conditions</p>
           <p>Privacy Policy</p>
         </div>
+      </div>
+
+      <div className="vector-1 absolute top-0 left-0"> 
+        <Image src={'/images/vectors/vector-6.png'} alt={"vector"} width={100} height={100} />
+      </div>
+      <div className="vector-1 absolute top-0 left-10k"> 
+        <Image src={'/images/vectors/vector-6.png'} alt={"vector"} width={100} height={100} />
       </div>
     </footer>
   );
