@@ -3,9 +3,9 @@ import { MdEmail, MdPhone } from "react-icons/md";
 
 export default function Footer() {
   return (
-    <footer className="bg-black text-white py-10 px-6 md:px-12">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 border-b border-gray-700 pb-8">
-        
+    <footer className="bg-black text-white px-6 py-10 md:px-20 lg:px-32">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 pb-8">
+
         {/* Location */}
         <div className="flex flex-col items-center md:items-start">
           <FaLocationDot className="text-lg mb-2" />
@@ -26,7 +26,7 @@ export default function Footer() {
 
       {/* Footer Links and Newsletter */}
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:items-start mt-8 gap-6">
-        
+
         {/* Social Media */}
         <div className="flex flex-col items-center md:items-start">
           <p className="text-sm mb-2">Follow on</p>
@@ -37,7 +37,7 @@ export default function Footer() {
             <FaYoutube />
           </div>
         </div>
-        
+
         {/* Who We Are */}
         <div>
           <h3 className="text-sm font-semibold mb-3">Who We Are</h3>
@@ -53,13 +53,13 @@ export default function Footer() {
         {/* Newsletter */}
         <div className="flex flex-col items-center md:items-start">
           <h3 className="text-sm font-semibold mb-3">Subscribe Newsletter</h3>
-          <div className="relative">
+          <div className="relative bg-white text-black pl-4 pr-2 py-2 rounded-full flex items-center justify-between">
             <input
               type="email"
               placeholder="Enter Email Address"
-              className="bg-white text-black px-4 py-2 rounded-full w-60"
+              className="w-60 text-sm bg-transparent outline-none"
             />
-            <button className="absolute right-2 top-2 bg-black text-white p-2 rounded-full">
+            <button className="bg-black text-white p-2 rounded-full ml-2">
               <FaPaperPlane />
             </button>
           </div>

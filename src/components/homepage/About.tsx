@@ -3,7 +3,7 @@ import Image from "next/image";
 
 const About = () => {
     return (
-        <section className="py-24 px-6 md:px-20 lg:px-32 bg-white text-black relative">
+        <section className="px-6 py-28 md:px-20 lg:px-32 bg-white text-black relative">
             {/* Container */}
             <div className="max-w-4xl mx-auto">
                 {/* Small Heading */}
@@ -29,7 +29,7 @@ const About = () => {
                     <Image
                         src="/images/founder.jpg" 
                         alt="Founder"
-                        className="w-64 h-auto object-cover ring-black ring-opacity-5 p-2 rounded-md"
+                        className="w-64 h-auto object-cover ring ring-black rounded-md"
                         width={100}
                         height={100}
                     />
@@ -44,13 +44,13 @@ const About = () => {
                 </p>
             </div>
 
-            <div className="vector-1 absolute bottom-0 right-0 left-0"> 
-                <Image src={'/images/vectors/vector-2.png'} alt={"vector"} width={200} height={100} />
-            </div>
-            <div className="vector-1 absolute -bottom-2 right-0 left-1"> 
+            <div className="vector-1 absolute bottom-0 left-0"> 
                 <Image src={'/images/vectors/vector-2.png'} alt={"vector"} width={200} height={100} />
             </div>
             <div className="vector-1 absolute bottom-0 right-0 left-0"> 
+                <Image src={'/images/vectors/vector-3.png'} alt={"vector"} width={200} height={100} />
+            </div>
+            <div className="vector-1 absolute bottom-0 right-0 left-3"> 
                 <Image src={'/images/vectors/vector-3.png'} alt={"vector"} width={200} height={100} />
             </div>
         </section>

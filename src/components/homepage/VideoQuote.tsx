@@ -3,11 +3,11 @@ import Image from 'next/image';
 
 const VideoQuote = () => {
     return (
-        <section className='py-24 bg-white'>
-            <div className="max-w-5xl mx-auto p-6 space-y-8 bg-white">
+        <section className='px-6 py-20 md:px-20 lg:px-32 bg-white'>
+            <div className="mx-auto p-6 space-y-8 bg-white">
                 {/* Video Section */}
                 <div>
-                    <a href="#" className="text-lg font-semibold text-blue-600 underline">One Day In 100 Days</a>
+                    <a href="#" className="text-lg font-semibold text-slate-700 underline">One Day In 100 Days</a>
                     <div className="mt-4 bg-black rounded-lg h-64 flex items-center justify-center relative">
                         <button className="bg-white rounded-full p-4 shadow-lg">
                             <Play className="h-10 w-10 text-black" />
