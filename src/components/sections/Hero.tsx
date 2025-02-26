@@ -36,6 +36,7 @@ const Hero = () => {
                 ref={videoRef}
                 src="/videos/kwibuka_hero.mp4"
                 className="absolute inset-0 w-full h-full object-cover opacity-50"
+                autoPlay
                 muted
                 loop
                 playsInline
