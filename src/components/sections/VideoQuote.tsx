@@ -16,16 +16,16 @@ const VideoQuote = () => {
                 </div>
 
                 {/* Quote Section */}
-                <div className="bg-black text-white rounded-lg overflow-hidden flex items-center p-6 relative">
+                <div className="bg-black text-white rounded-lg overflow-hidden flex items-center relative">
                     <Image
                         src="/images/quotes.png"
                         alt="Paul Kagame Speech"
                         width={300}
-                        height={200}
-                        className="w-1/3 h-auto object-cover rounded-lg"
+                        height={300}
+                        className="w-1/3 h-[300px] object-cover rounded-lg"
                     />
 
-                    <div className="ml-6 flex-1">
+                    <div className="ml-6 flex-1 p-6">
                         <span className="text-2xl">&#10077;</span>
                         <p className="italic text-lg">
                             “Today, Our Hearts Are Filled With Grief And Gratitude In Equal Measure.

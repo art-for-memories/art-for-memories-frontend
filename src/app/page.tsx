@@ -1,15 +1,38 @@
-import About from "@/components/homepage/About";
-import Hero from "@/components/homepage/Hero";
-import Memory from "@/components/homepage/Memory";
-import Partners from "@/components/homepage/Partners";
-import TheirStories from "@/components/homepage/TheirStory";
-import VideoQuote from "@/components/homepage/VideoQuote";
+import About from "@/components/sections/About";
+import Hero from "@/components/sections/Hero";
+import Memory from "@/components/sections/Memory";
+import Partners from "@/components/sections/Partners";
+import TheirStories from "@/components/sections/TheirStory";
+import VideoQuote from "@/components/sections/VideoQuote";
 import Navbar from "@/components/Navbar";
 import StoriesList from "@/components/lists/StoriesList";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Art of Memories",
+  description: "Art of Memories is a platform that allows you to share your memories in a creative way.",
+  keywords: ["memories", "art", "stories", "creative", "platform"],
+  viewport: "width=device-width, initial-scale=1.0",
+  robots: "index, follow",
+  openGraph: {
+    title: "Art of Memories",
+    description: "Art of Memories is a platform that allows you to share your memories in a creative way.",
+    url: "https://www.artofmemories.com",
+    type: "website",
+    images: [
+      {
+        url: "/images/logo.png",
+        width: 800,
+        height: 600,
+        alt: "Art of Memories",
+      },
+    ],
+  },
+};
 
 export default function Home() {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <Navbar />
       <Hero />
       <About />

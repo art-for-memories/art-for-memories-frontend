@@ -19,13 +19,13 @@ export default function Days() {
                     </div>
                 </div>
 
-                {/* Other Videos Section */}
+
                 <div className="mt-10">
                     <VideosList title="Other Videos" data={[
-                        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021'},
-                        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021'},
-                        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021'},
-                        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021'},
+                        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021' },
+                        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021' },
+                        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021' },
+                        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021' },
                     ]} />
                 </div>
             </div>

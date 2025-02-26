@@ -17,10 +17,10 @@ export default function Memory() {
       <div className="vector-1 absolute bottom-0 right-0 left-0">
         <Image src={'/images/vectors/vector-4.png'} alt={"vector"} width={200} height={100} />
       </div>
-      <div className="vector-1 absolute bottom-0 right-0">
+      <div className="vector-1 absolute -bottom-28 right-0">
         <Image src={'/images/vectors/vector-5.png'} alt={"vector"} width={200} height={100} />
       </div>
-      <div className="vector-1 absolute bottom-0 right-3">
+      <div className="vector-1 absolute -bottom-32 right-3">
         <Image src={'/images/vectors/vector-5.png'} alt={"vector"} width={200} height={100} />
       </div>
     </section>

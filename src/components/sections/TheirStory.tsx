@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function TheirStories() {
     return (<>
@@ -12,12 +13,12 @@ export default function TheirStories() {
                         of preserving history through personal and artistic expressions.
                     </p>
                     <div className="mt-6 flex items-center space-x-3">
-                        <button className="px-6 py-3 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition">
+                        <Link href={"/stories"} className="px-6 py-3 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition">
                             VIEW STORIES
-                        </button>
-                        <span className="w-10 h-10 flex items-center justify-center rounded-full bg-black text-white text-xl">
+                        </Link>
+                        <Link href={"/stories"} className="w-10 h-10 flex items-center justify-center rounded-full bg-black text-white text-xl">
                             ↗
-                        </span>
+                        </Link>
                     </div>
                 </div>
 

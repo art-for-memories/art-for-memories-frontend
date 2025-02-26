@@ -1,7 +1,6 @@
 import { Play } from 'lucide-react';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export default function VideoCard({ }) {
+export default function VideoCard() {
     return (
         <div className=''>
             <div className="mt-4 bg-black rounded-lg h-64 flex items-center justify-center relative">

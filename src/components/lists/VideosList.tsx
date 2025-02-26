@@ -10,7 +10,7 @@ interface VideosListProps {
 export default function VideosList({ title, data }: VideosListProps) {
     const itemsPerPage = 5; // Adjust the number of items per page as needed
     const { next, prev, currentData, currentPage, maxPage, setCurrentPage } = usePagination(data, itemsPerPage);
-    
+
     return (
         <section className="mt-10">
             <h2 className="text-4xl font-bold text-black">{title}</h2>
@@ -37,15 +37,14 @@ export default function VideosList({ title, data }: VideosListProps) {
                 {[...Array(maxPage)].map((_, index) => {
                     const page = index + 1;
                     return (
-                    <button
-                        key={page}
-                        onClick={() => setCurrentPage(page)}
-                        className={`w-10 h-10 border-2 border-black rounded-full flex items-center justify-center text-sm font-semibold transition ${
-                        currentPage === page ? "bg-black text-white" : "hover:bg-gray-200"
-                        }`}
-                    >
-                        {page.toString().padStart(2, "0")}
-                    </button>
+                        <button
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            className={`w-10 h-10 border-2 border-black rounded-full flex items-center justify-center text-sm font-semibold transition ${currentPage === page ? "bg-black text-white" : "hover:bg-gray-200"
+                                }`}
+                        >
+                            {page.toString().padStart(2, "0")}
+                        </button>
                     );
                 })}
                 <button
