@@ -5,32 +5,28 @@ import Image from "next/image";
 export default function Footer() {
   return (
     <footer className="bg-black text-white px-6 py-10 md:px-20 lg:px-32 relative">
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-6 pb-8">
-
-        {/* Location */}
-        <div className="flex flex-col items-center md:items-start">
-          <FaLocationDot className="text-lg mb-2" />
-          <p className="text-sm">TUZAYISHYIRA HO</p>
+      
+      {/* Social Media Link */}
+      <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 pb-8">
+        <div className="flex items-center md:items-start sm:flex-row md:flex-col lg:flex-col">
+          <div><FaLocationDot className="text-lg mb-2" /></div>
+          <div className="ml-2 sm:ml-2 md:ml-0 lg:ml-0"><p className="text-sm">TUZAYISHYIRA HO</p></div>
         </div>
-
-        {/* Contact Info */}
-        <div className="flex flex-col items-center md:items-start">
-          <MdPhone className="text-lg mb-2" />
-          <p className="text-sm">+25078........</p>
+        <div className="flex items-center md:items-start sm:flex-row md:flex-col lg:flex-col">
+          <div><MdPhone className="text-lg mb-2" /></div>
+          <div className="ml-2 sm:ml-2 md:ml-0 lg:ml-0"><p className="text-sm">+25078........</p></div>
         </div>
-
-        <div className="flex flex-col items-center md:items-start">
-          <MdEmail className="text-lg mb-2" />
-          <p className="text-sm">info@gmail.com</p>
+        <div className="flex items-center md:items-start sm:flex-row md:flex-col lg:flex-col">
+          <div><MdEmail className="text-lg mb-2" /></div>
+          <div className="ml-2 sm:ml-2 md:ml-0 lg:ml-0"><p className="text-sm">info@gmail.com</p></div>
         </div>
       </div>
 
       {/* Footer Links and Newsletter */}
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center md:items-start mt-8 gap-6">
-
+      <div className="flex flex-col justify-between sm:flex-col md:flex-row lg:flex-row md:items-center gap-6">
         {/* Social Media */}
-        <div className="flex flex-col items-center md:items-start">
-          <p className="text-sm mb-2">Follow on</p>
+        <div className="flex flex-col">
+          <h3 className="text-sm font-semibold mb-3 sm:text-center md:text-left">Follow on</h3>
           <div className="flex gap-3">
             <a href="#" className="hover:text-gray-400">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path opacity=".4" d="M14 9.3v2.95h2.63c.19 0 .33.17.29.36l-.38 1.9c-.03.14-.15.24-.29.24H14V22h-3v-7.25H9.3c-.17 0-.3-.13-.3-.3v-1.9c0-.17.13-.3.3-.3H11V9c0-1.66 1.34-3 3-3h2.7c.17 0 .3.13.3.3v2.4c0 .17-.13.3-.3.3h-2.4c-.17 0-.3.13-.3.3Z" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round"></path><path d="M15 22H9c-5 0-7-2-7-7V9c0-5 2-7 7-7h6c5 0 7 2 7 7v6c0 5-2 7-7 7Z" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
@@ -49,13 +45,14 @@ export default function Footer() {
 
         {/* Who We Are */}
         <div>
-          <h3 className="text-sm font-semibold mb-3">Who We Are</h3>
+          <h3 className="text-sm font-semibold mb-3 sm:text-center md:text-left">Who We Are</h3>
+          
           <ul className="text-sm space-y-2">
             <li className="flex">
               <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></span>
               <span className="ml-2">Art for Memories About</span>
             </li>
-            <li className="flex"> 
+            <li className="flex">
               <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></span>
               <span className="ml-2">Contact Us</span>
             </li>
@@ -63,7 +60,7 @@ export default function Footer() {
               <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></span>
               <span className="ml-2">Blog & News</span>
             </li>
-            <li className="flex"> 
+            <li className="flex">
               <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08"></path></svg></span>
               <span className="ml-2">FAQ’s</span>
             </li>
@@ -75,7 +72,7 @@ export default function Footer() {
         </div>
 
         {/* Newsletter */}
-        <div className="flex flex-col items-center md:items-start">
+        <div className="flex flex-col md:items-center">
           <h3 className="text-sm font-semibold mb-3">Subscribe Newsletter</h3>
           <div className="relative bg-white text-black pl-4 pr-2 py-2 rounded-full flex items-center justify-between">
             <input
@@ -91,9 +88,9 @@ export default function Footer() {
       </div>
 
       {/* Copyright & Policies */}
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center text-sm mt-8 border-t border-gray-700 pt-4">
+      <div className="flex flex-col md:flex-row justify-between items-center text-center text-sm mt-8 border-t border-gray-700 pt-4">
         <p>© All Copyright 2025 by ART FOR MEMORIES</p>
-        <div className="flex gap-4">
+        <div className="flex gap-4 mt-5">
           <p>Terms & Conditions</p>
           <p>Privacy Policy</p>
         </div>

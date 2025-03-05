@@ -1,16 +1,17 @@
+"use client";
 import { FaFacebookF, FaTwitter, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 import Image from 'next/image';
 import SubNav from "./SubNav";
 
 const Header = () => {
     return (
-        <header className="flex justify-between items-center relative">
+        <header className="flex justify-between items-center relative z-30">
             <div className="container max-w-6xl mx-auto bg-[#FCECE1] rounded-b-[30px]">
                 {/* Top Bar */}
                 <div className="bg-black rounded-b-[30px] text-white text-sm py-2 flex justify-between items-center px-6">
                     <div className="flex items-center space-x-4">
                         <span>📞 +250788881111</span>
-                        <span>📧 artformemories@gmail.com</span>
+                        <span className="hidden md:block">📧 artformemories@gmail.com</span>
                     </div>
                     <div className="flex space-x-3">
                         <FaFacebookF className="cursor-pointer" />

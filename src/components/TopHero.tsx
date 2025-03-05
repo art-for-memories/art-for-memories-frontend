@@ -8,7 +8,7 @@ interface HeroSectionProps {
 
 const TopHero = ({ title, path }: HeroSectionProps) => {
   return (
-    <div className="bg-black text-white py-10 relative flex items-center justify-center h-[250px]">
+    <section className="bg-black text-white py-10 relative flex items-center justify-center h-[250px]">
       <div className="flex items-center">
         <div className="flex items-center space-x-2">
             <div className="text-2xl font-bold flex items-center">
@@ -32,7 +32,7 @@ const TopHero = ({ title, path }: HeroSectionProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

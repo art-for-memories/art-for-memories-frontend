@@ -5,6 +5,7 @@ import TopHeader from "@/components/TopHeader";
 export default function Stories() {
     return (<>
         <TopHeader title="Memories" path="there Memories" />
+        
         <MemoriesList title="Their Memories"  data={[
             {
                 oldPhoto: "/images/memories/memory-1.jpg",
