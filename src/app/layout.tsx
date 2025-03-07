@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Footer from "@/components/Footer";
 import TopLoader from "@/components/TopLoader";
 import { Suspense } from "react";
+import Loading from "@/components/loading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <meta name="apple-mobile-web-app-title" content="Art For Memory" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loading />}>
           <main>
             <TopLoader />
             {children}
