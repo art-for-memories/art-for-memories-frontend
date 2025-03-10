@@ -47,7 +47,7 @@ export default function MemoryForm() {
 
         startTransition(async () => {
             try {
-                const response = await fetch(`${api_url}/memories`, {
+                const response = await fetch(`/api/memories`, {
                     method: "POST",
                     body: formData,
                 });

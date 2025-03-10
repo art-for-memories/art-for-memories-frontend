@@ -7,16 +7,17 @@ import VideoQuote from "@/components/sections/VideoQuote";
 import Navbar from "@/components/Navbar";
 import StoriesList from "@/components/lists/StoriesList";
 import type { Metadata } from "next";
+import Layout from "@/components/Layout";
 
 export const metadata: Metadata = {
   title: "Art of Memories",
-  description: "Art of Memories is a platform that allows you to share your memories in a creative way.",
-  keywords: ["memories", "art", "stories", "creative", "platform"],
+  description: "A group of artists spearheaded by King Ngabo launched Art for Memories in 2023 to assist Genocide Survivors in keeping memories alive by preserving photos of the victims of the Genocide against Tutsi in 1994. The initiative aims at creating new portraits of the dead and missing derived from old and often damaged photographs, inspired by King Ngabo.",
+  keywords: ["memories", "art", "stories", "creative", "platform", "Genocide Survivors", "King Ngabo", "Ingabo Corner", "African stories"],
   viewport: "width=device-width, initial-scale=1.0",
   robots: "index, follow",
   openGraph: {
     title: "Art of Memories",
-    description: "Art of Memories is a platform that allows you to share your memories in a creative way.",
+    description: "A group of artists spearheaded by King Ngabo launched Art for Memories in 2023 to assist Genocide Survivors in keeping memories alive by preserving photos of the victims of the Genocide against Tutsi in 1994. The initiative aims at creating new portraits of the dead and missing derived from old and often damaged photographs, inspired by King Ngabo.",
     url: "https://www.artofmemories.com",
     type: "website",
     images: [
@@ -31,43 +32,45 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const stories = [
+    {
+      image: "/images/stories/story-1.png",
+      type: "Written Story",
+      date: "April 08th, 2025",
+      title: "Uko Nabuze Mama Umbyara",
+      author: "King NGABO",
+      role: "Writer"
+    },
+    {
+      image: "/images/stories/story-2.png",
+      type: "Illustrated",
+      date: "April 08th, 2025",
+      title: "Sinibuka Uko Basega",
+      author: "King NGABO",
+      role: "Illustrator / Creator"
+    },
+    {
+      image: "/images/stories/story-3.png",
+      type: "Illustrated",
+      date: "April 08th, 2025",
+      title: "Umunsi Wa Nyuma Mbabona",
+      author: "King NGABO",
+      role: "Creator"
+    }
+  ];
+
   return (
-    <div className="overflow-x-hidden">
-      <Navbar />
-      <Hero />
-      <About />
-      <Memory />
-      <TheirStories />
-
-      <StoriesList title="" data={[
-        {
-          image: "/images/stories/story-1.png",
-          type: "Written Story",
-          date: "April 08th, 2025",
-          title: "Uko Nabuze Mama Umbyara",
-          author: "King NGABO",
-          role: "Writer"
-        },
-        {
-          image: "/images/stories/story-2.png",
-          type: "Illustrated",
-          date: "April 08th, 2025",
-          title: "Sinibuka Uko Basega",
-          author: "King NGABO",
-          role: "Illustrator / Creator"
-        },
-        {
-          image: "/images/stories/story-3.png",
-          type: "Illustrated",
-          date: "April 08th, 2025",
-          title: "Umunsi Wa Nyuma Mbabona",
-          author: "King NGABO",
-          role: "Creator"
-        }
-      ]} />
-
-      <VideoQuote />
-      <Partners />
-    </div>
+    <Layout>
+      <div className="overflow-x-hidden">
+        <Navbar />
+        <Hero />
+        <About />
+        <Memory />
+        <TheirStories />
+        <StoriesList title="" data={stories} />
+        <VideoQuote />
+        <Partners />
+      </div>
+    </Layout>
   );
 }

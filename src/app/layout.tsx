@@ -1,20 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "../styles/globals.css";
-import Footer from "@/components/Footer";
 import TopLoader from "@/components/TopLoader";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Art of Memories",
@@ -27,12 +15,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <meta name="apple-mobile-web-app-title" content="Art For Memory" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className="antialiased">
         <Suspense fallback={<Loading />}>
           <main>
             <TopLoader />
             {children}
-            <Footer />
           </main>
         </Suspense>
       </body>
