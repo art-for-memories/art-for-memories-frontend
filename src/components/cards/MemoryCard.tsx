@@ -12,7 +12,7 @@ export interface MemoryCardProps {
 
 export default function MemoryCard({ props }: { props: MemoryCardProps }) {
     return (
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-center gap-6 z-10">
             {/* Old Photo Section */}
             <div className="">
                 <h3 className="text-md font-semibold mb-2 text-slate-700">Old Photo</h3>

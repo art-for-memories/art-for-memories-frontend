@@ -17,7 +17,9 @@ export default function Navbar() {
                 </div>
 
                 {/* SubNav Section */}
-                <SubNav />
+                <div className="">
+                    <SubNav />
+                </div>
             </div>
 
             <div className="bg-[#FFFFFF33] rounded-[10px] absolute mx-auto max-w-[1110px] right-0 left-0 p-10 mt-4"></div>
