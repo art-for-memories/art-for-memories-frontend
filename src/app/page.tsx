@@ -56,6 +56,14 @@ export default function Home() {
       title: "Umunsi Wa Nyuma Mbabona",
       author: "King NGABO",
       role: "Creator"
+    },
+    {
+      image: "/images/stories/story-4.png",
+      type: "Written Story",
+      date: "April 08th, 2025",
+      title: "I LEFT MY FAMILY IN THE CATHEDRAL BOOK",
+      author: "King NGABO",
+      role: "Writer"
     }
   ];
 

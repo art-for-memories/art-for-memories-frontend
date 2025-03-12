@@ -26,13 +26,13 @@ const About = () => {
 
                 {/* Image */}
                 <div className="mt-10 flex justify-center">
-                    <Image
+                    {/* <Image
                         src="/images/founder.jpg" 
                         alt="Founder"
                         className="w-64 h-auto object-cover ring ring-black rounded-md"
                         width={100}
                         height={100}
-                    />
+                    /> */}
                 </div>
 
                 {/* Founder Info */}

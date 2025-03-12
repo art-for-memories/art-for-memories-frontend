@@ -1,4 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+'use client';
+
 import Image from 'next/image';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -112,7 +114,9 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                 </div>
             </div>
 
-            <h2 className="text-xl font-semibold text-black">Submit Your Memory</h2>
+            <h2 className="text-xl font-semibold text-black">
+                {currentMemory ? `Viewing ${currentMemory.lastName}` : "Submit Your Memory"}
+            </h2>
 
             <p className="text-gray-500 mb-5 mt-3">
                 Fill your personal details to continue for your Memory Submission

@@ -53,7 +53,7 @@ export default function MemoryCard({ props }: { props: MemoryCardProps }) {
                     <Image
                         src={props.preservedPhoto}
                         alt="Preserved Memory"
-                        className="w-64 h-90 object-cover border border-gray-400"
+                        className="w-64 h-96 object-cover border border-gray-400"
                         width={200}
                         height={400}
                     />
