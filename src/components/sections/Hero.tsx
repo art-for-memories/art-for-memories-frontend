@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 import { useEffect, useRef, useState } from "react";
 import Image from 'next/image'
@@ -75,10 +74,10 @@ const Hero = () => {
                     </p>
 
                     <div className='flex flex-col sm:flex-row items-center mt-4 space-y-4 sm:space-y-0 sm:space-x-4'>
-                        <Link href={"/submit-memory"} className="flex items-center text-sm gap-3 py-3 px-6 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
+                        <Link href={"/memory"} className="flex items-center text-sm gap-3 py-3 px-6 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
                             HAVE A STORY? SUBMIT IT
                         </Link>
-                        <Link href={"/submit-memory"} className="flex items-center gap-3 px-4 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
+                        <Link href={"/memory"} className="flex items-center gap-3 px-4 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
                             <span className="text-md">↗</span>
                         </Link>
                     </div>

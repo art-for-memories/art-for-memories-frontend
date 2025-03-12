@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
+'use client';
 
 import Image from 'next/image';
 import { useForm } from "react-hook-form";
@@ -7,11 +7,22 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useTransition } from "react";
 
+interface Memory {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    memory: string;
+    status: string;
+    art: string;
+}
+
 const formSchema = z.object({
     firstName: z.string().nonempty(),
     lastName: z.string().nonempty(),
     email: z.string().email(),
-    phoneNumber: z.string().min(10),
+    phone: z.string().min(10),
     memory: z.string().nonempty(),
     images: z.any().refine((files) => files instanceof FileList && files.length > 0, {
         message: "Please upload at least one image",
@@ -20,7 +31,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function MemoryForm() {
+export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory?: Memory | undefined; onSuccess: () => void }) {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
@@ -31,25 +42,22 @@ export default function MemoryForm() {
     });
 
     const onSubmit = async (data: FormData) => {
-        const api_url = process.env.NEXT_PUBLIC_BACKEND_SERVER_URL;
-
-        const formData = new FormData();
-
-        formData.append("firstname", data.firstName);
-        formData.append("lastname", data.lastName);
-        formData.append("email", data.email);
-        formData.append("phone", data.phoneNumber);
-        formData.append("memories", data.memory);
-
-        Array.from(data.images).forEach((file) => {
-            formData.append("images", file as Blob);
-        });
+        const formData = {
+            first_name: data.firstName,
+            last_name: data.lastName,
+            email: data.email,
+            phone_number: data.phone,
+            memories: data.memory,
+        };
 
         startTransition(async () => {
             try {
-                const response = await fetch(`${api_url}/memories`, {
+                const response = await fetch(`/api/memories`, {
                     method: "POST",
-                    body: formData,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
                 });
 
                 if (response.ok) {
@@ -57,9 +65,9 @@ export default function MemoryForm() {
                     setSelectedImages([]);
                     setSuccessMessage("Memory submitted successfully!");
                     setErrorMessage(null);
+                    onSuccess();
                 } else {
                     const errorData = await response.json();
-
                     setErrorMessage(errorData.message || "Failed to submit memory. Please try again later.");
                     setSuccessMessage(null);
                 }
@@ -85,6 +93,16 @@ export default function MemoryForm() {
         setValue("images", files);
     };
 
+    if (currentMemory) {
+        const { firstName, lastName, email, phone, memory } = currentMemory;
+
+        setValue("firstName", firstName);
+        setValue("lastName", lastName);
+        setValue("email", email);
+        setValue("phone", phone);
+        setValue("memory", memory);
+    }
+
     return (
         <div className="max-w-md md:max-w-lg mx-auto p-6 bg-white">
             <div className="flex items-center space-x-2 justify-between mb-4">
@@ -96,7 +114,9 @@ export default function MemoryForm() {
                 </div>
             </div>
 
-            <h2 className="text-xl font-semibold text-black">Submit Your Memory</h2>
+            <h2 className="text-xl font-semibold text-black">
+                {currentMemory ? `Viewing ${currentMemory.lastName}` : "Submit Your Memory"}
+            </h2>
 
             <p className="text-gray-500 mb-5 mt-3">
                 Fill your personal details to continue for your Memory Submission
@@ -149,9 +169,9 @@ export default function MemoryForm() {
                             type="text"
                             placeholder="785119320"
                             className="w-full p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                            {...register("phoneNumber")}
+                            {...register("phone")}
                         />
-                        {errors.phoneNumber && <p className="text-red-500 text-sm">{errors.phoneNumber.message}</p>}
+                        {errors.phone && <p className="text-red-500 text-sm">{errors.phone.message}</p>}
                     </div>
                 </div>
 
@@ -195,12 +215,12 @@ export default function MemoryForm() {
                 )}
 
                 {/* Submit Button */}
-                <div className='flex items-center justify-between mt-5'>
+                {!currentMemory && <div className='flex items-center justify-between mt-5'>
                     <button type='submit' disabled={isSubmitting || isPending} className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80">
                         <span>{isPending ? "Submitting..." : "Submit"}</span>
                         <span className='ml-5'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
                     </button>
-                </div>
+                </div>}
             </form>
 
             <div className='mt-5 font-semibold'>
