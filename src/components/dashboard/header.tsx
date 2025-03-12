@@ -9,7 +9,7 @@ function Header() {
     return (
         <header>
             <div className="flex justify-between items-center">
-                <h1 className="text-xl font-semibold text-black">Employees</h1>
+                <h1 className="text-xl font-semibold text-black">Memories</h1>
 
                 <button onClick={() => setFormOpen(true)} className="bg-black text-white px-4 py-2 flex items-center rounded cursor-pointer">
                     <span>
@@ -19,11 +19,6 @@ function Header() {
                     </span>
                     <span>Add New</span>
                 </button>
-            </div>
-
-            <div className="bg-white p-6 rounded mt-4 flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-black">Josh Bakery Ventures</h2>
-                <p className="text-gray-500">62, Bode Thomas, Surulere, Lagos</p>
             </div>
 
             <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>

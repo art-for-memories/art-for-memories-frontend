@@ -1,10 +1,10 @@
-import "../../styles/globals.css";
+
 import TopLoader from "@/components/TopLoader";
 import { Suspense } from "react";
 import Loading from "@/components/loading";
 import { getServerAuthSession } from '@/config/auth'
 import { redirect } from 'next/navigation';
-import { SessionProvider } from "next-auth/react";
+import SessionProviderWrapper from "@/components/SessionProviderWrapper";
 
 export default async function AdminLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
     const session = await getServerAuthSession()
@@ -20,12 +20,12 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
             </head>
             <body className="antialiased">
                 <Suspense fallback={<Loading />}>
-                    <SessionProvider session={session}>
+                    <SessionProviderWrapper session={session}>
                         <main>
                             <TopLoader />
                             {children}
                         </main>
-                    </SessionProvider>
+                    </SessionProviderWrapper>
                 </Suspense>
             </body>
         </html>
