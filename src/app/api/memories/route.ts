@@ -1,16 +1,42 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prisma";
 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
 export async function POST(req: Request) {
   try {
-    const { title, content } = await req.json();
-    const memory = await prisma.memory.create({
-      data: { title, content },
+    const body = await req.json();
+    const { first_name, last_name, email, phone_number, memories, images } =
+      body;
+
+    const memory = await prisma.memories.create({
+      data: {
+        firstName: first_name,
+        lastName: last_name,
+        phone: phone_number,
+        memory: memories,
+        email,
+      },
     });
-    return NextResponse.json(memory, { status: 201 });
-  } catch {
+
+    if (images && images.length > 0) {
+      await Promise.all(
+        images.map(async (image: string) => {
+          await prisma.memoriesImage.create({
+            data: { image, memoryId: memory.id },
+          });
+        })
+      );
+    }
+
+    return NextResponse.json(memory);
+  } catch (error) {
     return NextResponse.json(
-      { error: "Failed to create memory" },
+      { error: "Failed to create memory", details: (error as Error).message },
       { status: 500 }
     );
   }
@@ -18,11 +44,11 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
-    const memories = await prisma.memory.findMany();
+    const memories = await prisma.memories.findMany();
     return NextResponse.json(memories);
-  } catch {
+  } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch memories" },
+      { error: "Failed to fetch memories", details: (error as Error).message },
       { status: 500 }
     );
   }
@@ -30,15 +56,24 @@ export async function GET() {
 
 export async function PUT(req: Request) {
   try {
-    const { id, title, content } = await req.json();
-    const memory = await prisma.memory.update({
+    const body = await req.json();
+    const { id, first_name, last_name, email, phone_number, memories } = body;
+
+    const memory = await prisma.memories.update({
       where: { id },
-      data: { title, content },
+      data: {
+        firstName: first_name,
+        lastName: last_name,
+        phone: phone_number,
+        memory: memories,
+        email,
+      },
     });
+
     return NextResponse.json(memory);
-  } catch {
+  } catch (error) {
     return NextResponse.json(
-      { error: "Failed to update memory" },
+      { error: "Failed to update memory", details: (error as Error).message },
       { status: 500 }
     );
   }
@@ -46,12 +81,15 @@ export async function PUT(req: Request) {
 
 export async function DELETE(req: Request) {
   try {
-    const { id } = await req.json();
-    await prisma.memory.delete({ where: { id } });
+    const body = await req.json();
+    const { id } = body;
+
+    await prisma.memories.delete({ where: { id } });
+
     return NextResponse.json({ message: "Memory deleted successfully" });
-  } catch {
+  } catch (error) {
     return NextResponse.json(
-      { error: "Failed to delete memory" },
+      { error: "Failed to delete memory", details: (error as Error).message },
       { status: 500 }
     );
   }

@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-"use client";
-
 import Image from 'next/image';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -31,25 +29,22 @@ export default function MemoryForm() {
     });
 
     const onSubmit = async (data: FormData) => {
-        const api_url = process.env.NEXT_PUBLIC_BACKEND_SERVER_URL;
-
-        const formData = new FormData();
-
-        formData.append("firstname", data.firstName);
-        formData.append("lastname", data.lastName);
-        formData.append("email", data.email);
-        formData.append("phone", data.phoneNumber);
-        formData.append("memories", data.memory);
-
-        Array.from(data.images).forEach((file) => {
-            formData.append("images", file as Blob);
-        });
+        const formData = {
+            first_name: data.firstName,
+            last_name: data.lastName,
+            email: data.email,
+            phone_number: data.phoneNumber,
+            memories: data.memory,
+        };
 
         startTransition(async () => {
             try {
                 const response = await fetch(`/api/memories`, {
                     method: "POST",
-                    body: formData,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
                 });
 
                 if (response.ok) {
@@ -59,7 +54,6 @@ export default function MemoryForm() {
                     setErrorMessage(null);
                 } else {
                     const errorData = await response.json();
-
                     setErrorMessage(errorData.message || "Failed to submit memory. Please try again later.");
                     setSuccessMessage(null);
                 }
