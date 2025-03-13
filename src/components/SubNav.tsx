@@ -45,7 +45,7 @@ export default function SubNav() {
         )}
 
         <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-            <MemoryForm />
+            <MemoryForm onSuccess={() => setFormOpen(false)} />
         </FormModal>
     </>);
 }

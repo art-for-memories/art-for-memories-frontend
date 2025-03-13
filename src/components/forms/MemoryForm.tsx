@@ -31,7 +31,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory?: Memory | undefined; onSuccess: () => void }) {
+export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory?: Memory | undefined; onSuccess?: () => void }) {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
@@ -65,7 +65,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                     setSelectedImages([]);
                     setSuccessMessage("Memory submitted successfully!");
                     setErrorMessage(null);
-                    onSuccess();
+                    onSuccess?.();
                 } else {
                     const errorData = await response.json();
                     setErrorMessage(errorData.message || "Failed to submit memory. Please try again later.");
