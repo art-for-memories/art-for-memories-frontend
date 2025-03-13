@@ -95,3 +95,27 @@ model MemoriesArt {
 
   memory Memories @relation(fields: [memoryId], references: [id], onDelete: Cascade)
 }
+
+model Story {
+  id        String      @id @default(cuid()) @map("_id")
+  storyType String
+  title     String
+  author    String
+  date      DateTime
+  status    String      @default("pending")
+  StoryFile StoryFile[]
+}
+
+model StoryFile {
+  id      String @id @default(cuid()) @map("_id")
+  url     String
+  story   Story  @relation(fields: [storyId], references: [id])
+  storyId String
+}
+
+model Video {
+  id        String   @id @default(cuid()) @map("_id")
+  url       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

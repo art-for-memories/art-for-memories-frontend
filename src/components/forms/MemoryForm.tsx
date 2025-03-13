@@ -35,28 +35,50 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
-    const [selectedImages, setSelectedImages] = useState<string[]>([]);
+    const [selectedImages, setSelectedImages] = useState<File[]>([]);
 
     const { register, handleSubmit, formState: { errors, isSubmitting }, reset, setValue } = useForm<FormData>({
         resolver: zodResolver(formSchema),
     });
 
+    const uploadFiles = async () => {
+        const uploadedFiles: string[] = [];
+
+        for (const file of selectedImages) {
+            const formData = new FormData();
+            
+            formData.append('file', file);
+            formData.append('upload_preset', 'memories_preset');
+
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+            uploadedFiles.push(data.secure_url);
+        }
+
+        return uploadedFiles;
+    };
+
     const onSubmit = async (data: FormData) => {
+        const uploadedFiles = await uploadFiles();
+
         const formData = {
             first_name: data.firstName,
             last_name: data.lastName,
             email: data.email,
             phone_number: data.phone,
             memories: data.memory,
+            images: uploadedFiles,
         };
 
         startTransition(async () => {
             try {
                 const response = await fetch(`/api/memories`, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                    headers: { "Content-Type": "application/json",},
                     body: JSON.stringify(formData),
                 });
 
@@ -83,13 +105,16 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
 
         if (!files) return;
 
-        const newImages: string[] = [];
+        const newFiles: File[] = [];
 
         for (let i = 0; i < files.length; i++) {
-            newImages.push(URL.createObjectURL(files[i]));
+            const file = files[i];
+            if (file.type.startsWith('image/')) {
+                newFiles.push(file);
+            }
         }
 
-        setSelectedImages(newImages);
+        setSelectedImages(newFiles);
         setValue("images", files);
     };
 
@@ -208,7 +233,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                     <div className="mt-4 grid grid-cols-2 gap-4">
                         {selectedImages.map((image, index) => (
                             <div key={index} className="relative">
-                                <Image src={image} alt={`Selected ${index}`} className="w-full h-32 object-cover rounded-md" width={100} height={100} />
+                                <Image src={URL.createObjectURL(image)} alt={`Selected ${index}`} className="w-full h-32 object-cover rounded-md" width={100} height={100} />
                             </div>
                         ))}
                     </div>
