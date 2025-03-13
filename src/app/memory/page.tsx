@@ -1,3 +1,5 @@
+'use client';
+
 import MemoryForm from "@/components/forms/MemoryForm";
 import Navbar from "@/components/Navbar";
 
