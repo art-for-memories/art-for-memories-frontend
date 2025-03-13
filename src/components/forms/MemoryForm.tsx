@@ -5,18 +5,8 @@ import Image from 'next/image';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useTransition } from "react";
-
-interface Memory {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    memory: string;
-    status: string;
-    art: string;
-}
+import { useEffect, useState, useTransition } from "react";
+import { Memory } from '@/types/memories';
 
 const formSchema = z.object({
     firstName: z.string().nonempty(),
@@ -46,7 +36,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
 
         for (const file of selectedImages) {
             const formData = new FormData();
-            
+
             formData.append('file', file);
             formData.append('upload_preset', 'memories_preset');
 
@@ -78,7 +68,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
             try {
                 const response = await fetch(`/api/memories`, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json",},
+                    headers: { "Content-Type": "application/json", },
                     body: JSON.stringify(formData),
                 });
 
@@ -118,15 +108,16 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
         setValue("images", files);
     };
 
-    if (currentMemory) {
-        const { firstName, lastName, email, phone, memory } = currentMemory;
-
-        setValue("firstName", firstName);
-        setValue("lastName", lastName);
-        setValue("email", email);
-        setValue("phone", phone);
-        setValue("memory", memory);
-    }
+    useEffect(() => {
+        if (currentMemory) {
+            const { firstName, lastName, email, phone, memory } = currentMemory;
+            setValue("firstName", firstName);
+            setValue("lastName", lastName);
+            setValue("email", email);
+            setValue("phone", phone);
+            setValue("memory", memory);
+        }
+    }, [currentMemory, setValue]);
 
     return (
         <div className="max-w-md md:max-w-lg mx-auto p-6 bg-white">
@@ -227,6 +218,16 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                     </div>
                     {errors.images && <p className="text-red-500 text-sm">{String(errors.images.message)}</p>}
                 </div>
+
+                {/* {currentMemory && currentMemory.images.length > 0 && (
+                    <div className="mt-4 grid grid-cols-2 gap-4">
+                        {currentMemory.images.map((image, index) => (
+                            <div key={index} className="relative">
+                                <Image src={image} alt={`Selected ${index}`} className="w-full h-32 object-cover rounded-md" width={100} height={100} />
+                            </div>
+                        ))}
+                    </div>
+                )} */}
 
                 {/* Image Previews */}
                 {selectedImages.length > 0 && (

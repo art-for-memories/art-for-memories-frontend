@@ -5,11 +5,9 @@ import Navbar from '@/components/dashboard/navbar';
 import Sidebar from '@/components/dashboard/sidebar';
 import FormModal from '@/components/models/form-model';
 import FetchSpinner from '@/components/spinners/fetch-spinner';
+import { Video } from '@/types/video';
+import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-
-interface Video {
-    url: string;
-}
 
 function Videos() {
     const [isFormOpen, setFormOpen] = useState(false);
@@ -170,16 +168,24 @@ function Videos() {
 
                     {/* Table */}
                     <div className="mt-4">
-                        {videos && videos.map((video: Video, index: number) => (
-                            <div key={index} className="bg-black rounded-lg flex items-center justify-center relative mx-1 w-[250px] h-[200px] sm:w-[350px] sm:h-[300px] md:w-[250px] md:h-[200px]">
-                                <video width="100%" height="100%" controls>
-                                    <source src={video.url} type="video/mp4" />
-                                    Your browser does not support the video tag.
-                                </video>
-                            </div>
-                        ))}
-
                         {loading && <div className="my-10"><FetchSpinner /></div>}
+                        {videos.length === 0 && (
+                            <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4 w-full'>
+                                <Image src={'/svgs/empty.svg'} alt='' width={400} height={400} />
+                                <span className='text-slate-700 font-semibold text-base'>No Stories found</span>
+                            </div>
+                        )}
+
+                        <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4'>
+                            {videos && videos.map((video: Video, index: number) => (
+                                <div key={index} className="bg-black rounded-lg flex items-center justify-center relative mx-1 w-[250px] h-[200px] sm:w-[350px] sm:h-[300px] md:w-[250px] md:h-[200px]">
+                                    <video width="100%" height="100%" controls>
+                                        <source src={video.url} type="video/mp4" />
+                                        Your browser does not support the video tag.
+                                    </video>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 </div>
             </div>

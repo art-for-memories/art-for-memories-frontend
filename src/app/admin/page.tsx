@@ -8,18 +8,8 @@ import TableControls from "@/components/dashboard/table-controls";
 import MemoryForm from "@/components/forms/MemoryForm";
 import FormModal from "@/components/models/form-model";
 import FetchSpinner from "@/components/spinners/fetch-spinner";
+import { Memory } from "@/types/memories";
 import { useEffect, useState } from "react";
-
-interface Memory {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    memory: string;
-    status: string;
-    art: string;
-}
 
 export default function Memories() {
     const headers = ['First Name', 'Last Name', 'Email', 'Phone Number', 'Memory', 'Status'];
@@ -114,8 +104,8 @@ export default function Memories() {
 
                     {/* Table */}
                     <div className="mt-4">
+                        {loading && <div className="my-10"><FetchSpinner /></div>} 
                         <Table headers={headers} data={memories} onDelete={handleDelete} onPreview={previewMemory} onApproved={approvedMemory} />
-                        {loading && <div className="my-10"><FetchSpinner /></div>}
                     </div>
                 </div>
 

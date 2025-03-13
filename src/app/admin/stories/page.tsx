@@ -6,16 +6,7 @@ import FormModal from '@/components/models/form-model';
 import React, { useEffect, useState } from 'react'
 import StoriesTable from '@/components/dashboard/StoriesTable';
 import FetchSpinner from '@/components/spinners/fetch-spinner';
-
-interface Story {
-    id: string;
-    title: string;
-    author: string;
-    date: string;
-    files: string[];
-    status: string;
-    storyType: string;
-}
+import { Stories as Story } from '@/types/stories';
 
 function Stories() {
     const [isFormOpen, setFormOpen] = useState(false);
@@ -280,6 +271,7 @@ function Stories() {
 
                     {/* Table */}
                     <div className="mt-4">
+                        {loading && <div className="my-10"><FetchSpinner /></div>}
                         <StoriesTable
                             headers={headers}
                             data={stories}
@@ -287,7 +279,6 @@ function Stories() {
                             onPreview={() => { }}
                             onApproved={() => { }}
                         />
-                        {loading && <div className="my-10"><FetchSpinner /></div>}
                     </div>
                 </div>
             </div>
