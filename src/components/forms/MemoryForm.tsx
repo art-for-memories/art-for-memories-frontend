@@ -5,18 +5,8 @@ import Image from 'next/image';
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState, useTransition } from "react";
-
-interface Memory {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    memory: string;
-    status: string;
-    art: string;
-}
+import { useEffect, useState, useTransition } from "react";
+import { Memory } from '@/types/memories';
 
 const formSchema = z.object({
     firstName: z.string().nonempty(),
@@ -31,32 +21,54 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory?: Memory | undefined; onSuccess: () => void }) {
+export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory?: Memory | undefined; onSuccess?: () => void }) {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [isPending, startTransition] = useTransition();
-    const [selectedImages, setSelectedImages] = useState<string[]>([]);
+    const [selectedImages, setSelectedImages] = useState<File[]>([]);
 
     const { register, handleSubmit, formState: { errors, isSubmitting }, reset, setValue } = useForm<FormData>({
         resolver: zodResolver(formSchema),
     });
 
+    const uploadFiles = async () => {
+        const uploadedFiles: string[] = [];
+
+        for (const file of selectedImages) {
+            const formData = new FormData();
+
+            formData.append('file', file);
+            formData.append('upload_preset', 'memories_preset');
+
+            const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+            uploadedFiles.push(data.secure_url);
+        }
+
+        return uploadedFiles;
+    };
+
     const onSubmit = async (data: FormData) => {
+        const uploadedFiles = await uploadFiles();
+
         const formData = {
             first_name: data.firstName,
             last_name: data.lastName,
             email: data.email,
             phone_number: data.phone,
             memories: data.memory,
+            images: uploadedFiles,
         };
 
         startTransition(async () => {
             try {
                 const response = await fetch(`/api/memories`, {
                     method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
+                    headers: { "Content-Type": "application/json", },
                     body: JSON.stringify(formData),
                 });
 
@@ -65,7 +77,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                     setSelectedImages([]);
                     setSuccessMessage("Memory submitted successfully!");
                     setErrorMessage(null);
-                    onSuccess();
+                    onSuccess?.();
                 } else {
                     const errorData = await response.json();
                     setErrorMessage(errorData.message || "Failed to submit memory. Please try again later.");
@@ -83,25 +95,29 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
 
         if (!files) return;
 
-        const newImages: string[] = [];
+        const newFiles: File[] = [];
 
         for (let i = 0; i < files.length; i++) {
-            newImages.push(URL.createObjectURL(files[i]));
+            const file = files[i];
+            if (file.type.startsWith('image/')) {
+                newFiles.push(file);
+            }
         }
 
-        setSelectedImages(newImages);
+        setSelectedImages(newFiles);
         setValue("images", files);
     };
 
-    if (currentMemory) {
-        const { firstName, lastName, email, phone, memory } = currentMemory;
-
-        setValue("firstName", firstName);
-        setValue("lastName", lastName);
-        setValue("email", email);
-        setValue("phone", phone);
-        setValue("memory", memory);
-    }
+    useEffect(() => {
+        if (currentMemory) {
+            const { firstName, lastName, email, phone, memory } = currentMemory;
+            setValue("firstName", firstName);
+            setValue("lastName", lastName);
+            setValue("email", email);
+            setValue("phone", phone);
+            setValue("memory", memory);
+        }
+    }, [currentMemory, setValue]);
 
     return (
         <div className="max-w-md md:max-w-lg mx-auto p-6 bg-white">
@@ -203,12 +219,22 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                     {errors.images && <p className="text-red-500 text-sm">{String(errors.images.message)}</p>}
                 </div>
 
+                {/* {currentMemory && currentMemory.images.length > 0 && (
+                    <div className="mt-4 grid grid-cols-2 gap-4">
+                        {currentMemory.images.map((image, index) => (
+                            <div key={index} className="relative">
+                                <Image src={image} alt={`Selected ${index}`} className="w-full h-32 object-cover rounded-md" width={100} height={100} />
+                            </div>
+                        ))}
+                    </div>
+                )} */}
+
                 {/* Image Previews */}
                 {selectedImages.length > 0 && (
                     <div className="mt-4 grid grid-cols-2 gap-4">
                         {selectedImages.map((image, index) => (
                             <div key={index} className="relative">
-                                <Image src={image} alt={`Selected ${index}`} className="w-full h-32 object-cover rounded-md" width={100} height={100} />
+                                <Image src={URL.createObjectURL(image)} alt={`Selected ${index}`} className="w-full h-32 object-cover rounded-md" width={100} height={100} />
                             </div>
                         ))}
                     </div>

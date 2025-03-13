@@ -22,7 +22,7 @@ function Header() {
             </div>
 
             <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                <MemoryForm />
+                <MemoryForm onSuccess={() => {}} />
             </FormModal>
         </header>
     )

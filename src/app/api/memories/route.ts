@@ -10,8 +10,7 @@ export const config = {
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { first_name, last_name, email, phone_number, memories, images } =
-      body;
+    const { first_name, last_name, email, phone_number, memories, images } = body;
 
     const memory = await prisma.memories.create({
       data: {
@@ -57,7 +56,7 @@ export async function GET() {
 export async function PUT(req: Request) {
   try {
     const body = await req.json();
-    const { id, first_name, last_name, email, phone_number, memories, status } = body;
+    const { id, first_name, last_name, email, phone_number, memories, status, images } = body;
 
     const memory = await prisma.memories.update({
       where: { id },
@@ -77,6 +76,18 @@ export async function PUT(req: Request) {
           status: status as "approved" | "rejected",
         },
       });
+    }
+
+    if (images && images.length > 0) {
+      await prisma.memoriesImage.deleteMany({ where: { memoryId: id } });
+
+      await Promise.all(
+        images.map(async (image: string) => {
+          await prisma.memoriesImage.create({
+            data: { image, memoryId: memory.id },
+          });
+        })
+      );
     }
 
     return NextResponse.json(memory);
