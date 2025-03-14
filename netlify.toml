@@ -1,7 +1,6 @@
 [build]
   command = "npm run build"
   publish = "out"
-  environment = { NODE_ENV = "production" }
 
 [build.environment]
   NPM_FLAGS = "--prefer-offline --no-audit --progress=false"
