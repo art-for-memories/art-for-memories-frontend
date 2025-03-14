@@ -1,7 +1,7 @@
 export interface Art {
     id: string;
     name: string;
-    age: string;
+    age: string | number;
     oldPhoto: string;
     preservedPhoto: string;
     killedOn?: string;
