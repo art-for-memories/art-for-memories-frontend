@@ -1,3 +1,4 @@
+import Image from "next/image";
 import StoryCard, { TheirStoryProps } from "../cards/StoryCard";
 
 interface StoriesListProps {
@@ -12,6 +13,13 @@ export default function StoriesList({ title, data }: StoriesListProps) {
             <div className="mb-3 text-center md:text-left">
                 <h2 className="text-3xl sm:text-4xl font-bold text-black">{title}</h2>
             </div>
+
+            {data.length === 0 && (
+                <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4'>
+                    <Image src={'/svgs/empty.svg'} alt='' width={400} height={400} />
+                    <span className='text-slate-700 font-semibold text-base'>No Stories found</span>
+                </div>
+            )}
 
             {/* Story Grid */}
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">

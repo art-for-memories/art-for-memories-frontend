@@ -1,10 +1,12 @@
 import { usePagination } from "@/hooks/usePagination";
 import VideoCard from "../cards/VideoCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { Video } from "@/types/video";
 
 interface VideosListProps {
     title: string;
-    data: unknown[];
+    data: Video[];
 }
 
 export default function VideosList({ title, data }: VideosListProps) {
@@ -17,11 +19,18 @@ export default function VideosList({ title, data }: VideosListProps) {
 
             <div className="flex flex-col items-center md:items-start">
                 <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center">
-                    {currentData().map((data: unknown, index: number) => (
-                        <VideoCard key={index} />
+                    {(currentData() as Video[]).map((video: Video, index: number) => (
+                        <VideoCard key={index} video={video} />
                     ))}
                 </div>
             </div>
+
+            {data.length === 0 && (
+                <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4'>
+                    <Image src={'/svgs/empty.svg'} alt='' width={400} height={400} />
+                    <span className='text-slate-700 font-semibold text-base'>No Videos found</span>
+                </div>
+            )}
 
             {/* Pagination Controls */}
             <div className="flex justify-between mt-10 max-w-md mx-auto">
@@ -31,6 +40,7 @@ export default function VideosList({ title, data }: VideosListProps) {
                     className="w-10 h-10 flex items-center justify-center border-2 border-black rounded-full hover:bg-gray-200">
                     <ChevronLeft size={18} />
                 </button>
+
                 {/* Page Numbers */}
                 {[...Array(maxPage)].map((_, index) => {
                     const page = index + 1;
@@ -45,6 +55,7 @@ export default function VideosList({ title, data }: VideosListProps) {
                         </button>
                     );
                 })}
+                
                 <button
                     onClick={next}
                     disabled={currentPage === maxPage}

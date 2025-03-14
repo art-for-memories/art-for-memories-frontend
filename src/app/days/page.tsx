@@ -1,16 +1,29 @@
 "use client";
+
 import TopHeader from "@/components/TopHeader";
 import { Play } from 'lucide-react';
 import VideosList from "@/components/lists/VideosList";
 import Layout from "@/components/Layout";
+import { useEffect, useState } from "react";
+import FetchSpinner from "@/components/spinners/fetch-spinner";
 
 export default function Days() {
-    const videos = [
-        { id: 1, image: '/images/1.jpg', type: 'Story', date: '12th June 2021' },
-        { id: 2, image: '/images/2.jpg', type: 'Story', date: '15th July 2021' },
-        { id: 3, image: '/images/3.jpg', type: 'Story', date: '20th Aug 2021' },
-        { id: 4, image: '/images/4.jpg', type: 'Story', date: '10th Sep 2021' },
-    ];
+    const [videos, setVideos] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const getVideos = async () => {
+        setLoading(true);
+
+        const response = await fetch('/api/videos');
+        const data = await response.json();
+
+        setVideos(data);
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        getVideos();
+    }, []);
 
     return (<>
         <Layout>
@@ -30,6 +43,7 @@ export default function Days() {
 
                     {/* Other Videos Section */}
                     <div className="mt-10">
+                        {loading && <FetchSpinner />}
                         <VideosList title="Other Videos" data={videos} />
                     </div>
                 </div>

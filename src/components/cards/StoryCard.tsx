@@ -29,7 +29,7 @@ export default function StoryCard({ props }: { props: TheirStoryProps }) {
                     <span className="text-xs bg-white text-slate-700 px-2 py-1 rounded-full border border-gray-200">
                         {props.type}
                     </span>
-                    <span className="text-xs text-slate-700 ml-2">{props.date}</span>
+                    <span className="text-xs text-slate-700 mt-2">{props.date}</span>
                 </div>
 
                 {/* Title */}
