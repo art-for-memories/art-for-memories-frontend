@@ -2,6 +2,7 @@ import { usePagination } from "@/hooks/usePagination";
 import MemoryCard from "@/components/cards/MemoryCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Art } from "@/types/arts";
+import Image from "next/image";
 
 export default function MemoriesList({ title, data }: { title: string, data: Art[] }) {
     const itemsPerPage = 5;
@@ -14,6 +15,12 @@ export default function MemoriesList({ title, data }: { title: string, data: Art
             </div>
 
             <div className="mt-12">
+                {data.length === 0 && (
+                    <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4'>
+                        <Image src={'/svgs/empty.svg'} alt='' width={400} height={400} />
+                        <span className='text-slate-700 font-semibold text-base'>No data found</span>
+                    </div>
+                )}
                 {(currentData() as Art[]).map((memory: Art, index: number) => (
                     <div key={index} className="mb-6">
                         <MemoryCard props={memory} />
