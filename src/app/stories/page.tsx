@@ -3,7 +3,6 @@ import StoriesList from "@/components/lists/StoriesList";
 import FetchSpinner from "@/components/spinners/fetch-spinner";
 import TopHeader from "@/components/TopHeader";
 import { Stories as Story } from "@/types/stories";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function Stories() {
@@ -47,12 +46,6 @@ export default function Stories() {
     return (<>
         <TopHeader title="Their Stories" />
         {loading && <FetchSpinner />}
-        {stories.length === 0 && !loading && (
-            <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4'>
-                <Image src={'/svgs/empty.svg'} alt='' width={400} height={400} />
-                <span className='text-slate-700 font-semibold text-base'>No Stories found</span>
-            </div>
-        )}
         <StoriesList title="Published Stories" data={stories} />
     </>);
 }
