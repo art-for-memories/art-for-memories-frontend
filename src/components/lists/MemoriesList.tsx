@@ -1,9 +1,10 @@
 import { usePagination } from "@/hooks/usePagination";
-import MemoryCard, { MemoryCardProps } from "@/components/cards/MemoryCard";
+import MemoryCard from "@/components/cards/MemoryCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Art } from "@/types/arts";
 
-export default function MemoriesList({ title, data }: { title: string, data: MemoryCardProps[] }) {
-    const itemsPerPage = 5; // Adjust the number of items per page as needed
+export default function MemoriesList({ title, data }: { title: string, data: Art[] }) {
+    const itemsPerPage = 5;
     const { next, prev, currentData, currentPage, maxPage, setCurrentPage } = usePagination(data, itemsPerPage);
 
     return (<>
@@ -13,7 +14,7 @@ export default function MemoriesList({ title, data }: { title: string, data: Mem
             </div>
 
             <div className="mt-12">
-                {(currentData() as MemoryCardProps[]).map((memory: MemoryCardProps, index: number) => (
+                {(currentData() as Art[]).map((memory: Art, index: number) => (
                     <div key={index} className="mb-6">
                         <MemoryCard props={memory} />
                     </div>
@@ -32,15 +33,14 @@ export default function MemoriesList({ title, data }: { title: string, data: Mem
                 {[...Array(maxPage)].map((_, index) => {
                     const page = index + 1;
                     return (
-                    <button
-                        key={page}
-                        onClick={() => setCurrentPage(page)}
-                        className={`w-10 h-10 border-2 border-black rounded-full flex items-center justify-center text-sm font-semibold transition ${
-                        currentPage === page ? "bg-black text-white" : "hover:bg-gray-200"
-                        }`}
-                    >
-                        {page.toString().padStart(2, "0")}
-                    </button>
+                        <button
+                            key={page}
+                            onClick={() => setCurrentPage(page)}
+                            className={`w-10 h-10 border-2 border-black rounded-full flex items-center justify-center text-sm font-semibold transition ${currentPage === page ? "bg-black text-white" : "hover:bg-gray-200"
+                                }`}
+                        >
+                            {page.toString().padStart(2, "0")}
+                        </button>
                     );
                 })}
                 <button

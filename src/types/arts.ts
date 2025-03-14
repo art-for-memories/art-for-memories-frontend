@@ -4,6 +4,9 @@ export interface Art {
     age: string;
     oldPhoto: string;
     preservedPhoto: string;
+    killedOn?: string;
+    submittedBy?: string;
+    preview?: boolean;
 }
 
 export interface ArtTableProps {

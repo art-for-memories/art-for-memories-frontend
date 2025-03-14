@@ -1,46 +1,58 @@
 "use client";
 import StoriesList from "@/components/lists/StoriesList";
+import FetchSpinner from "@/components/spinners/fetch-spinner";
 import TopHeader from "@/components/TopHeader";
+import { Stories as Story } from "@/types/stories";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Stories() {
-    const stories = [
-        {
-            image: "/images/stories/story-1.png",
-            type: "Written Story",
-            date: "April 08th, 2025",
-            title: "Uko Nabuze Mama Umbyara",
-            author: "King NGABO",
-            role: "Writer"
-        },
-        {
-            image: "/images/stories/story-2.png",
-            type: "Illustrated",
-            date: "April 08th, 2025",
-            title: "Sinibuka Uko Basega",
-            author: "King NGABO",
-            role: "Illustrator / Creator"
-        },
-        {
-            image: "/images/stories/story-3.png",
-            type: "Illustrated",
-            date: "April 08th, 2025",
-            title: "Umunsi Wa Nyuma Mbabona",
-            author: "King NGABO",
-            role: "Creator"
-        },
-        {
-            image: "/images/stories/story-4.png",
-            type: "Written Story",
-            date: "April 08th, 2025",
-            title: "I LEFT MY FAMILY IN THE CATHEDRAL BOOK",
-            author: "King NGABO",
-            role: "Writer"
+    const [stories, setStories] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    const getAllStories = async () => {
+        try {
+            setLoading(true);
+
+            const response = await fetch('/api/stories');
+
+            if (response.ok) {
+                const stories = await response.json();
+
+                const formattedStories = stories.map((story: Story) => ({
+                    image: "/images/stories/story-4.png",
+                    type: story.storyType,
+                    date: story.date,
+                    title: story.title,
+                    author: story.author,
+                    role: "Illustrator",
+                    preview: false,
+                }));
+
+                setStories(formattedStories);
+            } else {
+                console.error('Failed to fetch stories');
+            }
+
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching stories:', error);
         }
-    ];
+    };
+
+    useEffect(() => {
+        getAllStories();
+    }, []);
 
     return (<>
         <TopHeader title="Their Stories" />
-        <StoriesList title="Illustrated Stories" data={stories} />
+        {loading && <FetchSpinner />}
+        {stories.length === 0 && !loading && (
+            <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4'>
+                <Image src={'/svgs/empty.svg'} alt='' width={400} height={400} />
+                <span className='text-slate-700 font-semibold text-base'>No Stories found</span>
+            </div>
+        )}
         <StoriesList title="Published Stories" data={stories} />
     </>);
 }

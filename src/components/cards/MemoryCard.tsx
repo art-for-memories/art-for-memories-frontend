@@ -1,16 +1,7 @@
+import { Art } from '@/types/arts';
 import Image from 'next/image';
 
-export interface MemoryCardProps {
-    oldPhoto: string;
-    preservedPhoto: string;
-    name: string;
-    age: number;
-    preview?: boolean;
-    killedOn?: string;
-    submittedBy?: string;
-}
-
-export default function MemoryCard({ props }: { props: MemoryCardProps }) {
+export default function MemoryCard({ props }: { props: Art }) {
     return (
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 z-10">
             {/* Old Photo Section */}
@@ -31,7 +22,7 @@ export default function MemoryCard({ props }: { props: MemoryCardProps }) {
                     </div>}
                 </div>
             </div>
-            
+
             <div className="flex items-center justify-center w-[100px] h-32">
                 <div className="h-1 bg-black flex-grow"></div>
 

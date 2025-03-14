@@ -8,6 +8,16 @@ export interface Stories {
     storyType: string;
 }
 
+export interface PublicStory {
+    id: string;
+    title: string;
+    author: string;
+    date: string;
+    image: string;
+    type: string;
+    role: string;
+}
+
 export interface TableProps {
     headers: string[];
     data: Stories[];
