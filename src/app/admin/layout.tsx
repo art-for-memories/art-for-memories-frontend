@@ -13,6 +13,10 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
         redirect('/api/auth/signin')
     }
 
+    if (session.user.role !== "ADMIN" && session.user.role !== "SUPERADMIN") {
+        return <p>Access Denied</p>;
+    }
+
     return (
         <html lang="en">
             <head>
