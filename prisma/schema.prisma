@@ -48,6 +48,7 @@ model User {
   email         String?   @unique
   emailVerified DateTime?
   image         String?
+  role          Role      @default(USER)
   accounts      Account[]
   sessions      Session[]
 }
@@ -128,4 +129,10 @@ model Art {
   preservedPhoto String?
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
+}
+
+enum Role {
+  SUPERADMIN
+  ADMIN
+  USER
 }
