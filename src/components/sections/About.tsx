@@ -1,6 +1,4 @@
-"use client";
-import Image from "next/image";
-
+/* eslint-disable react/no-unescaped-entities */
 const About = () => {
     return (
         <section className="px-6 py-28 md:px-20 lg:px-32 bg-white text-black relative">
@@ -16,24 +14,12 @@ const About = () => {
 
                 {/* Description */}
                 <p className="mt-6 text-gray-600 leading-relaxed">
-                    In our commitment to honor and remember the lives affected by the 1994 Genocide Against
-                    the Tutsi in Rwanda, Art For Memories offers a platform for healing and historical
-                    preservation. We facilitate the sharing of personal memories and stories, ensuring that
-                    each voice is heard and no memory is forgotten. Our team is devoted to creating a space
-                    where survivors and their families can celebrate the lives of their loved ones and
-                    educate future generations about the past to inspire a better tomorrow.
-                </p>
+                    During the 29th commemoration of the 1994 Genocide Against the Tutsi, King NGABO engaged in a poignant conversation with a genocide survivor. The survivor expressed a deeply personal loss, revealing, "Young brother, do you know that we don’t have pictures of our parents?" When King NGABO inquired about the circumstances, the survivor explained that the last photo they possessed was misplaced during a move in 2005. Curious about family legacy, King NGABO asked how the survivor recounted stories of their grandparents to their children. With a gentle laugh, the survivor responded, "I tell them that every old man is their grandfather and every old woman is their grandmother."
 
-                {/* Image */}
-                <div className="mt-10 flex justify-center">
-                    {/* <Image
-                        src="/images/founder.jpg" 
-                        alt="Founder"
-                        className="w-64 h-auto object-cover ring ring-black rounded-md"
-                        width={100}
-                        height={100}
-                    /> */}
-                </div>
+                    This exchange profoundly affected King NGABO and ignited a spark of inspiration. While collaborating with students from Nyundo School of Arts at his studio—a place where students frequently spent their holidays—King NGABO encountered a post about the only existing, albeit unclear, picture of someone's grandfather. Motivated by this discovery, the studio team restored the image and returned it to the appreciative family.
+
+                    This incident propelled King NGABO to take a significant step forward. He resolved to establish a platform focused on the restoration and preservation of images damaged during the 1994 Genocide Against the Tutsi. This initiative led to the creation of "ART FOR MEMORIES," a project committed to restoring these important photographs and compiling, archiving, and artistically representing the stories of genocide survivors.
+                </p>
 
                 {/* Founder Info */}
                 <p className="mt-6 text-gray-600 text-center">
@@ -42,16 +28,6 @@ const About = () => {
                     creative artist and the founder/creative director of an African storytelling and art
                     museum.
                 </p>
-            </div>
-
-            <div className="vector-1 absolute bottom-0 left-0"> 
-                <Image src={'/images/vectors/vector-2.png'} alt={"vector"} width={200} height={100} />
-            </div>
-            <div className="vector-1 absolute bottom-0 right-0 left-0"> 
-                <Image src={'/images/vectors/vector-3.png'} alt={"vector"} width={200} height={100} />
-            </div>
-            <div className="vector-1 absolute bottom-0 right-0 left-3"> 
-                <Image src={'/images/vectors/vector-3.png'} alt={"vector"} width={200} height={100} />
             </div>
         </section>
     );

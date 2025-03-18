@@ -7,6 +7,11 @@ import React, { useEffect, useState } from 'react'
 import StoriesTable from '@/components/dashboard/StoriesTable';
 import FetchSpinner from '@/components/spinners/fetch-spinner';
 import { Stories as Story } from '@/types/stories';
+import Image from 'next/image';
+
+interface UploadFilesResponse {
+    secure_url: string;
+}
 
 function Stories() {
     const [isFormOpen, setFormOpen] = useState(false);
@@ -15,9 +20,9 @@ function Stories() {
     const [author, setAuthor] = useState('');
     const [date, setDate] = useState('');
     const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+    const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [isPending, startTransition] = useState(false);
-
     const [stories, setStories] = useState<Story[]>([]);
     const [loading, setLoading] = useState(false);
 
@@ -40,7 +45,25 @@ function Stories() {
         setSelectedFiles(newFiles);
     };
 
-    const uploadFiles = async () => {
+    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files;
+
+        if (!files) return;
+
+        const newImages: File[] = [];
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+
+            if (file.type.startsWith('image/')) {
+                newImages.push(file);
+            }
+        }
+
+        setSelectedImages(newImages);
+    }
+
+    const uploadFiles = async (selectedFiles: File[]): Promise<string[]> => {
         const uploadedFiles: string[] = [];
 
         for (const file of selectedFiles) {
@@ -54,7 +77,7 @@ function Stories() {
                 body: formData,
             });
 
-            const data = await response.json();
+            const data: UploadFilesResponse = await response.json();
             uploadedFiles.push(data.secure_url);
         }
 
@@ -67,7 +90,8 @@ function Stories() {
         setIsSubmitting(true);
 
         try {
-            const uploadedFiles = await uploadFiles();
+            const uploadedFiles = await uploadFiles(selectedFiles);
+            const uploadedImages = await uploadFiles(selectedImages);
 
             const formData = {
                 storyType,
@@ -75,6 +99,7 @@ function Stories() {
                 author,
                 date,
                 files: uploadedFiles,
+                images: uploadedImages
             };
 
             const response = await fetch('/api/stories', {
@@ -87,12 +112,12 @@ function Stories() {
 
             if (response.ok) {
                 setFormOpen(false);
-                // Reset form fields
                 setStoryType('Written Story');
                 setTitle('');
                 setAuthor('');
                 setDate('');
                 setSelectedFiles([]);
+                getAllStories();
             } else {
                 console.error('Failed to submit story');
             }
@@ -159,7 +184,7 @@ function Stories() {
                 <Sidebar />
 
                 {/* Main Content */}
-                <div className="flex-1 p-6">
+                <div className="flex-1 p-6 overflow-auto">
                     <header>
                         <div className="flex justify-between items-center">
                             <h1 className="text-xl font-semibold text-black">Their Stories</h1>
@@ -222,12 +247,41 @@ function Stories() {
                                     />
                                 </div>
 
+                                {/* Upload Image */}
+                                <div className="my-5">
+                                    <label className="text-sm text-black font-medium">Image</label>
+                                    <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-images')?.click()}>
+                                        <span className="text-gray-400">📎</span>
+                                        <span className="text-gray-400">Attach the image</span>
+                                        <input type="file" className="hidden" id="upload-images" accept="image/*" onChange={handleImageChange} />
+                                    </div>
+                                </div>
+
+                                {/* Image Previews */}
+                                {selectedImages.length > 0 && (
+                                    <div className="mt-4 grid grid-cols-2 gap-4">
+                                        {selectedImages.map((file, index) => (
+                                            <div key={index} className="relative">
+                                                <Image
+                                                    width={100}
+                                                    height={100}
+                                                    src={URL.createObjectURL(file)}
+                                                    alt={file.name}
+                                                    className="w-full h-32 object-cover rounded-md"
+                                                />
+                                                <p className="text-sm text-black mt-2">{file.name}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+
+                                {/* Upload Document */}
                                 <div className="my-5">
                                     <label className="text-sm text-black font-medium">Document</label>
-                                    <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-files')?.click()}>
+                                    <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-documents')?.click()}>
                                         <span className="text-gray-400">📎</span>
-                                        <span className="text-gray-400">Attach the file your loved ones</span>
-                                        <input type="file" className="hidden" multiple id='upload-files' accept=".pdf,.docx" onChange={handleFileChange} />
+                                        <span className="text-gray-400">Attach the file for your story</span>
+                                        <input type="file" className="hidden" id="upload-documents" accept=".pdf,.docx" onChange={handleFileChange} />
                                     </div>
                                 </div>
 
@@ -238,9 +292,11 @@ function Stories() {
                                             <div key={index} className="relative">
                                                 <p className="text-sm text-black">{file.name}</p>
                                                 {file.type === 'application/pdf' ? (
-                                                    <a href={URL.createObjectURL(file)} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">
-                                                        Open PDF
-                                                    </a>
+                                                    <iframe
+                                                        src={URL.createObjectURL(file)}
+                                                        className="w-full h-32 border rounded-md"
+                                                        title={file.name}
+                                                    ></iframe>
                                                 ) : (
                                                     <p className="text-gray-500">Preview not available</p>
                                                 )}
@@ -250,10 +306,34 @@ function Stories() {
                                 )}
 
                                 {/* Submit Button */}
-                                <div className='flex items-center justify-between mt-5'>
-                                    <button type='submit' disabled={isSubmitting || isPending} className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80">
+                                <div className="flex items-center justify-between mt-5">
+                                    <button
+                                        type="submit"
+                                        disabled={isSubmitting || isPending}
+                                        className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80"
+                                    >
                                         <span>{isPending ? "Submitting..." : "Submit"}</span>
-                                        <span className='ml-5'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
+                                        <span className="ml-5">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                    stroke="#ffffff"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeMiterlimit="10"
+                                                    strokeWidth="1.5"
+                                                    d="M14.43 5.93L20.5 12l-6.07 6.07"
+                                                ></path>
+                                                <path
+                                                    stroke="#ffffff"
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    strokeMiterlimit="10"
+                                                    strokeWidth="1.5"
+                                                    d="M3.5 12h16.83"
+                                                    opacity=".4"
+                                                ></path>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </div>
                             </form>
@@ -270,7 +350,7 @@ function Stories() {
                     </div>
 
                     {/* Table */}
-                    <div className="mt-4">
+                    <div className="mt-4 overflow-auto w-full bg-white px-2">
                         {loading && <div className="my-10"><FetchSpinner /></div>}
                         <StoriesTable
                             headers={headers}

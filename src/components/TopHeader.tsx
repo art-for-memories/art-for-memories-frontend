@@ -8,7 +8,9 @@ interface HopHeaderProps {
 
 export default function TopHeader({ title, path }: HopHeaderProps) {
     return (<>
-        <Header />
-        <TopHero title={title} path={path} />
+        <div className="bg-black">
+            <Header />
+            <TopHero title={title} path={path} />
+        </div>
     </>);
 }

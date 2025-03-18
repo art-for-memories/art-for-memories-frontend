@@ -6,6 +6,7 @@ export interface Stories {
     files: string[];
     status: string;
     storyType: string;
+    image: string;
 }
 
 export interface PublicStory {

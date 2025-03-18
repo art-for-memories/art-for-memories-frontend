@@ -19,7 +19,7 @@ export default function Stories() {
                 const stories = await response.json();
 
                 const formattedStories = stories.map((story: Story) => ({
-                    image: "/images/stories/story-4.png",
+                    image: story.image,
                     type: story.storyType,
                     date: story.date,
                     title: story.title,
