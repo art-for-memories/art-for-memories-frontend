@@ -5,19 +5,37 @@ import prisma from "../../../../lib/prisma";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { storyType, title, author, date, files, images } = body;
+
+    const {
+      firstName,
+      lastName,
+      email,
+      phone,
+      storyType,
+      title,
+      author,
+      date,
+      files,
+      images,
+    } = body;
 
     const story = await prisma.story.create({
       data: {
+        firstName,
+        lastName,
+        email,
+        phone,
         storyType,
         title,
         author,
         date: new Date(date),
         image: images[0],
         StoryFile: {
-          create: files.map((fileUrl: string) => ({
-            url: fileUrl,
-          })),
+          create: Array.isArray(files)
+            ? files.map((fileUrl: string) => ({
+                url: fileUrl,
+              }))
+            : [],
         },
       },
     });

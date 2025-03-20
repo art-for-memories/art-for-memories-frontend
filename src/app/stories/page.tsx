@@ -13,12 +13,12 @@ export default function Stories() {
         try {
             setLoading(true);
 
-            const response = await fetch('/api/stories');
+            const response = await fetch('/api/stories/approved');
 
             if (response.ok) {
                 const stories = await response.json();
 
-                const formattedStories = stories.map((story: Story) => ({
+                const formattedStories = stories.data.map((story: Story) => ({
                     image: story.image,
                     type: story.storyType,
                     date: story.date,

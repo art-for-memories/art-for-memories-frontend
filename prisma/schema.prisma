@@ -99,6 +99,10 @@ model MemoriesArt {
 
 model Story {
   id        String      @id @default(cuid()) @map("_id")
+  firstName String
+  lastName  String
+  email     String
+  phone     String
   storyType String
   title     String
   author    String

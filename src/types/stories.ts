@@ -7,6 +7,11 @@ export interface Stories {
     status: string;
     storyType: string;
     image: string;
+    StoryFile: { url: string };
+    fitstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
 }
 
 export interface PublicStory {

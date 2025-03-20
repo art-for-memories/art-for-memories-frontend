@@ -1,21 +1,13 @@
 import { Menu } from "lucide-react";
-import MemoryForm from "./forms/MemoryForm";
-import FormModal from "./models/form-model";
 import { useState } from "react";
 import Link from "next/link";
 
 export default function SubNav() {
     const [isOpen, setIsOpen] = useState(false);
-    const [isFormOpen, setFormOpen] = useState(false);
 
     return (<>
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 text-black font-medium items-center">
-            {/* Submit Button */}
-            <button onClick={() => setFormOpen(true)} className="hidden md:block bg-black text-white px-4 py-2 rounded-md hover:opacity-80 text-sm">
-                Submit Your Memories
-            </button>
-
             {/* Menu Links */}
             <Link href={"/"} className="hover:text-gray-600 text-sm">Home</Link>
             <Link href={"/arts"} className="hover:text-gray-600 text-sm">Memories</Link>
@@ -37,15 +29,7 @@ export default function SubNav() {
                 <Link href={"/stories"} className="hover:text-gray-600 text-sm">Their Stories</Link>
                 <Link href={"/days"} className="hover:text-gray-600 text-sm">One Day In 100 Days</Link>
                 <Link href={"/"} className="hover:text-gray-600 font-semibold text-sm">Learn More</Link>
-
-                <button onClick={() => setFormOpen(true)} className="bg-black text-white px-4 py-2 rounded-md hover:opacity-80">
-                    Submit Your Memories
-                </button>
             </div>
         )}
-
-        <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-            <MemoryForm onSuccess={() => setFormOpen(false)} />
-        </FormModal>
     </>);
 }

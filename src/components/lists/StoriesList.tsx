@@ -1,5 +1,8 @@
 import Image from "next/image";
 import StoryCard, { TheirStoryProps } from "../cards/StoryCard";
+import { useState } from "react";
+import FormModal from "../models/form-model";
+import StoryForm from "../forms/StoryForm";
 
 interface StoriesListProps {
     title: string;
@@ -7,11 +10,23 @@ interface StoriesListProps {
 }
 
 export default function StoriesList({ title, data }: StoriesListProps) {
+    const [isFormOpen, setFormOpen] = useState(false);
+
     return (
         <section className="px-6 py-10 md:px-20 lg:px-32 bg-white">
             {/* Section Title */}
-            <div className="mb-3 text-center md:text-left">
+            <div className="mb-3 text-center md:text-left flex justify-between items-center border-b border-gray-200 pb-5">
                 <h2 className="text-3xl sm:text-4xl font-bold text-black">{title}</h2>
+                <div>
+                    {/* Submit Button */}
+                    <button onClick={() => setFormOpen(true)} className="hidden md:block bg-black text-white px-5 py-3 rounded-full hover:opacity-80">
+                        Submit Your Story
+                    </button>
+
+                    <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
+                        <StoryForm onSuccess={() => setFormOpen(false)} />
+                    </FormModal>
+                </div>
             </div>
 
             {data.length === 0 && (
