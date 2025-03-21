@@ -1,127 +1,137 @@
+import Layout from '@/components/Layout'
+import Navbar from '@/components/Navbar'
 import React from 'react'
 
 function ContactUs() {
     return (<>
-        <section className="py-12 md:py-24 bg-neutral-900">
-            <div className="container mx-auto px-4">
-                <h2 className="flex flex-wrap mb-2 pb-14 text-6xl sm:text-9xl xl:text-11xl text-white font-semibold border-b border-neutral-600 font-heading"><span className="mr-4">Contact us</span>
-                    <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22.1104 0H7.89656C3.53541 0 0 3.54358 0 7.9148V22.1614C0 26.5327 3.53541 30.0763 7.89656 30.0763H22.1104C26.4715 30.0763 30.0069 26.5327 30.0069 22.1614V7.9148C30.0069 3.54358 26.4715 0 22.1104 0Z" fill="#FEE34E"></path>
-                        <path d="M15.3529 7.38071C14.3388 6.36424 12.6946 6.36424 11.6805 7.38071C10.6663 8.39718 10.6663 10.0452 11.6805 11.0617L15.812 15.2028C16.8261 16.2192 18.4704 16.2192 19.4845 15.2028C20.4986 14.1863 20.4986 12.5383 19.4845 11.5218L15.3529 7.38071Z" fill="#19191B"></path>
-                        <path d="M13.4047 14.3978C12.3906 13.3813 10.7464 13.3813 9.73223 14.3978C8.71811 15.4143 8.71811 17.0623 9.73223 18.0788L13.8638 22.2199C14.8779 23.2363 16.5221 23.2363 17.5362 22.2199C18.5504 21.2034 18.5504 19.5554 17.5362 18.5389L13.4047 14.3978Z" fill="#19191B"></path>
-                    </svg>
-                </h2>
-                <h4 className="mb-8 text-4xl text-white font-semibold tracking-tight font-heading">Do you have any question?</h4>
-                <div className="flex flex-wrap -m-2">
-                    <div className="w-full md:w-2/3 p-2">
-                        <div className="mb-4 p-10 pb-16 bg-white rounded-4xl">
-                            <div className="max-w-lg">
-                                <h4 className="mb-2 text-5xl font-medium tracking-tight font-heading">Contact</h4>
-                                <p className="mb-12 text-lg text-neutral-600 font-medium tracking-tight">Can create, connect, verify, and search across all you knowledge platforms is one centralized.</p>
-                            </div>
-                            <div className="flex flex-wrap -m-4">
-                                <div className="w-full md:w-1/2 p-4">
-                                    <ul>
-                                        <li className="mb-6 flex">
-                                            <div className="flex items-center justify-center w-6 h-6 mr-4">
-                                                <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M11 24H5C2.243 24 0 21.757 0 19V5C0 2.243 2.243 0 5 0H11C13.757 0 16 2.243 16 5V19C16 21.757 13.757 24 11 24ZM5 2C3.346 2 2 3.346 2 5V19C2 20.654 3.346 22 5 22H11C12.654 22 14 20.654 14 19V5C14 3.346 12.654 2 11 2H5ZM10 19C10 18.448 9.552 18 9 18H7C6.448 18 6 18.448 6 19C6 19.552 6.448 20 7 20H9C9.552 20 10 19.552 10 19Z" fill="#19191B"></path>
+        <Layout>
+            <div className="overflow-x-hidden">
+                <Navbar />
+
+                <section className="py-12 md:py-24 bg-neutral-900">
+                    <div className="container mx-auto px-4">
+                        <h2 className="flex flex-wrap mb-2 pb-14 text-6xl sm:text-9xl xl:text-11xl text-white font-semibold border-b border-neutral-600 font-heading"><span className="mr-4">Contact us</span>
+                            <svg width="30" height="31" viewBox="0 0 30 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22.1104 0H7.89656C3.53541 0 0 3.54358 0 7.9148V22.1614C0 26.5327 3.53541 30.0763 7.89656 30.0763H22.1104C26.4715 30.0763 30.0069 26.5327 30.0069 22.1614V7.9148C30.0069 3.54358 26.4715 0 22.1104 0Z" fill="#FEE34E"></path>
+                                <path d="M15.3529 7.38071C14.3388 6.36424 12.6946 6.36424 11.6805 7.38071C10.6663 8.39718 10.6663 10.0452 11.6805 11.0617L15.812 15.2028C16.8261 16.2192 18.4704 16.2192 19.4845 15.2028C20.4986 14.1863 20.4986 12.5383 19.4845 11.5218L15.3529 7.38071Z" fill="#19191B"></path>
+                                <path d="M13.4047 14.3978C12.3906 13.3813 10.7464 13.3813 9.73223 14.3978C8.71811 15.4143 8.71811 17.0623 9.73223 18.0788L13.8638 22.2199C14.8779 23.2363 16.5221 23.2363 17.5362 22.2199C18.5504 21.2034 18.5504 19.5554 17.5362 18.5389L13.4047 14.3978Z" fill="#19191B"></path>
+                            </svg>
+                        </h2>
+
+                        <h4 className="mb-8 text-4xl text-white font-semibold tracking-tight font-heading">Do you have any question?</h4>
+
+                        <div className="flex flex-wrap -m-2">
+                            <div className="w-full md:w-2/3 p-2">
+                                <div className="mb-4 p-10 pb-16 bg-white rounded-4xl">
+                                    <div className="max-w-lg">
+                                        <h4 className="mb-2 text-5xl font-medium tracking-tight font-heading text-slate-900">Contact</h4>
+                                        <p className="mb-12 text-lg text-neutral-600 font-medium tracking-tight">Can create, connect, verify, and search across all you knowledge platforms is one centralized.</p>
+                                    </div>
+                                    <div className="flex flex-wrap -m-4">
+                                        <div className="w-full md:w-1/2 p-4">
+                                            <ul>
+                                                <li className="mb-6 flex">
+                                                    <div className="flex items-center justify-center w-6 h-6 mr-4">
+                                                        <svg width="16" height="24" viewBox="0 0 16 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M11 24H5C2.243 24 0 21.757 0 19V5C0 2.243 2.243 0 5 0H11C13.757 0 16 2.243 16 5V19C16 21.757 13.757 24 11 24ZM5 2C3.346 2 2 3.346 2 5V19C2 20.654 3.346 22 5 22H11C12.654 22 14 20.654 14 19V5C14 3.346 12.654 2 11 2H5ZM10 19C10 18.448 9.552 18 9 18H7C6.448 18 6 18.448 6 19C6 19.552 6.448 20 7 20H9C9.552 20 10 19.552 10 19Z" fill="#19191B"></path>
+                                                        </svg>
+                                                    </div><span className="text-xl font-medium tracking-tight text-slate-900">+41 3372 003 00</span>
+                                                </li>
+                                                <li className="flex">
+                                                    <div className="flex items-center justify-center w-6 h-6 mr-4">
+                                                        <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M19 0H5C3.67441 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.67441 0 5L0 17C0.00158786 18.3256 0.528882 19.5964 1.46622 20.5338C2.40356 21.4711 3.67441 21.9984 5 22H19C20.3256 21.9984 21.5964 21.4711 22.5338 20.5338C23.4711 19.5964 23.9984 18.3256 24 17V5C23.9984 3.67441 23.4711 2.40356 22.5338 1.46622C21.5964 0.528882 20.3256 0.00158786 19 0ZM5 2H19C19.5988 2.00118 20.1835 2.18151 20.679 2.5178C21.1744 2.85409 21.5579 3.33095 21.78 3.887L14.122 11.546C13.5584 12.1073 12.7954 12.4225 12 12.4225C11.2046 12.4225 10.4416 12.1073 9.878 11.546L2.22 3.887C2.44215 3.33095 2.82561 2.85409 3.32105 2.5178C3.81648 2.18151 4.40121 2.00118 5 2ZM19 20H5C4.20435 20 3.44129 19.6839 2.87868 19.1213C2.31607 18.5587 2 17.7956 2 17V6.5L8.464 12.96C9.40263 13.8963 10.6743 14.422 12 14.422C13.3257 14.422 14.5974 13.8963 15.536 12.96L22 6.5V17C22 17.7956 21.6839 18.5587 21.1213 19.1213C20.5587 19.6839 19.7956 20 19 20Z" fill="#19191B"></path>
+                                                        </svg>
+                                                    </div><span className="text-xl font-medium tracking-tight text-slate-900">contactcontact@email.com</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div className="w-full md:w-1/2 p-4">
+                                            <ul className="flex flex-wrap md:justify-end -m-1.5">
+                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/fb.svg" alt="" /></a></li>
+                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/instagram.svg" alt="" /></a></li>
+                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/x.svg" alt="" /></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="p-10 pb-16 bg-white rounded-4xl">
+                                    <div className="mb-12 max-w-sm">
+                                        <h4 className="mb-2 text-5xl font-medium tracking-tight font-heading text-slate-900">Send a message</h4>
+                                        <p className="text-lg text-neutral-600 font-medium tracking-tight">Do you have a question? Use the form to send a direct message.</p>
+                                    </div>
+                                    <form className="max-w-2xl mx-auto" action="#">
+                                        <div className="mb-4 border-t border-neutral-100">
+                                            <div className="flex flex-wrap">
+                                                <div className="w-full md:w-4/12">
+                                                    <div className="pt-4 md:pb-4 pr-20 border-r border-neutral-100">
+                                                        <p className="text-xl font-medium tracking-tight text-slate-900">Full name</p>
+                                                    </div>
+                                                </div>
+                                                <div className="w-full md:flex-1">
+                                                    <div className="py-4 md:pl-8">
+                                                        <input className="block w-full text-xl text-neutral-400 font-medium placeholder-neutral-600 outline-none" type="text" name="name" placeholder="Full name" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="mb-4 border-t border-neutral-100">
+                                            <div className="flex flex-wrap">
+                                                <div className="w-full md:w-4/12">
+                                                    <div className="pt-4 md:pb-4 pr-20 border-r border-neutral-100">
+                                                        <p className="text-xl font-medium tracking-tight text-slate-900">Email</p>
+                                                    </div>
+                                                </div>
+                                                <div className="w-full md:flex-1">
+                                                    <div className="py-4 md:pl-8">
+                                                        <input className="block w-full text-xl text-neutral-400 font-medium placeholder-neutral-600 outline-none" type="text" name="email" placeholder="Email" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="mb-12 border-t border-neutral-100">
+                                            <div className="flex flex-wrap">
+                                                <div className="w-full md:w-4/12">
+                                                    <div className="pt-4 md:pb-16 pr-20 border-r border-neutral-100">
+                                                        <p className="text-xl font-medium tracking-tight text-slate-900">Message</p>
+                                                    </div>
+                                                </div>
+                                                <div className="w-full md:flex-1">
+                                                    <div className="pt-4 md:pl-8">
+                                                        <textarea className="block w-full text-xl text-neutral-400 font-medium placeholder-neutral-600 outline-none" name="name" rows={4} placeholder="Message"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <label className="relative flex flex-wrap items-center gap-4 mb-12">
+                                            <input className="input-checkbox-contact-1-02 opacity-0 absolute h-8 w-8 rounded-full" type="checkbox" name="field-checkbox" value="checkbox-value" />
+                                            <div className="border border-neutral-600 w-8 h-8 flex justify-center items-center rounded-full">
+                                                <svg className="fill-current hidden" xmlns="http://www.w3.org/2000/svg" width="15" height="11" viewBox="0 0 15 11" fill="none">
+                                                    <line x1="0.353553" y1="5.64645" x2="4.35355" y2="9.64645" stroke="currentColor"></line>
+                                                    <line x1="14.3536" y1="0.353553" x2="4.35355" y2="10.3536" stroke="currentColor"></line>
                                                 </svg>
-                                            </div><span className="text-xl font-medium tracking-tight">+41 3372 003 00</span>
-                                        </li>
-                                        <li className="flex">
-                                            <div className="flex items-center justify-center w-6 h-6 mr-4">
-                                                <svg width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="M19 0H5C3.67441 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.67441 0 5L0 17C0.00158786 18.3256 0.528882 19.5964 1.46622 20.5338C2.40356 21.4711 3.67441 21.9984 5 22H19C20.3256 21.9984 21.5964 21.4711 22.5338 20.5338C23.4711 19.5964 23.9984 18.3256 24 17V5C23.9984 3.67441 23.4711 2.40356 22.5338 1.46622C21.5964 0.528882 20.3256 0.00158786 19 0ZM5 2H19C19.5988 2.00118 20.1835 2.18151 20.679 2.5178C21.1744 2.85409 21.5579 3.33095 21.78 3.887L14.122 11.546C13.5584 12.1073 12.7954 12.4225 12 12.4225C11.2046 12.4225 10.4416 12.1073 9.878 11.546L2.22 3.887C2.44215 3.33095 2.82561 2.85409 3.32105 2.5178C3.81648 2.18151 4.40121 2.00118 5 2ZM19 20H5C4.20435 20 3.44129 19.6839 2.87868 19.1213C2.31607 18.5587 2 17.7956 2 17V6.5L8.464 12.96C9.40263 13.8963 10.6743 14.422 12 14.422C13.3257 14.422 14.5974 13.8963 15.536 12.96L22 6.5V17C22 17.7956 21.6839 18.5587 21.1213 19.1213C20.5587 19.6839 19.7956 20 19 20Z" fill="#19191B"></path>
-                                                </svg>
-                                            </div><span className="text-xl font-medium tracking-tight">contactcontact@email.com</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div className="w-full md:w-1/2 p-4">
-                                    <ul className="flex flex-wrap md:justify-end -m-1.5">
-                                        <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/fb.svg" alt="" /></a></li>
-                                        <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/instagram.svg" alt="" /></a></li>
-                                        <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/x.svg" alt="" /></a></li>
-                                    </ul>
+                                            </div><span className="text-neutral-500 text-lg font-medium tracking-tight">I accept the terms and privacy policy.</span>
+                                        </label>
+                                        <button className="inline-flex justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-lg text-white bg-neutral-900 hover:bg-neutral-800 focus:bg-neutral-800 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200" type="submit">Send a message</button>
+                                    </form>
                                 </div>
                             </div>
-                        </div>
-                        <div className="p-10 pb-16 bg-white rounded-4xl">
-                            <div className="mb-12 max-w-sm">
-                                <h4 className="mb-2 text-5xl font-medium tracking-tight font-heading">Send a message</h4>
-                                <p className="text-lg text-neutral-600 font-medium tracking-tight">Do you have a question? Use the form to send a direct message.</p>
+                            <div className="w-full md:flex-1 p-2">
+                                <div className="p-10 bg-white rounded-4xl">
+                                    <div className="flex flex-col justify-between h-full">
+                                        <div className="mb-8 w-full">
+                                            <h4 className="mb-2 text-4xl font-medium tracking-tight font-heading text-slate-900">Live chat</h4>
+                                            <p className="mb-8 text-lg text-neutral-600 font-medium tracking-tight">Chat with Jesse for expert help!</p><img className="mx-auto h-56 object-cover" src="template-assets/images/contact/woman.png" alt="" />
+                                        </div>
+                                        <div className="w-full"><a className="inline-flex justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl text-slate-900 hover:text-white focus:text-white bg-white hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200" href="#">Open Chat</a></div>
+                                    </div>
+                                </div>
                             </div>
-                            <form className="max-w-2xl mx-auto" action="#">
-                                <div className="mb-4 border-t border-neutral-100">
-                                    <div className="flex flex-wrap">
-                                        <div className="w-full md:w-4/12">
-                                            <div className="pt-4 md:pb-4 pr-20 border-r border-neutral-100">
-                                                <p className="text-xl font-medium tracking-tight">Full name</p>
-                                            </div>
-                                        </div>
-                                        <div className="w-full md:flex-1">
-                                            <div className="py-4 md:pl-8">
-                                                <input className="block w-full text-xl text-neutral-600 font-medium placeholder-neutral-600 outline-none" type="text" name="name" placeholder="Full name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="mb-4 border-t border-neutral-100">
-                                    <div className="flex flex-wrap">
-                                        <div className="w-full md:w-4/12">
-                                            <div className="pt-4 md:pb-4 pr-20 border-r border-neutral-100">
-                                                <p className="text-xl font-medium tracking-tight">Email</p>
-                                            </div>
-                                        </div>
-                                        <div className="w-full md:flex-1">
-                                            <div className="py-4 md:pl-8">
-                                                <input className="block w-full text-xl text-neutral-600 font-medium placeholder-neutral-600 outline-none" type="text" name="email" placeholder="Email" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="mb-12 border-t border-neutral-100">
-                                    <div className="flex flex-wrap">
-                                        <div className="w-full md:w-4/12">
-                                            <div className="pt-4 md:pb-16 pr-20 border-r border-neutral-100">
-                                                <p className="text-xl font-medium tracking-tight">Message</p>
-                                            </div>
-                                        </div>
-                                        <div className="w-full md:flex-1">
-                                            <div className="pt-4 md:pl-8">
-                                                <textarea className="block w-full text-xl text-neutral-600 font-medium placeholder-neutral-600 outline-none" name="name" rows={4} placeholder="Message"></textarea>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <label className="relative flex flex-wrap items-center gap-4 mb-12">
-                                    <input className="input-checkbox-contact-1-02 opacity-0 absolute h-8 w-8 rounded-full" type="checkbox" name="field-checkbox" value="checkbox-value" />
-                                    <div className="border border-neutral-600 w-8 h-8 flex justify-center items-center rounded-full">
-                                        <svg className="fill-current hidden" xmlns="http://www.w3.org/2000/svg" width="15" height="11" viewBox="0 0 15 11" fill="none">
-                                            <line x1="0.353553" y1="5.64645" x2="4.35355" y2="9.64645" stroke="currentColor"></line>
-                                            <line x1="14.3536" y1="0.353553" x2="4.35355" y2="10.3536" stroke="currentColor"></line>
-                                        </svg>
-                                    </div><span className="text-neutral-500 text-lg font-medium tracking-tight">I accept the terms and privacy policy.</span>
-                                </label>
-                                <button className="inline-flex justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-lg text-white bg-neutral-900 hover:bg-neutral-800 focus:bg-neutral-800 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200" type="submit">Send a message</button>
-                            </form>
                         </div>
                     </div>
-                    <div className="w-full md:flex-1 p-2">
-                        <div className="p-10 bg-white rounded-4xl">
-                            <div className="flex flex-col justify-between h-full">
-                                <div className="mb-8 w-full">
-                                    <h4 className="mb-2 text-4xl font-medium tracking-tight font-heading">Live chat</h4>
-                                    <p className="mb-8 text-lg text-neutral-600 font-medium tracking-tight">Chat with Jesse for expert help!</p><img className="mx-auto h-56 object-cover" src="template-assets/images/contact/woman.png" alt="" />
-                                </div>
-                                <div className="w-full"><a className="inline-flex justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl hover:text-white focus:text-white bg-white hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200" href="#">Open Chat</a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </section>
             </div>
-        </section>
+        </Layout>
     </>)
 }
 

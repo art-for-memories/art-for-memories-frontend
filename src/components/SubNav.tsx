@@ -13,6 +13,8 @@ export default function SubNav() {
             <Link href={"/arts"} className="hover:text-gray-600 text-sm">Memories</Link>
             <Link href={"/stories"} className="hover:text-gray-600 text-sm">Their Stories</Link>
             <Link href={"/days"} className="hover:text-gray-600 text-sm">One Day In 100 Days</Link>
+            <Link href={"/about-us"} className="hover:text-gray-600 text-sm">About us</Link>
+            <Link href={"/contact-us"} className="hover:text-gray-600 text-sm">Contact us</Link>
             <Link href={"https://kwibuka.rw"} target="__blank" className="hover:text-gray-600 font-semibold text-sm">Learn More</Link>
         </div>
 

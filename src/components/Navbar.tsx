@@ -1,10 +1,11 @@
 "use client";
+
 import Image from 'next/image';
 import SubNav from './SubNav';
 
 export default function Navbar() {
     return (
-        <nav className="flex justify-between items-center relative bg-black">
+        <nav className="flex justify-between items-center relative bg-neutral-900">
             <div className="bg-[#F9F3EE] z-20 rounded-[10px] my-5 container max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Logo Section */}
                 <div className="flex items-center space-x-2">
