@@ -43,7 +43,8 @@ export default function Stories() {
 
     return (<>
         <Layout>
-            <TopHeader title="Memories" path="there Memories" />
+            <TopHeader title="Memories" path="Memories" />
+            
             {loading && <FetchSpinner />}
             <MemoriesList title="Their Memories" data={arts} />
         </Layout>

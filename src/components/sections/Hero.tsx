@@ -63,17 +63,17 @@ const Hero = () => {
                         <Image src={'/images/logo.PNG'} alt={"logo"} width={100} height={100} />
                     </div>
 
-                    <h1 className="text-4xl md:text-5xl font-bold mt-3">
+                    <h1 className="text-4xl md:text-5xl font-bold mt-3 font-boldonse">
                         Art For <span className="text-gray-300">Memories</span>
                     </h1>
 
-                    <p className="mt-4 text-sm md:text-md text-gray-300 max-w-xl mx-auto lg:mx-0">
+                    <p className="mt-10 text-sm md:text-md text-gray-300 max-w-xl mx-auto lg:mx-0 font-semibold leading-6">
                         A Dedicated Platform That Preserves In Art The Damaged Images Of The Victims Of The 1994
                         Genocide Against The Tutsi And To Collect, Archive, And Illustrate Stories Of Genocide
                         Survivors.
                     </p>
 
-                    <div className='flex flex-col sm:flex-row items-center mt-4 space-y-4 sm:space-y-0 sm:space-x-4'>
+                    <div className='mt-10 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4'>
                         <Link href={"/memory"} className="flex items-center text-sm gap-3 py-3 px-6 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
                             HAVE A STORY? SUBMIT IT
                         </Link>

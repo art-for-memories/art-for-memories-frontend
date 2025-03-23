@@ -13,7 +13,7 @@ export default function Navbar() {
                         <span className="bg-black text-white px-1 py-1 rounded">
                             <div><Image src={'/images/logo.PNG'} alt={"logo"} width={40} height={40} /></div>
                         </span>
-                        <span className="text-black ml-2 text-sm">Art for Memories.</span>
+                        <span className="text-black ml-2 text-[12px] font-bold font-boldonse">Art for Memories.</span>
                     </div>
                 </div>
 

@@ -109,97 +109,93 @@ export default function Footer() {
           <div className="py-3 border-b border-neutral-600">
             <div className="container mx-auto px-4">
               <div className="flex justify-between flex-wrap gap-4">
-                <div className="flex items-center gap-6 sm:gap-18 flex-wrap"><a className="text-white font-medium hover:text-opacity-80 tracking-tight transition duration-200" href="#">Help Center</a><a className="text-white font-medium hover:text-opacity-80 tracking-tight transition duration-200" href="#">Location</a></div>
-                <div className="flex items-center gap-6 sm:gap-18 flex-wrap"><a className="text-white font-medium hover:text-opacity-80 tracking-tight transition duration-200" href="#">Contact</a>
-                  <div className="flex items-center gap-6 flex-wrap"><a className="text-white font-medium hover:text-opacity-80 tracking-tight transition duration-200" href="#">Back to top</a>              <a className="relative text-white hover:text-opacity-80 transition duration-200" href="#">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <circle cx="20" cy="20" r="19.5" transform="rotate(90 20 20)" fill="currentColor" stroke="#E5E5E7"></circle>
-                    </svg>
-                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M6.41225 12.1235L9.60066 8.93506L12.7891 12.1235" stroke="#19191B" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                <div className="flex items-center gap-6 sm:gap-18 flex-wrap">
+                  <a className="text-white hover:text-opacity-80 tracking-tight transition duration-200 font-semibold" href="#">Help Center</a>
+                  <a className="text-white hover:text-opacity-80 tracking-tight transition duration-200 font-semibold" href="#">Location</a>
+                </div>
+                <div className="flex items-center gap-6 sm:gap-18 flex-wrap font-semibold">
+                  <a className="text-white hover:text-opacity-80 tracking-tight transition duration-200 font-semibold" href="#">Contact</a>
+                  <div className="flex items-center gap-6 flex-wrap">
+                    <a className="text-white hover:text-opacity-80 tracking-tight transition duration-200 font-semibold" href="#">Back to top</a>
+                    <a className="relative text-white hover:text-opacity-80 transition duration-200" href="#">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
+                        <circle cx="20" cy="20" r="19.5" transform="rotate(90 20 20)" fill="currentColor" stroke="#E5E5E7"></circle>
                       </svg>
-                    </div></a></div>
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                          <path d="M6.41225 12.1235L9.60066 8.93506L12.7891 12.1235" stroke="#19191B" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-          <div className="pt-12 pb-20 md:pb-40">
+          <div className="py-12 md:pb-20">
             <div className="container mx-auto px-4">
               <div className="flex flex-wrap -mx-4">
                 <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
-                  <h2 className="text-white text-xl font-medium tracking-tight mb-8">Product</h2>
+                  <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Product</h2>
                   <ul className="flex flex-col gap-4">
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Design</a></li>
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Applications</a></li>
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Integrations</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">All Devices</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight focus-within:transition duration-200" href="#">Design</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">View our demo</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Chat</a></li>
                   </ul>
                 </div>
                 <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
-                  <h2 className="text-white text-xl font-medium tracking-tight mb-8">Resources</h2>
+                  <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Resources</h2>
                   <ul className="flex flex-col gap-4">
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Status</a></li>
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Helpdesk</a></li>
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Migra Academy</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Community</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Events</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Videos</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">New System</a></li>
                   </ul>
                 </div>
                 <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
-                  <h2 className="text-white text-xl font-medium tracking-tight mb-8">Company</h2>
+                  <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Company</h2>
                   <ul className="flex flex-col gap-4">
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">About us</a></li>
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Team</a></li>
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Careers</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Customer Stories</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Blog</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Media</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Our Locations</a></li>
                   </ul>
                 </div>
                 <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
-                  <h2 className="text-white text-xl font-medium tracking-tight mb-8">Solutions</h2>
+                  <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Solutions</h2>
                   <ul className="flex flex-col gap-4">
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Business</a></li>
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Consultations</a></li>
                     <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Education</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Contact</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Contact sales</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">FAQ</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Live Chat</a></li>
                   </ul>
                 </div>
                 <div className="w-full lg:w-1/2 xl:w-1/3 p-4">
-                  <h2 className="text-white text-lg font-medium tracking-tight mb-6">Join our Newsletter now</h2>
+                  <h2 className="text-white text-lg font-semibold tracking-tight mb-6">Join our Newsletter now</h2>
+
                   <form className="mb-6" action="#">
                     <div className="flex flex-wrap -m-2">
                       <div className="w-full sm:flex-1 p-2">
                         <input className="w-full px-8 py-5 outline-none rounded-lg placeholder-neutral-600 font-medium focus:ring-4 focus:ring-neutral-100 transition duration-200" type="text" placeholder="Your Email" />
                       </div>
                       <div className="w-full sm:w-auto p-2">
-                        <button className="flex justify-center items-center text-center h-full w-full p-5 font-semibold tracking-tight text-lg bg-green-200 hover:bg-green-100 focus:bg-green-100 rounded-lg focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 transition duration-200" type="submit">More</button>
+                        <button className="flex justify-center items-center text-center h-full w-full p-5 font-semibold tracking-tight text-lg bg-green-700 hover:bg-green-100 focus:bg-green-100 rounded-lg focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 transition duration-200" type="submit">More</button>
                       </div>
                     </div>
                   </form>
-                  <p className="text-neutral-400 text-sm font-medium max-w-sm tracking-tight">Get the ideas, tools and tips you need to grow your sound straight to your inb</p>
+
+                  <p className="text-neutral-400 text-sm font-semibold max-w-sm tracking-tight">Get the ideas, tools and tips you need to grow your sound straight to your inb</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+
         <div className="bg-neutral-800 py-6">
           <div className="container mx-auto px-4">
-            <div className="flex items-center gap-12 flex-wrap"><a href="#"><img src="images/logo-white.svg" alt="" /></a>
-              <p className="text-neutral-400 font-medium tracking-tight">© Convergence. All rights reserved.</p>
+            <div className="flex items-center gap-12 flex-wrap text-center">
+              <p className="text-neutral-400 font-semibold tracking-tight text-center">© Convergence. All rights reserved.</p>
             </div>
           </div>
         </div>
+
       </section>
     </>
   );

@@ -12,7 +12,7 @@ export default function MemoryCard({ props }: { props: Art }) {
                     <Image
                         src={props.oldPhoto}
                         alt="Old Memory"
-                        className="w-64 h-96 object-cover border border-gray-400"
+                        className="w-[400px] h-[450px] object-cover border border-gray-400 rounded-3xl"
                         width={200}
                         height={600}
                     />
@@ -44,7 +44,7 @@ export default function MemoryCard({ props }: { props: Art }) {
                     <Image
                         src={props.preservedPhoto}
                         alt="Preserved Memory"
-                        className="w-64 h-96 object-cover border border-gray-400"
+                        className="w-[400px] h-[450px] rounded-3xl object-cover border border-gray-400"
                         width={200}
                         height={400}
                     />

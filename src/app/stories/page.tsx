@@ -44,8 +44,11 @@ export default function Stories() {
     }, []);
 
     return (<>
-        <TopHeader title="Their Stories" />
-        {loading && <FetchSpinner />}
-        <StoriesList title="Published Stories" data={stories} />
+        <TopHeader title="Their Stories" path="Stories" />
+        
+        <div className="mt-10">
+            {loading && <FetchSpinner />}
+            <StoriesList title="Published Stories" data={stories} />
+        </div>
     </>);
 }
