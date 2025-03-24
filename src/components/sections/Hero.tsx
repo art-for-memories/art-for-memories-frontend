@@ -43,7 +43,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative sm:h-auto md:h-screen lg:h-screen w-full bg-black text-white flex items-center justify-center px-6 md:px-12 lg:px-20">
+        <section className="relative sm:h-auto md:h-screen lg:h-screen w-full bg-neutral-900 text-white flex items-center justify-center px-6 md:px-12 lg:px-20">
             {/* Background Video */}
             <video
                 ref={videoRef}

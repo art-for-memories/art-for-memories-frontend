@@ -3,11 +3,10 @@ import React from 'react'
 
 function Blogs() {
     return (
-        <section className="py-12 md:py-24 bg-neutral-50">
+        <section className="py-12 md:py-24 md:px-16 bg-neutral-50">
             <div className="container mx-auto px-4">
                 <h1 className="text-3xl md:text-6xl mb-12 font-semibold font-heading text-slate-700">Our Latest Blog</h1>
                 <div className="flex flex-wrap -m-3">
-
                     <div className="w-full md:w-1/2 p-3">
                         <div className="h-full bg-white rounded-4xl px-6 md:px-12 py-12"><span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight">Big news</span>                <a className="block text-neutral-800 text-3xl md:text-5xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href="#">The Rise of Video Marketing: Engage Your Audience Like Never Before!</a>
                             <p className="text-neutral-600 text-lg font-medium mb-11 max-w-lg tracking-tight">Video marketing is taking the digital world by storm. Discover how to captivate your audience and boost engagement with compelling video content.</p>
@@ -45,6 +44,7 @@ function Blogs() {
                             </div>
                         </div>
                     </div>
+
                     <div className="w-full md:w-1/2 p-3">
                         <div className="h-full bg-white rounded-4xl px-6 md:px-12 py-12"><span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight">Design room</span>                <a className="block text-neutral-800 text-3xl md:text-5xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href="#">Unlocking the Power of SEO: Your Guide to Higher Search Rankings</a>
                             <p className="text-neutral-600 text-lg font-medium mb-11 max-w-lg tracking-tight">Want to enhance your online visibility? Dive into the world of SEO to climb search engine rankings and drive more organic traffic to your website.</p>
@@ -63,6 +63,7 @@ function Blogs() {
                             </div>
                         </div>
                     </div>
+
                     <div className="w-full md:w-1/2 p-3">
                         <div className="h-full bg-white rounded-4xl px-6 md:px-12 py-12"><span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight">Main room</span>                <a className="block text-neutral-800 text-3xl md:text-5xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href="#">Social Media Advertising Secrets: Boost Your Brand's Presence</a>
                             <p className="text-neutral-600 text-lg font-medium mb-11 max-w-lg tracking-tight">Maximize your brand's reach and impact by leveraging the potential of social media advertising. Learn the strategies to create a strong online presence.</p>
@@ -81,6 +82,7 @@ function Blogs() {
                             </div>
                         </div>
                     </div>
+
                     <div className="w-full md:w-1/2 p-3">
                         <div className="h-full bg-white rounded-4xl px-6 md:px-12 py-12"><span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight">Big news</span>                <a className="block text-neutral-800 text-3xl md:text-5xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href="#">Learn the strategies to create a strong online presence.</a>
                             <p className="text-neutral-600 text-lg font-medium mb-11 max-w-lg tracking-tight">Video marketing is taking the digital world by storm. Discover how to captivate your audience and boost engagement with compelling video content.</p>

@@ -3,12 +3,20 @@ import React from 'react'
 
 function PreservedMemories() {
     return (
-        <section className="py-12 md:py-24 xl:pb-64 bg-neutral-900">
+        <section className="py-12 md:py-24 xl:pb-64 md:px-16 bg-neutral-900">
             <div className="container mx-auto px-4">
                 <div className="mb-12 md:mb-20 max-w-5xl">
-                    <h1 className="relative text-3xl md:text-6xl text-white font-semibold font-heading"><span className="mr-3">Innovate, educate, and</span>              <span className="relative inline-block"><span className="relative z-10">Dominate Online</span>                <span className="absolute -bottom-2 left-0 h-2.5 w-full bg-green-100 rounded-full"></span></span></h1>
+                    <h1 className="relative text-3xl md:text-5xl text-white font-semibold font-boldonse">
+                        <span className="mr-3 leading-[4rem]">Innovate, educate,</span>              
+                        <span className="relative inline-block">
+                            <span className="relative z-10 leading-[5rem]">and Dominate Online</span>                
+                            <span className="absolute -bottom-5 left-0 h-2.5 w-full bg-green-100 rounded-full"></span>
+                        </span>
+                    </h1>
                 </div>
+
                 <h3 className="mb-8 text-4xl text-white font-semibold tracking-tight font-heading">The most important news</h3>
+                
                 <div className="flex flex-wrap -m-3">
                     <div className="w-full md:w-1/2 xl:w-1/3 p-3">
                         <div className="flex flex-col h-full justify-center p-10 bg-white rounded-3xl">

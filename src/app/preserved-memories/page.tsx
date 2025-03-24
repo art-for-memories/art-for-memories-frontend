@@ -9,7 +9,9 @@ import { useEffect, useState } from "react";
 
 export default function Stories() {
     const [arts, setArts] = useState<Art[]>([]);
+    const [filteredArts, setFilteredArts] = useState<Art[]>([]);
     const [loading, setLoading] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     const getAllArts = async () => {
         try {
@@ -29,24 +31,79 @@ export default function Stories() {
                 }));
 
                 setArts(formattedData);
+                setFilteredArts(formattedData); // Initialize filteredArts with all arts
             } else {
                 throw new Error('Failed to fetch arts');
             }
 
             setLoading(false);
-        } catch { }
+        } catch {
+            setLoading(false);
+        }
+    };
+
+    const handleSearch = () => {
+        const query = searchQuery.toLowerCase();
+        const filtered = arts.filter((art) =>
+            art.name.toLowerCase().includes(query) || art.age.toString().includes(query)
+        );
+        setFilteredArts(filtered);
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            handleSearch();
+        }
     };
 
     useEffect(() => {
         getAllArts();
     }, []);
 
-    return (<>
-        <Layout>
-            <TopHeader title="Memories" path="Memories" />
-            
-            {loading && <FetchSpinner />}
-            <MemoriesList title="Their Memories" data={arts} />
-        </Layout>
-    </>);
+    return (
+        <>
+            <Layout>
+                <TopHeader title="Memories" path="Memories" />
+
+                <section className="flex flex-col items-center justify-center mb-10">
+                    <div className="border border-gray-300 rounded-full pl-4 pr-2 py-2 w-full text-sm focus:outline-none flex items-center bg-white max-w-3xl">
+                        <span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M11 20a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#697689" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                                <path opacity=".4" d="M18.93 20.689c.53 1.6 1.74 1.76 2.67.36.85-1.28.29-2.33-1.25-2.33-1.14-.01-1.78.88-1.42 1.97Z" stroke="#697689" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                            </svg>
+                        </span>
+                        <input
+                            type="text"
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            onKeyDown={handleKeyDown}
+                            placeholder="Search memories by name or age..."
+                            className="border-none font-bold outline-none focus:border-none focus:outline-none ml-3 bg-white w-full h-full text-slate-700"
+                        />
+                        <div className="hidden md:block">
+                            {loading && <FetchSpinner />}
+
+                            {!loading && (
+                                <button
+                                    onClick={handleSearch}
+                                    className="inline-flex h-11 w-full items-center justify-center text-sm ml-10 rounded-full bg-primary px-5 font-medium tracking-wide text-white shadow-none outline-none transition duration-200 hover:bg-primary focus:ring sm:w-auto"
+                                >
+                                    <div className="mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                            <path d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19Z" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                                            <path opacity=".4" d="m22 22-2-2" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                                        </svg>
+                                    </div>
+                                    <div className="capitalize">Search</div>
+                                </button>
+                            )}
+                        </div>
+                    </div>
+                </section>
+
+                <MemoriesList title="Their Memories" data={filteredArts} />
+            </Layout>
+        </>
+    );
 }

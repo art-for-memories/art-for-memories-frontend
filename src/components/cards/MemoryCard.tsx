@@ -16,7 +16,7 @@ export default function MemoryCard({ props }: { props: Art }) {
                         width={200}
                         height={600}
                     />
-                    {!props.preview && <div className="bg-black/40 text-white text-xs p-2 mt-2 absolute bottom-0 left-0 right-0">
+                    {!props.preview && <div className="bg-black/40 text-white text-xs p-2 mt-2 absolute bottom-0 left-0 right-0 rounded-b-3xl">
                         <p>{props.name}</p>
                         <p>AGED : {props.age}</p>
                     </div>}
