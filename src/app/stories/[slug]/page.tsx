@@ -15,12 +15,15 @@ function Story() {
   useEffect(() => {
     const fetchStory = async () => {
       if (slug) {
-        const res = await fetch(`/api/stories/${slug}`);
+        const res = await fetch(`/api/stories/${slug}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug })
+        });
 
         if (res.ok) {
           const story = await res.json();
           setStory(story);
-          console.log(story);
         } else {
           setStory(null);
         }
