@@ -1,17 +1,33 @@
+'use client';
+
 import { usePagination } from "@/hooks/usePagination";
 import MemoryCard from "@/components/cards/MemoryCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Art } from "@/types/arts";
 import Image from "next/image";
+import FormModal from "../models/form-model";
+import MemoryForm from "../forms/MemoryForm";
+import { useState } from "react";
 
 export default function MemoriesList({ title, data }: { title: string, data: Art[] }) {
     const itemsPerPage = 5;
     const { next, prev, currentData, currentPage, maxPage, setCurrentPage } = usePagination(data, itemsPerPage);
+    const [isFormOpen, setFormOpen] = useState(false);
 
     return (<>
         <section className="px-6 py-10 md:px-20 lg:px-32 bg-white">
-            <div className="mb-3">
+            <div className="mb-3 border-b border-gray-200 pb-5 flex items-center justify-between">
                 <h2 className="text-4xl font-bold text-black">{title}</h2>
+                <div>
+                    {/* Submit Button */}
+                    <button onClick={() => setFormOpen(true)} className="hidden md:block bg-black text-white px-5 py-3 rounded-full hover:opacity-80">
+                        Submit Your Memories
+                    </button>
+
+                    <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
+                        <MemoryForm onSuccess={() => setFormOpen(false)} />
+                    </FormModal>
+                </div>
             </div>
 
             <div className="mt-12">

@@ -12,11 +12,11 @@ export default function MemoryCard({ props }: { props: Art }) {
                     <Image
                         src={props.oldPhoto}
                         alt="Old Memory"
-                        className="w-64 h-96 object-cover border border-gray-400"
+                        className="w-[400px] h-[450px] object-cover border border-gray-400 rounded-3xl"
                         width={200}
                         height={600}
                     />
-                    {!props.preview && <div className="bg-black/40 text-white text-xs p-2 mt-2 absolute bottom-0 left-0 right-0">
+                    {!props.preview && <div className="bg-black/40 text-white text-xs p-2 mt-2 absolute bottom-0 left-0 right-0 rounded-b-3xl">
                         <p>{props.name}</p>
                         <p>AGED : {props.age}</p>
                     </div>}
@@ -44,7 +44,7 @@ export default function MemoryCard({ props }: { props: Art }) {
                     <Image
                         src={props.preservedPhoto}
                         alt="Preserved Memory"
-                        className="w-64 h-96 object-cover border border-gray-400"
+                        className="w-[400px] h-[450px] rounded-3xl object-cover border border-gray-400"
                         width={200}
                         height={400}
                     />

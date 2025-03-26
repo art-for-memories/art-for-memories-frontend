@@ -10,7 +10,6 @@ const Header = () => {
                 {/* Top Bar */}
                 <div className="bg-black rounded-b-[30px] text-white text-sm py-2 flex justify-between items-center px-6">
                     <div className="flex items-center space-x-4">
-                        <span>📞 +250788881111</span>
                         <span className="hidden md:block">📧 artformemories@gmail.com</span>
                     </div>
                     <div className="flex space-x-3">

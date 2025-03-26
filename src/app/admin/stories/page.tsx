@@ -7,126 +7,14 @@ import React, { useEffect, useState } from 'react'
 import StoriesTable from '@/components/dashboard/StoriesTable';
 import FetchSpinner from '@/components/spinners/fetch-spinner';
 import { Stories as Story } from '@/types/stories';
-import Image from 'next/image';
-
-interface UploadFilesResponse {
-    secure_url: string;
-}
+import StoryForm from '@/components/forms/StoryForm';
 
 function Stories() {
     const [isFormOpen, setFormOpen] = useState(false);
-    const [storyType, setStoryType] = useState('Written Story');
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [date, setDate] = useState('');
-    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-    const [selectedImages, setSelectedImages] = useState<File[]>([]);
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [isPending, startTransition] = useState(false);
     const [stories, setStories] = useState<Story[]>([]);
     const [loading, setLoading] = useState(false);
 
     const headers = ['title', 'author', 'date', 'files', 'status', 'storyType'];
-
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-
-        if (!files) return;
-
-        const newFiles: File[] = [];
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            if (file.type === 'application/pdf' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-                newFiles.push(file);
-            }
-        }
-
-        setSelectedFiles(newFiles);
-    };
-
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files;
-
-        if (!files) return;
-
-        const newImages: File[] = [];
-
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-
-            if (file.type.startsWith('image/')) {
-                newImages.push(file);
-            }
-        }
-
-        setSelectedImages(newImages);
-    }
-
-    const uploadFiles = async (selectedFiles: File[]): Promise<string[]> => {
-        const uploadedFiles: string[] = [];
-
-        for (const file of selectedFiles) {
-            const formData = new FormData();
-
-            formData.append('file', file);
-            formData.append('upload_preset', 'memories_preset');
-
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
-                method: 'POST',
-                body: formData,
-            });
-
-            const data: UploadFilesResponse = await response.json();
-            uploadedFiles.push(data.secure_url);
-        }
-
-        return uploadedFiles;
-    };
-
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-
-        setIsSubmitting(true);
-
-        try {
-            const uploadedFiles = await uploadFiles(selectedFiles);
-            const uploadedImages = await uploadFiles(selectedImages);
-
-            const formData = {
-                storyType,
-                title,
-                author,
-                date,
-                files: uploadedFiles,
-                images: uploadedImages
-            };
-
-            const response = await fetch('/api/stories', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                setFormOpen(false);
-                setStoryType('Written Story');
-                setTitle('');
-                setAuthor('');
-                setDate('');
-                setSelectedFiles([]);
-                getAllStories();
-            } else {
-                console.error('Failed to submit story');
-            }
-        } catch (error) {
-            console.error('Error submitting story:', error);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
 
     const getAllStories = async () => {
         try {
@@ -148,8 +36,6 @@ function Stories() {
     };
 
     const handleDelete = async (id: string) => {
-        startTransition(true);
-
         try {
             setLoading(true);
 
@@ -164,10 +50,11 @@ function Stories() {
             } else {
                 console.error('Failed to delete story');
             }
+
+            setLoading(false);
         } catch (error) {
             console.error('Error deleting story:', error);
-        } finally {
-            startTransition(false);
+            setLoading(false);
         }
     };
 
@@ -200,143 +87,7 @@ function Stories() {
                         </div>
 
                         <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                            <h3 className="text-slate-700 font-semibold">Upload New Story</h3>
-
-                            <form onSubmit={handleSubmit}>
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-bold">Story Type</label>
-                                    <select
-                                        className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                                        value={storyType}
-                                        onChange={(e) => setStoryType(e.target.value)}
-                                    >
-                                        <option value="Written Story">Written Story</option>
-                                        <option value="Illustrated">Illustrated</option>
-                                    </select>
-                                </div>
-
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-bold">Title</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Catchy Title"
-                                        className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                                        value={title}
-                                        onChange={(e) => setTitle(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-bold">Author</label>
-                                    <input
-                                        type="text"
-                                        placeholder="King"
-                                        className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                                        value={author}
-                                        onChange={(e) => setAuthor(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-bold">Date</label>
-                                    <input
-                                        type="date"
-                                        className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                                        value={date}
-                                        onChange={(e) => setDate(e.target.value)}
-                                    />
-                                </div>
-
-                                {/* Upload Image */}
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-medium">Image</label>
-                                    <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-images')?.click()}>
-                                        <span className="text-gray-400">📎</span>
-                                        <span className="text-gray-400">Attach the image</span>
-                                        <input type="file" className="hidden" id="upload-images" accept="image/*" onChange={handleImageChange} />
-                                    </div>
-                                </div>
-
-                                {/* Image Previews */}
-                                {selectedImages.length > 0 && (
-                                    <div className="mt-4 grid grid-cols-2 gap-4">
-                                        {selectedImages.map((file, index) => (
-                                            <div key={index} className="relative">
-                                                <Image
-                                                    width={100}
-                                                    height={100}
-                                                    src={URL.createObjectURL(file)}
-                                                    alt={file.name}
-                                                    className="w-full h-32 object-cover rounded-md"
-                                                />
-                                                <p className="text-sm text-black mt-2">{file.name}</p>
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {/* Upload Document */}
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-medium">Document</label>
-                                    <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-documents')?.click()}>
-                                        <span className="text-gray-400">📎</span>
-                                        <span className="text-gray-400">Attach the file for your story</span>
-                                        <input type="file" className="hidden" id="upload-documents" accept=".pdf,.docx" onChange={handleFileChange} />
-                                    </div>
-                                </div>
-
-                                {/* File Previews */}
-                                {selectedFiles.length > 0 && (
-                                    <div className="mt-4 grid grid-cols-2 gap-4">
-                                        {selectedFiles.map((file, index) => (
-                                            <div key={index} className="relative">
-                                                <p className="text-sm text-black">{file.name}</p>
-                                                {file.type === 'application/pdf' ? (
-                                                    <iframe
-                                                        src={URL.createObjectURL(file)}
-                                                        className="w-full h-32 border rounded-md"
-                                                        title={file.name}
-                                                    ></iframe>
-                                                ) : (
-                                                    <p className="text-gray-500">Preview not available</p>
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
-                                )}
-
-                                {/* Submit Button */}
-                                <div className="flex items-center justify-between mt-5">
-                                    <button
-                                        type="submit"
-                                        disabled={isSubmitting || isPending}
-                                        className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80"
-                                    >
-                                        <span>{isPending ? "Submitting..." : "Submit"}</span>
-                                        <span className="ml-5">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    stroke="#ffffff"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeMiterlimit="10"
-                                                    strokeWidth="1.5"
-                                                    d="M14.43 5.93L20.5 12l-6.07 6.07"
-                                                ></path>
-                                                <path
-                                                    stroke="#ffffff"
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    strokeMiterlimit="10"
-                                                    strokeWidth="1.5"
-                                                    d="M3.5 12h16.83"
-                                                    opacity=".4"
-                                                ></path>
-                                            </svg>
-                                        </span>
-                                    </button>
-                                </div>
-                            </form>
+                            <StoryForm onSuccess={() => setFormOpen(false)} />
                         </FormModal>
                     </header>
 

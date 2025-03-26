@@ -1,7 +1,6 @@
 "use client";
 
 import TopHeader from "@/components/TopHeader";
-import { Play } from 'lucide-react';
 import VideosList from "@/components/lists/VideosList";
 import Layout from "@/components/Layout";
 import { useEffect, useState } from "react";
@@ -33,11 +32,17 @@ export default function Days() {
                 <div className="mx-auto space-y-8 bg-white max-w-6xl">
                     {/* Video Section */}
                     <div>
-                        <a href="#" className="text-xl font-semibold text-slate-700">One Day In 100 Days</a>
-                        <div className="mt-4 bg-black rounded-lg h-64 flex items-center justify-center relative">
-                            <button className="bg-white rounded-full p-4 shadow-lg hover:scale-105 transition-transform">
-                                <Play className="h-10 w-10 text-black" />
-                            </button>
+                        <div className="mb-8">
+                            <a href="#" className="font-semibold text-2xl md:text-4xl font-heading text-slate-700">14th April 1994</a>
+                        </div>
+                        <div className="mt-4 bg-black rounded-lg h-80 flex items-center justify-center relative">
+                            <video
+                                className="rounded-lg w-full h-full object-cover"
+                                controls
+                                src="/videos/kwibuka_hero.mp4"
+                            >
+                                Your browser does not support the video tag.
+                            </video>
                         </div>
                     </div>
 

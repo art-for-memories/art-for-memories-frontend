@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Link from "next/link";
 
 export interface TheirStoryProps {
     id?: number;
@@ -7,45 +7,42 @@ export interface TheirStoryProps {
     date: string;
     title: string;
     author: string;
-    role: string;
+    storyType: string;
 }
 
 export default function StoryCard({ props }: { props: TheirStoryProps }) {
-    return (
-        <div className="bg-white shadow-md border border-gray-200 rounded-xl overflow-hidden">
-            {/* Responsive Image */}
-            <Image
-                src={props.image}
-                alt={props.title}
-                width={288}
-                height={160}
-                className="w-full h-[180px] sm:h-[200px] object-cover"
-            />
+    return (<>
+        <div className="w-full md:w-1/2 p-3">
+            <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12">
+                <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight">{props.type}</span>
+                <a className="block text-neutral-800 text-3xl md:text-5xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href="#">{props.title}</a>
+                <p className="text-neutral-600 text-lg font-medium mb-11 max-w-lg tracking-tight">{props.title} Video marketing is taking the digital world by storm. Discover how to captivate your audience and boost engagement with compelling video content.</p>
 
-            {/* Card Content */}
-            <div className="p-3 sm:p-4">
-                {/* Tags & Date */}
-                <div className="flex flex-wrap items-center text-center sm:text-left">
-                    <span className="text-xs bg-white text-slate-700 px-2 py-1 rounded-full border border-gray-200">
-                        {props.type}
-                    </span>
-                    <span className="text-xs text-slate-700 mt-2">{props.date}</span>
-                </div>
-
-                {/* Title */}
-                <h3 className="mt-2 font-semibold text-slate-700 text-sm sm:text-base">
-                    {props.title}
-                </h3>
-
-                {/* Author Info */}
-                <div className="flex items-center mt-4">
-                    <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
-                    <div className="ml-2">
-                        <p className="text-xs sm:text-sm font-medium text-slate-700">{props.author}</p>
-                        <p className="text-xs text-slate-500">{props.role}</p>
+                <div className="flex flex-wrap gap-6 mb-14">
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-green-100"></div>
+                        <p className="text-neutral-600 font-medium tracking-tight">{props.storyType}</p>
                     </div>
+                    <div className="flex items-center gap-2">
+                        <div className="w-3 h-3 bg-orange-200"></div>
+                        <p className="text-neutral-600 font-medium tracking-tight">{props.author}</p>
+                    </div>
+                </div>
+                <div className="flex items-center justify-between flex-wrap gap-4">
+                    <p className="text-neutral-600 text-xl font-semibold tracking-tight">
+                        {new Date(props.date).toLocaleString('en-US', {
+                            weekday: 'short',
+                            day: '2-digit',
+                            month: 'short',
+                            year: 'numeric'
+                        })}
+                    </p>
+                    <Link href={`/stories/${props.id}`} className="inline-flex text-slate-800 justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl hover:text-white focus:text-white bg-white hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200">
+                        Read more
+                    </Link>
                 </div>
             </div>
         </div>
+    </>
     );
 }

@@ -68,8 +68,23 @@ const StoriesTable: React.FC<TableProps> = ({ headers, data, onDelete, onPreview
                             <td className={`p-4 ${selected.includes(Stories.id) ? 'font-bold' : ''}`}>
                                 {Stories.author}
                             </td>
-                            <td className="p-4">{Stories.date}</td>
-                            <td className="p-4">{Stories.files}</td>
+                            <td className="p-4">{new Date(Stories.date).toLocaleDateString()}</td>
+                            
+                            <td className="p-4">
+                                {Stories.StoryFile ? (
+                                    <a
+                                        href={Stories.StoryFile.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-500 hover:underline cursor-pointer"
+                                    >
+                                        Open File
+                                    </a>
+                                ) : (
+                                    'No File'
+                                )}
+                            </td>
+                            
                             <td className="p-4 text-sm">
                                 {Stories.status === 'approved' ? (
                                     <span className="text-white bg-green-500 rounded-lg px-4 py-2 text-xsm">Approved</span>
