@@ -9,8 +9,8 @@ function Download() {
                 <div className="py-10 sm:py-16 lg:py-24 2xl:pl-24">
                     <div className="grid items-center grid-cols-1 gap-y-12 lg:grid-cols-2 lg:gap-x-8 2xl:gap-x-20">
                         <div>
-                            <h2 className="text-3xl font-bold font-boldonse text-white sm:text-4xl lg:text-4xl lg:leading-relaxed capitalize">Use mobile app for better performance</h2>
-                            <p className="mt-4 text-base text-gray-50 leading-6">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+                            <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-4xl lg:leading-relaxed capitalize">Download the App for Enhanced Storytelling</h2>
+                            <p className="mt-4 text-base text-gray-50 leading-6">Experience seamless storytelling and image sharing with our mobile app. Enjoy enhanced features and a user-friendly interface designed for your convenience.</p>
 
                             <div className="flex flex-row items-center mt-8 space-x-4 lg:mt-12">
                                 <a href="#" title="" className="flex" role="button">

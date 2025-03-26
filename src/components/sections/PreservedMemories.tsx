@@ -25,10 +25,10 @@ function PreservedMemories() {
                                     <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full"><img src="template-assets/images/features/sticker.svg" alt="" /></div>
                                 </div>
                                 <div className="flex-1 p-3">
-                                    <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800 text-slate-700">Past Memories</h4>
+                                    <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800">Past Memories</h4>
                                 </div>
                             </div>
-                            <p className="text-neutral-600 font-medium tracking-tight max-w-sm">Tailor your marketing approach with our customizable campaigns. We work closely with you to understand your unique goals and audience, designing personalized strategies that ensure your message reaches the right people at the right time.</p>
+                            <p className="text-neutral-600 font-medium tracking-tight max-w-sm">Preserve cherished moments and stories from the past, ensuring they remain a source of inspiration and connection for future generations.</p>
                         </div>
                     </div>
                     <div className="relative xl:top-20 w-full md:w-1/2 xl:w-1/3 p-3">
@@ -41,7 +41,7 @@ function PreservedMemories() {
                                     <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800">Imagery Arts</h4>
                                 </div>
                             </div>
-                            <p className="text-neutral-600 font-medium tracking-tight max-w-sm">Unlock the power of data with our advanced analytics tools. Gain actionable insights into customer behavior, market trends, and campaign performance</p>
+                            <p className="text-neutral-600 font-medium tracking-tight max-w-sm">Celebrate the beauty of visual storytelling, capturing moments that evoke emotions and preserve memories through artistic imagery.</p>
                         </div>
                         <div className="p-10 bg-white rounded-3xl">
                             <div className="flex flex-wrap items-center -m-3 mb-5">
@@ -49,10 +49,10 @@ function PreservedMemories() {
                                     <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full"><img src="template-assets/images/features/sticker.svg" alt="" /></div>
                                 </div>
                                 <div className="flex-1 p-3">
-                                    <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800"> Story that Inspires </h4>
+                                    <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800">Story that Inspires</h4>
                                 </div>
                             </div>
-                            <p className="text-neutral-600 font-medium tracking-tight max-w-sm">We're here for you around the clock. Our dedicated support team is ready to assist with any questions or concerns you may have.</p>
+                            <p className="text-neutral-600 font-medium tracking-tight max-w-sm">Share narratives that resonate deeply, inspiring connections and preserving the essence of meaningful experiences.</p>
                         </div>
                     </div>
                     <div className="relative xl:top-40 w-full xl:w-1/3 p-3">
@@ -65,7 +65,7 @@ function PreservedMemories() {
                                     <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800">Restoring the Past</h4>
                                 </div>
                             </div>
-                            <p className="text-neutral-600 font-medium tracking-tight max-w-sm">Maximize the effectiveness of your digital campaigns through A/B testing and continuous optimization. We fine-tune your content, ads, and user experience to increase engagement, conversions, and overall success.</p>
+                            <p className="text-neutral-600 font-medium tracking-tight max-w-sm">Rediscover and revive the essence of bygone eras, ensuring that the stories and moments of the past continue to inspire and connect us in the present.</p>
                         </div>
                     </div>
                 </div>

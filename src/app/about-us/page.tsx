@@ -15,11 +15,11 @@ function AboutUs() {
                         <div className="grid items-stretch grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 xl:gap-x-24">
                             <div className="h-full pr-12 lg:order-2">
                                 <div className="relative h-full lg:h-auto">
-                                    <div className="absolute w-full h-full -mb-12 overflow-hidden bg-gradient-to-r from-fuchsia-600 to-blue-600 top-16 left-12 xl:left-16 lg:top-0 lg:scale-y-105 lg:origin-top">
+                                    <div className="absolute w-full h-full -mb-12 overflow-hidden bg-gradient-to-r from-[#e4888a] to-[#439ace] top-16 left-12 xl:left-16 lg:top-0 lg:scale-y-105 lg:origin-top">
                                         <Image width={500} height={500} className="object-cover object-right w-full h-full scale-150" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/2/lines.svg" alt="" />
                                     </div>
-                                    <div className="relative lg:-top-0">
-                                        <Image width={500} height={500} className="" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/2/girl-drinking-coffee.jpg" alt="" />
+                                    <div className="relative lg:top-32">
+                                        <Image width={500} height={500} className="" src="/images/about.png" alt="" />
                                     </div>
                                 </div>
                             </div>
