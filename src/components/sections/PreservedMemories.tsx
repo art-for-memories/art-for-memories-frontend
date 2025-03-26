@@ -7,15 +7,15 @@ function PreservedMemories() {
             <div className="container mx-auto px-4">
                 <div className="mb-12 md:mb-20 max-w-5xl">
                     <h1 className="relative text-3xl md:text-5xl text-white font-semibold font-boldonse">
-                        <span className="mr-3 leading-[4rem]">Innovate, educate,</span>              
+                        <span className="mr-3 leading-[4rem]">Resilience, Legacy,</span>              
                         <span className="relative inline-block">
-                            <span className="relative z-10 leading-[5rem]">and Dominate Online</span>                
+                            <span className="relative z-10 leading-[5rem]">and Power of Memory</span>                
                             <span className="absolute -bottom-5 left-0 h-2.5 w-full bg-green-100 rounded-full"></span>
                         </span>
                     </h1>
                 </div>
 
-                <h3 className="mb-8 text-4xl text-white font-semibold tracking-tight font-heading">The most important news</h3>
+                <h3 className="mb-8 text-4xl text-white font-semibold tracking-tight font-heading">Discuss the social, cultural, and emotional benefits.</h3>
                 
                 <div className="flex flex-wrap -m-3">
                     <div className="w-full md:w-1/2 xl:w-1/3 p-3">

@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../../lib/prisma";
 
-export async function GET() {
+export async function GET(
+  request: Request,
+  { params }: { params: { slug: string } }
+) {
+  const { slug } = params;
+
   try {
-    const approvedStories = await prisma.story.findMany({
+    const story = await prisma.story.findUnique({
       where: {
-        status: "approved",
+        id: slug,
       },
       select: {
         id: true,
@@ -22,11 +27,15 @@ export async function GET() {
       },
     });
 
-    return NextResponse.json({ success: true, data: approvedStories });
+    if (!story) {
+      return NextResponse.json({ error: "Story not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(story);
   } catch (error) {
-    console.error("Error fetching approved stories:", error);
+    console.error("Error fetching story:", error);
     return NextResponse.json(
-      { success: false, error: "Failed to fetch approved stories" },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

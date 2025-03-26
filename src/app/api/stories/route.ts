@@ -50,7 +50,17 @@ export async function POST(req: Request) {
 export async function GET(req: Request) {
   try {
     const stories = await prisma.story.findMany({
-      include: {
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        email: true,
+        phone: true,
+        storyType: true,
+        title: true,
+        author: true,
+        date: true,
+        image: true,
         StoryFile: true,
       },
     });

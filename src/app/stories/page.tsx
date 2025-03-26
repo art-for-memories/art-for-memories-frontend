@@ -2,7 +2,6 @@
 import StoriesList from "@/components/lists/StoriesList";
 import FetchSpinner from "@/components/spinners/fetch-spinner";
 import TopHeader from "@/components/TopHeader";
-import { Stories as Story } from "@/types/stories";
 import { useEffect, useState } from "react";
 
 export default function Stories() {
@@ -17,18 +16,7 @@ export default function Stories() {
 
             if (response.ok) {
                 const stories = await response.json();
-
-                const formattedStories = stories.data.map((story: Story) => ({
-                    image: story.image,
-                    type: story.storyType,
-                    date: story.date,
-                    title: story.title,
-                    author: story.author,
-                    role: "Illustrator",
-                    preview: false,
-                }));
-
-                setStories(formattedStories);
+                setStories(stories.data);
             } else {
                 console.error('Failed to fetch stories');
             }

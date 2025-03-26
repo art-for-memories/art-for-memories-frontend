@@ -123,7 +123,7 @@ export default function Footer() {
                       </svg>
                       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                          <path d="M6.41225 12.1235L9.60066 8.93506L12.7891 12.1235" stroke="#19191B" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path d="M6.41225 12.1235L9.60066 8.93506L12.7891 12.1235" stroke="#19191B" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"></path>
                         </svg>
                       </div>
                     </a>
@@ -176,7 +176,7 @@ export default function Footer() {
                         <input className="w-full px-8 py-5 outline-none rounded-lg placeholder-neutral-600 font-medium focus:ring-4 focus:ring-neutral-100 transition duration-200" type="text" placeholder="Your Email" />
                       </div>
                       <div className="w-full sm:w-auto p-2">
-                        <button className="flex justify-center items-center text-center h-full w-full p-5 font-semibold tracking-tight text-lg bg-green-700 hover:bg-green-100 focus:bg-green-100 rounded-lg focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 transition duration-200" type="submit">More</button>
+                        <button className="flex justify-center items-center text-center h-full w-full p-5 font-semibold tracking-tight text-lg bg-[#e4888a] hover:bg-green-100 focus:bg-green-100 rounded-lg focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 transition duration-200" type="submit">More</button>
                       </div>
                     </div>
                   </form>
