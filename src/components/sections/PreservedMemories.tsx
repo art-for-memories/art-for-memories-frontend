@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 import React from 'react'
 
 function PreservedMemories() {
@@ -22,7 +21,9 @@ function PreservedMemories() {
                         <div className="flex flex-col h-full justify-center p-10 bg-white rounded-3xl">
                             <div className="flex flex-wrap items-center -m-3 mb-5">
                                 <div className="w-auto p-3">
-                                    <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full"><img src="template-assets/images/features/sticker.svg" alt="" /></div>
+                                    <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full">
+                                        {/* <img src="template-assets/images/features/sticker.svg" alt="" /> */}
+                                    </div>
                                 </div>
                                 <div className="flex-1 p-3">
                                     <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800">Past Memories</h4>
@@ -35,7 +36,9 @@ function PreservedMemories() {
                         <div className="mb-6 p-10 bg-white rounded-3xl">
                             <div className="flex flex-wrap items-center -m-3 mb-5">
                                 <div className="w-auto p-3">
-                                    <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full"><img src="template-assets/images/features/sticker.svg" alt="" /></div>
+                                    <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full">
+                                        {/* <img src="template-assets/images/features/sticker.svg" alt="" /> */}
+                                    </div>
                                 </div>
                                 <div className="flex-1 p-3">
                                     <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800">Imagery Arts</h4>
@@ -46,7 +49,9 @@ function PreservedMemories() {
                         <div className="p-10 bg-white rounded-3xl">
                             <div className="flex flex-wrap items-center -m-3 mb-5">
                                 <div className="w-auto p-3">
-                                    <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full"><img src="template-assets/images/features/sticker.svg" alt="" /></div>
+                                    <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full">
+                                        {/* <img src="template-assets/images/features/sticker.svg" alt="" /> */}
+                                    </div>
                                 </div>
                                 <div className="flex-1 p-3">
                                     <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800">Story that Inspires</h4>
@@ -59,7 +64,9 @@ function PreservedMemories() {
                         <div className="flex flex-col h-full justify-center p-10 bg-white rounded-3xl">
                             <div className="flex flex-wrap items-center -m-3 mb-5">
                                 <div className="w-auto p-3">
-                                    <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full"><img src="template-assets/images/features/sticker.svg" alt="" /></div>
+                                    <div className="flex items-center justify-center w-16 h-16 bg-neutral-900 rounded-full">
+                                        {/* <img src="template-assets/images/features/sticker.svg" alt="" /> */}
+                                    </div>
                                 </div>
                                 <div className="flex-1 p-3">
                                     <h4 className="text-4xl font-medium tracking-tight font-heading max-w-xs text-slate-800">Restoring the Past</h4>

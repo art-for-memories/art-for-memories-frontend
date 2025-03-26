@@ -44,9 +44,15 @@ function ContactUs() {
                                         </div>
                                         <div className="w-full md:w-1/2 p-4">
                                             <ul className="flex flex-wrap md:justify-end -m-1.5">
-                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/fb.svg" alt="" /></a></li>
-                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/instagram.svg" alt="" /></a></li>
-                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#"><img className="h-5" src="template-assets/images/contact/x.svg" alt="" /></a></li>
+                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#">
+                                                    {/* <img className="h-5" src="template-assets/images/contact/fb.svg" alt="" /> */}
+                                                </a></li>
+                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#">
+                                                    {/* <img className="h-5" src="template-assets/images/contact/instagram.svg" alt="" /> */}
+                                                </a></li>
+                                                <li className="p-1.5"><a className="flex items-center justify-center w-12 h-12 bg-neutral-50 hover:bg-opacity-80 rounded-full transition duration-200" href="#">
+                                                    {/* <img className="h-5" src="template-assets/images/contact/x.svg" alt="" /> */}
+                                                </a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -119,7 +125,8 @@ function ContactUs() {
                                     <div className="flex flex-col justify-between h-full">
                                         <div className="mb-8 w-full">
                                             <h4 className="mb-2 text-4xl font-medium tracking-tight font-heading text-slate-900">Live chat</h4>
-                                            <p className="mb-8 text-lg text-neutral-600 font-medium tracking-tight">Chat with Jesse for expert help!</p><img className="mx-auto h-56 object-cover" src="template-assets/images/contact/woman.png" alt="" />
+                                            <p className="mb-8 text-lg text-neutral-600 font-medium tracking-tight">Chat with Jesse for expert help!</p>
+                                            {/* <img className="mx-auto h-56 object-cover" src="template-assets/images/contact/woman.png" alt="" /> */}
                                         </div>
                                         <div className="w-full"><a className="inline-flex justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl text-slate-900 hover:text-white focus:text-white bg-white hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200" href="#">Open Chat</a></div>
                                     </div>

@@ -73,7 +73,7 @@ const StoriesTable: React.FC<TableProps> = ({ headers, data, onDelete, onPreview
                             <td className="p-4">
                                 {Stories.StoryFile ? (
                                     <a
-                                        href={Stories.StoryFile.url}
+                                        href={Stories.StoryFile[0].url}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="text-blue-500 hover:underline cursor-pointer"

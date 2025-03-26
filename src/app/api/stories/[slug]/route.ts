@@ -1,11 +1,8 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../../../lib/prisma";
 
-export async function GET(
-  request: Request,
-  { params }: { params: { slug: string } }
-) {
-  const { slug } = params;
+export async function POST(req: NextRequest) {
+  const { slug } = await req.json();
 
   try {
     const story = await prisma.story.findUnique({
@@ -32,8 +29,7 @@ export async function GET(
     }
 
     return NextResponse.json(story);
-  } catch (error) {
-    console.error("Error fetching story:", error);
+  } catch {
     return NextResponse.json(
       { error: "Internal Server Error" },
       { status: 500 }
