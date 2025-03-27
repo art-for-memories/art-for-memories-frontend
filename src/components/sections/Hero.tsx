@@ -59,9 +59,9 @@ const Hero = () => {
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-5xl mx-auto md:pr-20 md:mr-10 sm:py-20 md:py-10 lg:py-10 my-20">
                 {/* Left Content */}
                 <div className="text-center lg:text-left px-4">
-                    <div className="flex justify-center lg:justify-start">
-                        <Image src={'/images/logo.PNG'} alt={"logo"} width={100} height={100} />
-                    </div>
+                    {/* <div className="flex justify-center lg:justify-start bg-white w-auto">
+                        <Image src={'/images/ART.PNG'} alt={"logo"} width={100} height={100} />
+                    </div> */}
 
                     <h1 className="text-4xl md:text-5xl font-bold mt-3 font-boldonse">
                         Art For <span className="text-gray-300">Memories</span>
