@@ -50,7 +50,7 @@ function OurCommunity() {
                             <div className="h-full p-10 bg-white rounded-3xl">
                                 <div className="flex flex-col justify-between h-full">
                                     <div className="w-full">
-                                        <h4 className="mb-2 text-4xl tracking-tight font-heading text-slate-700 font-semibold">15 stories shared</h4>
+                                        <h4 className="mb-2 text-4xl tracking-tight font-heading text-slate-700 font-semibold">800 Saved Images</h4>
                                         <p className="mb-12 font-medium text-lg text-neutral-600 tracking-tight max-w-xs">We have shared 15 heartfelt stories, connecting communities through the power of memories.</p>
                                     </div>
                                     <div className="w-full"><a className="inline-flex justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl hover:text-white focus:text-white bg-white text-slate-900 hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200" href="#">More</a></div>

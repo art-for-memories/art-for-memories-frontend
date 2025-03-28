@@ -43,10 +43,13 @@ export default function Stories() {
     };
 
     const handleSearch = () => {
+        setLoading(true);
+
         const query = searchQuery.toLowerCase();
-        const filtered = arts.filter((art) =>
-            art.name.toLowerCase().includes(query) || art.age.toString().includes(query)
-        );
+        const filtered = arts.filter((art) => art.name.toLowerCase().includes(query) || art.age.toString().includes(query));
+        
+        setLoading(false);
+        
         setFilteredArts(filtered);
     };
 
@@ -73,31 +76,17 @@ export default function Stories() {
                                 <path opacity=".4" d="M18.93 20.689c.53 1.6 1.74 1.76 2.67.36.85-1.28.29-2.33-1.25-2.33-1.14-.01-1.78.88-1.42 1.97Z" stroke="#697689" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
                             </svg>
                         </span>
+
                         <input
                             type="text"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             onKeyDown={handleKeyDown}
                             placeholder="Search memories by name or age..."
-                            className="border-none font-bold outline-none focus:border-none focus:outline-none ml-3 bg-white w-full h-full text-slate-700"
+                            className="border-none font-bold outline-none py-3 focus:border-none focus:outline-none ml-3 bg-white w-full h-full text-slate-700"
                         />
                         <div className="hidden md:block">
                             {loading && <FetchSpinner />}
-
-                            {!loading && (
-                                <button
-                                    onClick={handleSearch}
-                                    className="inline-flex h-11 w-full items-center justify-center text-sm ml-10 rounded-full bg-primary px-5 font-medium tracking-wide text-white shadow-none outline-none transition duration-200 hover:bg-primary focus:ring sm:w-auto"
-                                >
-                                    <div className="mr-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
-                                            <path d="M11.5 21a9.5 9.5 0 1 0 0-19 9.5 9.5 0 0 0 0 19Z" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                                            <path opacity=".4" d="m22 22-2-2" stroke="#ffffff" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                                        </svg>
-                                    </div>
-                                    <div className="capitalize">Search</div>
-                                </button>
-                            )}
                         </div>
                     </div>
                 </section>

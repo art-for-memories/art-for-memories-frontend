@@ -8,12 +8,12 @@ export default function Navbar() {
         <nav className="flex justify-between items-center relative bg-neutral-900">
             <div className="bg-[#F9F3EE] z-20 rounded-[10px] my-5 container max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
                 {/* Logo Section */}
-                <div className="flex items-center space-x-2">
+                <div className="flex items-center">
                     <div className="text-2xl font-bold flex items-center">
-                        <span className="bg-black text-white px-1 py-1 rounded">
-                            <div><Image src={'/images/logo.PNG'} alt={"logo"} width={40} height={40} /></div>
+                        <span className="bg-transparent text-white rounded">
+                            <Image src={'/images/ART.PNG'} alt={"logo"} width={90} height={50}  />
                         </span>
-                        <span className="text-black ml-2 text-[12px] font-bold font-boldonse">Art for Memories.</span>
+                        {/* <span className="text-black ml-2 text-[12px] font-bold font-boldonse">Art for Memories.</span> */}
                     </div>
                 </div>
 
