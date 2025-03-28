@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import React from 'react';
 import { useSession, signOut } from 'next-auth/react';
+import Link from 'next/link';
 
 
 function Navbar() {
@@ -11,10 +12,9 @@ function Navbar() {
             <div className="flex justify-between items-center w-full">
                 <div className="flex items-center space-x-2">
                     <div className="text-2xl font-bold flex items-center">
-                        <span className="bg-black text-white px-1 py-1 rounded">
-                            <div><Image src={'/images/logo.PNG'} alt={"logo"} width={30} height={30} /></div>
-                        </span>
-                        <span className="text-black ml-2 text-sm">Art for Memories.</span>
+                        <Link href='/' className="bg-white text-white px-1 py-1 rounded cursor-pointer">
+                            <div><Image src={'/images/ART.PNG'} alt={"logo"} width={80} height={30} /></div>
+                        </Link>
                     </div>
                 </div>
                 <div>

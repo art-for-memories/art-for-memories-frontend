@@ -1,6 +1,4 @@
-// import { FaLocationDot, FaPaperPlane } from "react-icons/fa6";
-// import { MdEmail, MdPhone } from "react-icons/md";
-
+import Image from "next/image";
 import Download from "./sections/download";
 
 export default function Footer() {
@@ -37,8 +35,18 @@ export default function Footer() {
             </div>
           </div>
           <div className="py-12 md:pb-20">
-            <div className="container mx-auto px-4">
+            <div className="mx-auto px-4">
               <div className="flex flex-wrap -mx-4">
+
+                <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
+                  <div className="font-bold">
+                    <div className="bg-white text-white px-2 py-2 rounded-xl">
+                      <div><Image src={'/images/ART.PNG'} alt={"logo"} width={200} height={30} /></div>
+                    </div>
+                    <p className="text-sm mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                  </div>
+                </div>
+
                 <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
                   <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Who we are</h2>
                   <ul className="flex flex-col gap-4">
@@ -69,10 +77,10 @@ export default function Footer() {
                   <form className="mb-6" action="#">
                     <div className="flex flex-wrap -m-2">
                       <div className="w-full sm:flex-1 p-2">
-                        <input className="w-full px-8 py-5 outline-none rounded-lg placeholder-neutral-600 font-medium focus:ring-4 focus:ring-neutral-100 transition duration-200" type="text" placeholder="Your Email" />
+                        <input className="w-full px-8 py-3 outline-none rounded-lg placeholder-neutral-600 font-medium transition duration-200" type="text" placeholder="Your Email" />
                       </div>
                       <div className="w-full sm:w-auto p-2">
-                        <button className="flex justify-center items-center text-center h-full w-full p-5 font-semibold tracking-tight text-lg bg-[#e4888a] hover:bg-green-100 focus:bg-green-100 rounded-lg focus:ring-4 focus:ring-green-200 focus:ring-opacity-50 transition duration-200" type="submit">More</button>
+                        <button className="flex justify-center items-center text-center h-full w-full px-5 py-2 font-semibold tracking-tight text-lg bg-[#e4888a] hover:bg-green-100 rounded-lg transition duration-200" type="submit">More</button>
                       </div>
                     </div>
                   </form>

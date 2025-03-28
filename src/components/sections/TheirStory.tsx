@@ -3,16 +3,16 @@ import Link from "next/link";
 
 export default function TheirStories() {
     return (<>
-        <section className="px-6 py-20 md:px-20 lg:px-32 bg-white">
+        <section className="px-6 py-20 md:px-10 lg:px-16 bg-white">
             <div className="flex flex-col md:flex-row items-center justify-between mx-auto px-6">
                 {/* Left Content */}
                 <div className="md:w-1/2 text-center md:text-left">
-                    <h2 className="text-3xl md:text-4xl font-bold font-boldonse text-gray-900">THEIR STORIES</h2>
+                    <h2 className="text-3xl md:text-6xl mb-7 font-semibold font-heading text-slate-700 capitalize">Their Stories</h2>
                     <p className="mt-4 text-gray-600 max-w-md mx-auto md:mx-0">
                         Explore some of our most impactful projects, each of which has contributed to our mission
                         of preserving history through personal and artistic expressions.
                     </p>
-                    <div className="mt-6 flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-3">
+                    <div className="mt-7 flex flex-col sm:flex-row items-center justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-3">
                         <Link href={"/stories"} className="px-6 py-3 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition">
                             VIEW STORIES
                         </Link>

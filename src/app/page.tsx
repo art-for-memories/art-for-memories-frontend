@@ -46,7 +46,6 @@ export default function Home() {
         <Navbar />
         <Hero />
         <OurCommunity />
-        {/* <About /> */}
         <Memory />
         <PreservedMemories />
         <TheirStories />
