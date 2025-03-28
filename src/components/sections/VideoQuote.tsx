@@ -11,7 +11,7 @@ const VideoQuote = () => {
                         One Day In 100 Days
                     </h3>
                     <p className='font-semibold text-gray-600 max-w-md mx-auto md:mx-0'>
-                        Watch the full video of the 100 days of remembrance and the stories of the survivors,  "Forgetting is a second death. Let’s keep memories alive." – Anonymous Survivor
+                        Watch the full video of the 100 days of remembrance and the stories of the survivors,  Forgetting is a second death. Let’s keep memories alive. – Anonymous Survivor
                     </p>
                     <div className="mt-7 bg-black rounded-lg h-48 md:h-64 lg:h-80 flex items-center justify-center relative">
                         <button className="bg-white rounded-full p-4 md:p-6 shadow-lg">
