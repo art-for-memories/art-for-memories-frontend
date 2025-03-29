@@ -67,7 +67,7 @@ const Hero = () => {
                         Art For <span className="text-gray-300">Memories</span>
                     </h1>
 
-                    <p className="mt-10 text-sm md:text-md text-gray-300 max-w-xl mx-auto lg:mx-0 font-semibold leading-6">
+                    <p className="mt-10 text-lg md:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 font-semibold leading-6">
                         A Dedicated Platform That Preserves In Art The Damaged Images Of The Victims Of The 1994
                         Genocide Against The Tutsi And To Collect, Archive, And Illustrate Stories Of Genocide
                         Survivors.

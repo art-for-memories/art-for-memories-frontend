@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Download from "./sections/download";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -16,7 +17,7 @@ export default function Footer() {
                   <a className="text-white hover:text-opacity-80 tracking-tight transition duration-200 font-semibold" href="#">Location</a>
                 </div>
                 <div className="flex items-center gap-6 sm:gap-18 flex-wrap font-semibold">
-                  <a className="text-white hover:text-opacity-80 tracking-tight transition duration-200 font-semibold" href="#">Contact</a>
+                  <Link className="text-white hover:text-opacity-80 tracking-tight transition duration-200 font-semibold" href="/contact-us">Contact</Link>
                   <div className="flex items-center gap-6 flex-wrap">
                     <a className="text-white hover:text-opacity-80 tracking-tight transition duration-200 font-semibold" href="#">Back to top</a>
                     <a className="relative text-white hover:text-opacity-80 transition duration-200" href="#">

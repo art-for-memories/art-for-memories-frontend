@@ -1,20 +1,34 @@
 import { Menu } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
+import FormModal from "./models/form-model";
+import MemoryForm from "./forms/MemoryForm";
 
 export default function SubNav() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isFormOpen, setFormOpen] = useState(false);
 
     return (<>
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-6 text-black font-semibold items-center">
+            <div className="hidden md:flex space-x-6 text-black font-semibold items-center">
+                <div>
+                    {/* Submit Button */}
+                    <button onClick={() => setFormOpen(true)} className="hidden md:block bg-black text-white px-5 py-3 rounded-xl hover:opacity-80 text-sm font-semibold">
+                        Submit Your Memories
+                    </button>
+
+                    <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
+                        <MemoryForm onSuccess={() => setFormOpen(false)} />
+                    </FormModal>
+                </div>
+            </div>
+
             {/* Menu Links */}
-            <Link href={"/"} className="hover:text-gray-600 text-sm">Home</Link>
+            <Link href={"/about-us"} className="hover:text-gray-600 text-sm">About us</Link>
             <Link href={"/preserved-memories"} className="hover:text-gray-600 text-sm">Memories</Link>
             <Link href={"/stories"} className="hover:text-gray-600 text-sm">Their Stories</Link>
             <Link href={"/one-day-in-100-days"} className="hover:text-gray-600 text-sm">One Day In 100 Days</Link>
-            <Link href={"/about-us"} className="hover:text-gray-600 text-sm">About us</Link>
-            <Link href={"/contact-us"} className="hover:text-gray-600 text-sm">Contact us</Link>
             <Link href={"https://kwibuka.rw"} target="__blank" className="hover:text-gray-600 font-semibold text-sm">Learn More</Link>
         </div>
 

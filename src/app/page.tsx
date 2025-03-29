@@ -1,15 +1,9 @@
 import Hero from "@/components/sections/Hero";
-import Memory from "@/components/sections/Memory";
 import Partners from "@/components/sections/Partners";
-import TheirStories from "@/components/sections/TheirStory";
-import VideoQuote from "@/components/sections/VideoQuote";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import Layout from "@/components/Layout";
 import OurCommunity from "@/components/sections/OurCommunity";
-import PreservedMemories from "@/components/sections/PreservedMemories";
-import Commitments from "@/components/sections/Commitments";
-import CallToAction from "@/components/sections/CallToAction";
 import Blogs from "@/components/sections/blogs";
 
 export const metadata: Metadata = {
@@ -46,14 +40,8 @@ export default function Home() {
         <Navbar />
         <Hero />
         <OurCommunity />
-        <Memory />
-        <PreservedMemories />
-        <TheirStories />
-        <Commitments />
-        <VideoQuote />
-        <Partners />
-        <CallToAction />
         <Blogs />
+        <Partners />
       </div >
     </Layout >
   );
