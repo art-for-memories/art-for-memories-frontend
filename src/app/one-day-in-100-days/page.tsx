@@ -1,10 +1,10 @@
 "use client";
 
-import TopHeader from "@/components/TopHeader";
 import VideosList from "@/components/lists/VideosList";
 import Layout from "@/components/Layout";
 import { useEffect, useState } from "react";
 import FetchSpinner from "@/components/spinners/fetch-spinner";
+import PageHeader from "@/components/headers/page-header";
 
 export default function Days() {
     const [videos, setVideos] = useState([]);
@@ -26,15 +26,16 @@ export default function Days() {
 
     return (<>
         <Layout>
-            <TopHeader title="One day in 100 days " path="one day in 100 Days" />
+            <PageHeader
+                title='One Day In 100 Days'
+                description='A story of resilience and survival, capturing the essence of human strength and memory preservation.'
+                sup_title='Memories Reimagined'
+                // backgroundImage='https://www.passage.law/wp-content/uploads/2023/11/the-congo-refugee-crisis-that-stemmed-from-the-rwandan-genocide-950x550.webp'
+            />
 
             <section className="px-6 py-16 md:px-20 lg:px-32 bg-white">
                 <div className="mx-auto space-y-8 bg-white max-w-6xl">
-                    {/* Video Section */}
                     <div>
-                        <div className="mb-8">
-                            <a href="#" className="font-semibold text-2xl md:text-4xl font-heading text-slate-700">14th April 1994</a>
-                        </div>
                         <div className="mt-4 bg-black rounded-lg h-92 flex items-center justify-center relative">
                             <video
                                 className="rounded-lg w-full h-full object-cover"
@@ -49,7 +50,7 @@ export default function Days() {
                     {/* Other Videos Section */}
                     <div className="mt-10">
                         {loading && <FetchSpinner />}
-                        <VideosList title="Other Videos" data={videos} />
+                        <VideosList title="Shared Videos" data={videos} />
                     </div>
                 </div>
             </section>

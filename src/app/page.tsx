@@ -1,6 +1,5 @@
 import Hero from "@/components/sections/Hero";
 import Partners from "@/components/sections/Partners";
-import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import Layout from "@/components/Layout";
 import OurCommunity from "@/components/sections/OurCommunity";
@@ -37,7 +36,6 @@ export default function Home() {
   return (
     <Layout>
       <div className="overflow-x-hidden">
-        <Navbar />
         <Hero />
         <OurCommunity />
         <Blogs />

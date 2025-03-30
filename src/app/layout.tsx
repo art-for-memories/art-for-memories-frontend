@@ -15,7 +15,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <meta name="apple-mobile-web-app-title" content="Art For Memory" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased bg-neutral-900">
         <Suspense fallback={<Loading />}>
           <main>
             <TopLoader />

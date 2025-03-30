@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { usePagination } from "@/hooks/usePagination";
@@ -8,16 +9,40 @@ import Image from "next/image";
 import FormModal from "../models/form-model";
 import MemoryForm from "../forms/MemoryForm";
 import { useState } from "react";
+import FetchSpinner from "../spinners/fetch-spinner";
 
-export default function MemoriesList({ title, data }: { title: string, data: Art[] }) {
+export default function MemoriesList({ title, data, onSearch, loading }: { title: string | null, data: Art[], onSearch: (event: React.KeyboardEvent<HTMLInputElement>) => void, loading: boolean }) {
     const itemsPerPage = 5;
     const { next, prev, currentData, currentPage, maxPage, setCurrentPage } = usePagination(data, itemsPerPage);
     const [isFormOpen, setFormOpen] = useState(false);
+    const [searchQuery, setSearchQuery] = useState("");
 
     return (<>
         <section className="px-6 py-10 md:px-20 lg:px-32 bg-white">
             <div className="mb-3 border-b border-gray-200 pb-5 flex items-center justify-between">
-                <h2 className="text-4xl font-bold text-black">{title}</h2>
+
+                <div className="border border-gray-300 rounded-full pl-4 pr-2 py-2 w-full text-sm focus:outline-none flex items-center bg-white max-w-3xl">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M11 20a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#697689" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                            <path opacity=".4" d="M18.93 20.689c.53 1.6 1.74 1.76 2.67.36.85-1.28.29-2.33-1.25-2.33-1.14-.01-1.78.88-1.42 1.97Z" stroke="#697689" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
+                        </svg>
+                    </span>
+
+                    <input
+                        type="text"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onKeyDown={onSearch}
+                        placeholder="Search memories by name or age..."
+                        className="border-none font-bold outline-none py-2 focus:border-none focus:outline-none ml-3 bg-white w-full h-full text-slate-700"
+                    />
+
+                    <div className="hidden md:block">
+                        {loading && <FetchSpinner />}
+                    </div>
+                </div>
+
                 <div>
                     {/* Submit Button */}
                     <button onClick={() => setFormOpen(true)} className="hidden md:block bg-black text-white px-5 py-3 rounded-full hover:opacity-80">

@@ -1,17 +1,15 @@
 "use client";
 
+import PageHeader from "@/components/headers/page-header";
 import Layout from "@/components/Layout";
 import MemoriesList from "@/components/lists/MemoriesList";
-import FetchSpinner from "@/components/spinners/fetch-spinner";
-import TopHeader from "@/components/TopHeader";
 import { Art } from "@/types/arts";
 import { useEffect, useState } from "react";
 
 export default function Stories() {
     const [arts, setArts] = useState<Art[]>([]);
     const [filteredArts, setFilteredArts] = useState<Art[]>([]);
-    const [loading, setLoading] = useState(false);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [loading, setLoading] = useState(false); 
 
     const getAllArts = async () => {
         try {
@@ -47,9 +45,9 @@ export default function Stories() {
 
         const query = searchQuery.toLowerCase();
         const filtered = arts.filter((art) => art.name.toLowerCase().includes(query) || art.age.toString().includes(query));
-        
+
         setLoading(false);
-        
+
         setFilteredArts(filtered);
     };
 
@@ -64,35 +62,15 @@ export default function Stories() {
     }, []);
 
     return (
-        <>
-            <Layout>
-                <TopHeader title="Memories" path="Memories" />
+        <Layout>
+            <PageHeader
+                title='Timeless Memories'
+                description='Timeless stories and moments brought back to life through preservation.'
+                sup_title='Memories Reimagined'
+                backgroundImage='https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/7e/99/0d/caption.jpg?w=1400&h=-1&s=1'
+            />
 
-                <section className="flex flex-col items-center justify-center mb-10">
-                    <div className="border border-gray-300 rounded-full pl-4 pr-2 py-2 w-full text-sm focus:outline-none flex items-center bg-white max-w-3xl">
-                        <span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M11 20a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#697689" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                                <path opacity=".4" d="M18.93 20.689c.53 1.6 1.74 1.76 2.67.36.85-1.28.29-2.33-1.25-2.33-1.14-.01-1.78.88-1.42 1.97Z" stroke="#697689" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
-                            </svg>
-                        </span>
-
-                        <input
-                            type="text"
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            onKeyDown={handleKeyDown}
-                            placeholder="Search memories by name or age..."
-                            className="border-none font-bold outline-none py-3 focus:border-none focus:outline-none ml-3 bg-white w-full h-full text-slate-700"
-                        />
-                        <div className="hidden md:block">
-                            {loading && <FetchSpinner />}
-                        </div>
-                    </div>
-                </section>
-
-                <MemoriesList title="Their Memories" data={filteredArts} />
-            </Layout>
-        </>
+            <MemoriesList title="Preserved Memories" data={filteredArts} onSearch={handleKeyDown} loading={loading} />
+        </Layout>
     );
 }

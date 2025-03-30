@@ -8,7 +8,9 @@ function AboutUs() {
     return (<>
         <Layout>
             <div className="overflow-x-hidden">
-                <Navbar />
+                <div className='bg-neutral-900 py-5'>
+                    <Navbar />
+                </div>
 
                 <section className="py-10 bg-neutral-900 lg:py-0 relative">
                     <div className="px-4 mx-auto sm:px-6 lg:px-20 max-w-7xl pb-32 bg-neutral-900">
@@ -27,7 +29,9 @@ function AboutUs() {
                             <div className="flex items-center justify-start lg:order-1 sm:py-16 lg:py-16 xl:py-32">
                                 <div>
                                     <p className="text-sm font-semibold tracking-widest text-gray-500 uppercase">About us</p>
-                                    <h2 className="mt-8 text-3xl font-bold font-boldonse leading-tight text-white sm:text-4xl lg:text-5xl lg:leading-[4rem]">Dedicated To Preserving Memories</h2>
+                                    <h2 className="mt-8 text-3xl font-bold font-boldonse leading-tight text-white sm:text-4xl lg:text-5xl" style={{ lineHeight: '4rem'}}>
+                                        All About Preserving Memories
+                                    </h2>
                                     <p className="text-xl leading-relaxed text-gray-200 mt-9">
                                         During the 29th commemoration of the 1994 Genocide Against the Tutsi, King NGABO engaged in a poignant conversation with a genocide survivor. The survivor expressed a deeply personal loss, revealing, "Young brother, do you know that we don’t have pictures of our parents?"
                                     </p>

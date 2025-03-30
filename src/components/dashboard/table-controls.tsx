@@ -9,7 +9,7 @@ function TableControls({ onSearch }: { onSearch: (searchTerm: string) => void })
                         <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg>
                 </span>
-                <input type="text" placeholder="Enter staff name..." className="p-2 focus:outline-none text-slate-700" onKeyUp={(e) => onSearch((e.target as HTMLInputElement).value)} />
+                <input type="text" placeholder="Search Now..." className="p-2 focus:outline-none text-slate-700" onKeyUp={(e) => onSearch((e.target as HTMLInputElement).value)} />
             </div>
         </div>
     )
