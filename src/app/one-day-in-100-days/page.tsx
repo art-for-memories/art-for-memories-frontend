@@ -35,7 +35,7 @@ export default function Days() {
                         <div className="mb-8">
                             <a href="#" className="font-semibold text-2xl md:text-4xl font-heading text-slate-700">14th April 1994</a>
                         </div>
-                        <div className="mt-4 bg-black rounded-lg h-80 flex items-center justify-center relative">
+                        <div className="mt-4 bg-black rounded-lg h-92 flex items-center justify-center relative">
                             <video
                                 className="rounded-lg w-full h-full object-cover"
                                 controls

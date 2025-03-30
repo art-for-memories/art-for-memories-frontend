@@ -17,7 +17,7 @@ export default function Stories() {
         try {
             setLoading(true);
 
-            const response = await fetch('/api/arts');
+            const response = await fetch('/api/preserved-memories');
             const data = await response.json();
 
             if (response.ok) {

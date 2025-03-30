@@ -1,4 +1,6 @@
 "use client";
+
+import Layout from "@/components/Layout";
 import StoriesList from "@/components/lists/StoriesList";
 import FetchSpinner from "@/components/spinners/fetch-spinner";
 import TopHeader from "@/components/TopHeader";
@@ -32,11 +34,13 @@ export default function Stories() {
     }, []);
 
     return (<>
-        <TopHeader title="Their Stories" path="Stories" />
-        
-        <div className="mt-10">
-            {loading && <FetchSpinner />}
-            <StoriesList title="Published Stories" data={stories} />
-        </div>
+        <Layout>
+            <TopHeader title="Their Stories" path="Stories" />
+
+            <div className="mt-10 bg-white">
+                {loading && <FetchSpinner />}
+                <StoriesList title="Published Stories" data={stories} />
+            </div>
+        </Layout>
     </>);
 }
