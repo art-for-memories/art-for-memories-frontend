@@ -2,10 +2,10 @@ import React from 'react'
 
 function OurCommunity() {
     return (
-        <section className="py-12 md:py-24 md:px-16 bg-neutral-50">
+        <section className="py-12 md:pb-12 md:pt-24 md:px-16 bg-neutral-50">
             <div className="container mx-auto px-4">
                 <div className="mb-12 md:mb-24 text-center max-w-6xl mx-auto">
-                    <h1 className="mb-16 font-semibold text-4xl md:text-6xl font-heading text-slate-700"><span>Remembering the Past, <br /> Restoring</span>              
+                    <h1 className="mb-10 font-semibold text-4xl md:text-6xl font-heading text-slate-700"><span>Remembering the Past, <br /> Restoring</span>              
                     <span className="bg-[#e6bf5d] rounded-lg px-4 mt-1 inline-block">the future.</span></h1>
                     <p className="font-semibold text-2xl text-neutral-600 tracking-tight">Through art and restoration, we preserve the memories and legacies.</p>
                 </div>
@@ -69,10 +69,6 @@ function OurCommunity() {
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div className="flex flex-wrap justify-center">
-                    <div className="w-auto"><a className="inline-flex justify-center items-center text-center h-20 p-5 font-semibold tracking-tight text-2xl text-white bg-neutral-900 hover:bg-neutral-800 focus:bg-neutral-800 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200" href="#">Learn more</a></div>
                 </div>
             </div>
         </section>

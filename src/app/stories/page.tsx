@@ -1,7 +1,11 @@
 "use client";
+
+import PageHeader from "@/components/headers/page-header";
+import Layout from "@/components/Layout";
 import StoriesList from "@/components/lists/StoriesList";
+// import Navbar from "@/components/Navbar";
 import FetchSpinner from "@/components/spinners/fetch-spinner";
-import TopHeader from "@/components/TopHeader";
+// import TopHeader from "@/components/TopHeader";
 import { useEffect, useState } from "react";
 
 export default function Stories() {
@@ -32,11 +36,18 @@ export default function Stories() {
     }, []);
 
     return (<>
-        <TopHeader title="Their Stories" path="Stories" />
-        
-        <div className="mt-10">
-            {loading && <FetchSpinner />}
-            <StoriesList title="Published Stories" data={stories} />
-        </div>
+        <Layout>
+            <PageHeader
+                title='Written & Published Stories'
+                description='Explore inspiring written and published stories shared by our community.'
+                sup_title='Their Stories'
+                // backgroundImage='https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/63/27/43/academic-visit-for-national.jpg?w=1400&h=-1&s=1'
+            />
+
+            <div className="bg-white">
+                {loading && <FetchSpinner />}
+                <StoriesList title="Published Stories" data={stories} />
+            </div>
+        </Layout>
     </>);
 }

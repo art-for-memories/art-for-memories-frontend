@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from 'next/image'
 import { Pause, Play } from 'lucide-react';
 import Link from "next/link";
+import Navbar from "../Navbar";
 
 const Hero = () => {
     const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -55,19 +56,19 @@ const Hero = () => {
                 playsInline
             ></video>
 
+            <div className="absolute top-0 right-0 left-0">
+                <Navbar />
+            </div>
+
             {/* Hero Content */}
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-5xl mx-auto md:pr-20 md:mr-10 sm:py-20 md:py-10 lg:py-10 my-20">
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-5xl mx-auto md:pr-20 md:mr-10 sm:py-20 md:py-10 lg:py-10 mt-32 mb-20">
                 {/* Left Content */}
                 <div className="text-center lg:text-left px-4">
-                    {/* <div className="flex justify-center lg:justify-start bg-white w-auto">
-                        <Image src={'/images/ART.PNG'} alt={"logo"} width={100} height={100} />
-                    </div> */}
-
                     <h1 className="text-4xl md:text-5xl font-bold mt-3 font-boldonse">
                         Art For <span className="text-gray-300">Memories</span>
                     </h1>
 
-                    <p className="mt-10 text-sm md:text-md text-gray-300 max-w-xl mx-auto lg:mx-0 font-semibold leading-6">
+                    <p className="mt-10 text-lg md:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 font-semibold leading-6">
                         A Dedicated Platform That Preserves In Art The Damaged Images Of The Victims Of The 1994
                         Genocide Against The Tutsi And To Collect, Archive, And Illustrate Stories Of Genocide
                         Survivors.

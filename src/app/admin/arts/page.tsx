@@ -65,7 +65,7 @@ function FinalArt() {
                 preservedPhoto: uploadedPreservedPhoto,
             };
 
-            const response = await fetch('/api/arts', {
+            const response = await fetch('/api/preserved-memories', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),
@@ -94,7 +94,7 @@ function FinalArt() {
         try {
             setLoading(true);
 
-            const response = await fetch('/api/arts');
+            const response = await fetch('/api/preserved-memories');
             const data = await response.json();
 
             if (response.ok) {
@@ -111,7 +111,7 @@ function FinalArt() {
         if (confirm('Are you sure you want to delete this art?')) {
             setLoading(true);
 
-            await fetch(`/api/arts`, {
+            await fetch(`/api/preserved-memories`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ id }),
@@ -225,7 +225,7 @@ function FinalArt() {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                             </svg>
                         </span>
-                        <input type="text" placeholder="Enter staff name..." className="p-2 focus:outline-none text-slate-700" />
+                        <input type="text" placeholder="Enter Memory name..." className="p-2 focus:outline-none text-slate-700" />
                     </div>
 
                     {/* Table */}

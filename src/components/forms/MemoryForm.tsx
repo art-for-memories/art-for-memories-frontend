@@ -122,13 +122,12 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
     }, [currentMemory, setValue]);
 
     return (
-        <div className="max-w-md md:max-w-lg mx-auto bg-white">
+        <div className="max-w-md md:max-w-lg mx-auto bg-white z-[999]">
             <div className="flex items-center space-x-2 justify-between mb-4">
                 <div className="text-2xl font-bold flex items-center">
-                    <span className="bg-black text-white px-1 py-1 rounded">
-                        <div><Image src={'/images/logo.PNG'} alt={"logo"} width={40} height={40} /></div>
+                    <span className="bg-white text-white px-1 py-1 rounded">
+                        <div><Image src={'/images/ART.PNG'} alt={"logo"} width={100} height={40} /></div>
                     </span>
-                    <span className="text-black ml-2 text-sm">Art for Memories.</span>
                 </div>
             </div>
 
@@ -199,7 +198,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
 
                 {/* File Upload */}
                 <div>
-                    <label className="text-sm text-black font-medium">Pictures (Memories)</label>
+                    <label className="text-sm text-black font-bold">Pictures (Memories)</label>
                     <div
                         className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer"
                         onClick={() => document.getElementById('upload-images')?.click()}
