@@ -45,7 +45,7 @@ function Articles() {
             <div className="container mx-auto px-4">
                 <div className="mb-12 md:mb-24 text-center max-w-6xl mx-auto">
                     <h1 className="mb-10 font-semibold text-4xl md:text-6xl font-heading text-slate-700 capitalize">
-                        <span>Articles About Our Mission <br />and </span>
+                        <span>Articles About Our Mission <br className='hidden md:block' />and </span>
                         <span className="bg-[#429cce] rounded-lg px-4 mt-1 inline-block">Shared Stories.</span>
                     </h1>
                     <p className="font-semibold text-2xl text-neutral-600 tracking-tight">Discover how others are documenting and supporting our journey.</p>
