@@ -1,13 +1,26 @@
 import Link from "next/link";
 
 export interface TheirStoryProps {
-    id?: number;
+    id?: number | string;
     image: string;
     type: string;
     date: string;
     title: string;
     author: string;
     storyType: string;
+    caption: string;
+    kinyarwanda: {
+        contents: string;
+        title: string;
+    };
+    english: {
+        contents: string;
+        title: string;
+    };
+    french: {
+        contents: string;
+        title: string;
+    };
 }
 
 export default function StoryCard({ props }: { props: TheirStoryProps }) {
@@ -15,10 +28,10 @@ export default function StoryCard({ props }: { props: TheirStoryProps }) {
         <div className="w-full md:w-1/2 p-3">
             <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12">
                 <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight">{props.type}</span>
-                <a className="block text-neutral-800 text-3xl md:text-5xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href="#">{props.title}</a>
-                <p className="text-neutral-600 text-lg font-medium mb-11 max-w-lg tracking-tight">{props.title} Video marketing is taking the digital world by storm. Discover how to captivate your audience and boost engagement with compelling video content.</p>
+                <a className="block text-neutral-800 text-3xl md:text-4xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href="#">{props.title}</a>
+                <p className="text-neutral-600 text-lg font-medium mb-11 max-w-lg tracking-tight">{props.caption}</p>
 
-                <div className="flex flex-wrap gap-6 mb-14">
+                <div className="flex flex-wrap gap-6 mb-10">
                     <div className="flex items-center gap-2">
                         <div className="w-3 h-3 bg-green-100"></div>
                         <p className="text-neutral-600 font-medium tracking-tight">{props.storyType}</p>

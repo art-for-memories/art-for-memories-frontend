@@ -3,6 +3,15 @@ import React from 'react'
 function Articles() {
     const articles = [
         {
+            title: "Young Rwandan artists keep the memory of genocide victims alive",
+            caption: "On sketch pads or computer tablets, a group of young Rwandan artists painstakingly recreate portraits of victims of the 1994 genocide for their loved ones.",
+            date: "04 Apr 2024",
+            author: "France 24",
+            image: "/images/hero.jpg",
+            tag: "Art For Memory",
+            link: "https://www.france24.com/en/live-news/20240403-young-rwandan-artists-keep-the-memory-of-genocide-victims-alive?utm_slink=f24.my%2FAEaE"
+        },
+        {
             title: "Art for Memories: Preserving photos of Genocide victims",
             caption: "A group of artists spearheaded by King Ngabo, launched an initiative, Art for Memories in 2023",
             date: "Monday, 13th November 2023",
@@ -19,6 +28,15 @@ function Articles() {
             image: "/images/hero.jpg",
             tag: "King Ngabo Museum",
             link: "https://www.news24.com/life/arts-and-entertainment/arts/honouring-memories-through-art-young-rwandan-illustrators-keep-the-memory-of-genocide-victims-alive-20240405"
+        },
+        {
+            title: "le dessin pour perpétuer la mémoire des victimes du génocide",
+            caption: "Elle a survécu aux massacres. Pas ses parents, ni sa grande soeur.",
+            date: "04 Apr 2024",
+            author: "Courrier International",
+            image: "/images/hero.jpg",
+            tag: "Art For Memory",
+            link: "https://www.courrierinternational.com/depeche/rwanda-le-dessin-pour-perpetuer-la-memoire-des-victimes-du-genocide.afp.com.20240403.doc.34nd4gj.xml"
         }
     ];
 
@@ -37,9 +55,9 @@ function Articles() {
                     {articles.map((article, index) => (
                         <div className="w-full md:w-1/2 p-3" key={index}>
                             <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12">
-                                <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight">{article.author}</span>
+                                <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight capitalize">{article.author}</span>
                                 <a className="block text-neutral-800 text-3xl md:text-4xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href={article.link}>{article.title}</a>
-                                <p className="text-neutral-600 text-lg font-medium mb-8 max-w-lg tracking-tight">{article.caption}</p>
+                                <p className="text-neutral-600 text-lg font-medium mb-8 max-w-lg tracking-tight line-clamp-2">{article.caption}</p>
 
                                 <div className="flex flex-wrap gap-6 mb-5">
                                     <div className="flex items-center gap-2">
