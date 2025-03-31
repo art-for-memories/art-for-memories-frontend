@@ -75,7 +75,7 @@ export default function Footer() {
                     </div>
                   </form>
 
-                  <p className="text-neutral-400 text-sm font-semibold max-w-sm tracking-tight">Get the ideas, tools and tips you need to grow your sound straight to your inb</p>
+                  <p className="text-neutral-400 text-sm font-semibold max-w-sm tracking-tight">Get the ideas, tools and tips you need to grow your sound straight to your inbox</p>
                 </div>
               </div>
             </div>

@@ -29,7 +29,7 @@ function OurCommunity() {
                                 <div className="flex flex-col justify-between h-full">
                                     <div className="w-full">
                                         <h4 className="mb-2 text-4xl tracking-tight font-heading text-slate-700 font-semibold">30 families reached.</h4>
-                                        <p className="mb-4 font-medium text-lg text-neutral-600 tracking-tight max-w-xs">Through our restoration, we have touched the lives of over 20 families, preserving their cherished memories.</p>
+                                        <p className="mb-4 font-medium text-lg text-neutral-600 tracking-tight max-w-xs">Through our restoration, we have touched the lives of over 30 families, preserving their cherished memories.</p>
                                     </div>
                                     <div className="w-full"><a className="inline-flex justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl hover:text-white focus:text-white text-slate-900 bg-white hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200" href="#">More</a></div>
                                 </div>
