@@ -10,7 +10,7 @@ export default function SubNav() {
 
     return (<>
         {/* Desktop Menu */}
-        <div className="hidden md:flex space-x-6 text-black font-semibold items-center">
+        <div className="hidden lg:flex space-x-6 text-black font-semibold items-center">
             <div className="hidden md:flex space-x-6 text-black font-semibold items-center">
                 <div>
                     {/* Submit Button */}
@@ -33,13 +33,13 @@ export default function SubNav() {
         </div>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden border border-gray-200 rounded-full p-3" onClick={() => setIsOpen(!isOpen)}>
+        <button className="lg:hidden border border-gray-200 rounded-full p-3" onClick={() => setIsOpen(!isOpen)}>
             <Menu className="w-5 h-5 text-black" />
         </button>
 
         {/* Mobile Menu Dropdown */}
         {isOpen && (
-            <div className="absolute top-full left-0 w-full bg-[#F9F3EE] text-slate-700 shadow-md flex flex-col py-4 space-y-4 items-center md:hidden">
+            <div className="absolute top-full left-0 w-full bg-[#F9F3EE] text-slate-700 shadow-md flex flex-col py-4 space-y-4 items-center lg:hidden">
                 <Link href={"/"} className="hover:text-gray-600 text-sm">Home</Link>
                 <Link href={"/preserved-memories"} className="hover:text-gray-600 text-sm">Memories</Link>
                 <Link href={"/stories"} className="hover:text-gray-600 text-sm">Their Stories</Link>

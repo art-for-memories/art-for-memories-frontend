@@ -6,6 +6,10 @@ import MemoriesList from "@/components/lists/MemoriesList";
 import { Art } from "@/types/arts";
 import { useEffect, useState } from "react";
 
+interface SearchQueryHandler {
+    (searchQuery: string): void;
+}
+
 export default function Stories() {
     const [arts, setArts] = useState<Art[]>([]);
     const [filteredArts, setFilteredArts] = useState<Art[]>([]);
@@ -29,7 +33,7 @@ export default function Stories() {
                 }));
 
                 setArts(formattedData);
-                setFilteredArts(formattedData); // Initialize filteredArts with all arts
+                setFilteredArts(formattedData);
             } else {
                 throw new Error('Failed to fetch arts');
             }
@@ -40,7 +44,7 @@ export default function Stories() {
         }
     };
 
-    const handleSearch = () => {
+    const handleSearch: SearchQueryHandler = (searchQuery) => {
         setLoading(true);
 
         const query = searchQuery.toLowerCase();
@@ -53,7 +57,7 @@ export default function Stories() {
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
-            handleSearch();
+            handleSearch((event.target as HTMLInputElement).value);
         }
     };
 

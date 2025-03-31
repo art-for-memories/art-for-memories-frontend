@@ -6,7 +6,7 @@ import StoryForm from "../forms/StoryForm";
 
 interface StoriesListProps {
     title: string;
-    data: TheirStoryProps[];
+    data: TheirStoryProps[] | null;
 }
 
 export default function StoriesList({ title, data }: StoriesListProps) {
@@ -30,7 +30,7 @@ export default function StoriesList({ title, data }: StoriesListProps) {
                     </div>
                 </div>
 
-                {data.length === 0 && (
+                {!data || data.length === 0 && (
                     <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4'>
                         <Image src={'/svgs/empty.svg'} alt='' width={400} height={400} />
                         <span className='text-slate-700 font-semibold text-base'>No Stories found</span>
@@ -38,7 +38,7 @@ export default function StoriesList({ title, data }: StoriesListProps) {
                 )}
 
                 <div className="flex flex-wrap -m-3">
-                    {data.map((story, index) => (
+                    {data && data.map((story, index) => (
                         <StoryCard key={index} props={story} />
                     ))}
                 </div>

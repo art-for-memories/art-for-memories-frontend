@@ -38,40 +38,29 @@ export default function Footer() {
           <div className="py-12 md:pb-20">
             <div className="mx-auto px-4">
               <div className="flex flex-wrap -mx-4">
-
                 <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
                   <div className="font-bold">
-                    <div className="bg-white text-white px-2 py-2 rounded-xl">
+                    <div className="bg-white text-white px-2 py-2 rounded-xl flex items-center justify-center">
                       <div><Image src={'/images/ART.PNG'} alt={"logo"} width={200} height={30} /></div>
                     </div>
-                    <p className="text-sm mt-5">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                   </div>
                 </div>
-
                 <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
                   <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Who we are</h2>
                   <ul className="flex flex-col gap-4">
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">About us</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Contact us</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">+25078........</a></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/about-us">About us</Link></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/contact-us">Contact us</Link></li>
                   </ul>
                 </div>
                 <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
                   <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Resources</h2>
                   <ul className="flex flex-col gap-4">
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Memories</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Stories</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">One Day in 100 Days</a></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/preserved-memories">Memories</Link></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/stories">Stories</Link></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/one-day-in-100-days">One Day in 100 Days</Link></li>
                   </ul>
                 </div>
-                <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
-                  <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Company</h2>
-                  <ul className="flex flex-col gap-4">
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">About us</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Team</a></li>
-                    <li><a className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="#">Careers</a></li>
-                  </ul>
-                </div>
+
                 <div className="w-full lg:w-1/2 xl:w-1/3 p-4">
                   <h2 className="text-white text-lg font-semibold tracking-tight mb-6">Join our Newsletter now</h2>
 
@@ -86,7 +75,7 @@ export default function Footer() {
                     </div>
                   </form>
 
-                  <p className="text-neutral-400 text-sm font-semibold max-w-sm tracking-tight">Get the ideas, tools and tips you need to grow your sound straight to your inb</p>
+                  <p className="text-neutral-400 text-sm font-semibold max-w-sm tracking-tight">Get the ideas, tools and tips you need to grow your sound straight to your inbox</p>
                 </div>
               </div>
             </div>
