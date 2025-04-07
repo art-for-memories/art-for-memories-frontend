@@ -11,10 +11,10 @@ function Download() {
                 <div className="grid items-center grid-cols-1 gap-y-12 lg:grid-cols-2 lg:gap-x-8 2xl:gap-x-20">
                     <div className='pb-20 z-10'>
                         <h2 className="text-2xl font-bold text-white sm:text-3xl lg:text-4xl lg:leading-tight capitalize">
-                            Download the App for Enhanced Storytelling
+                            Download the App for Enhanced Stories and Memories
                         </h2>
                         <p className="mt-4 text-sm text-gray-50 sm:text-base leading-6">
-                            Experience seamless storytelling and image sharing with our mobile app. Enjoy enhanced features and a user-friendly interface designed for your convenience.
+                            Experience cleared stories and image sharing with our mobile app. Enhanced features and a user-friendly interface designed for your convenience.
                         </p>
 
                         <div className="flex flex-col md:items-center mt-8 space-y-4 sm:flex-row sm:space-y-0 lg:mt-12">

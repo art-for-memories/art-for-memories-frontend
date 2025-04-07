@@ -21,7 +21,7 @@ export default function MemoriesList({ title, data, onSearch, loading }: { title
         <section className="px-6 py-10 md:px-20 lg:px-32 bg-white">
             <div className="mb-3 border-b border-gray-200 pb-5 flex items-center justify-between">
 
-                <div className="border border-gray-300 rounded-full pl-4 pr-2 py-2 w-full text-sm focus:outline-none flex items-center bg-white max-w-3xl">
+                <div className="border border-gray-300 rounded-full pl-4 pr-2 py-2 w-full sm:max-w-[200px] md:max-w-[240px] lg:max-w-[300px] text-sm focus:outline-none flex items-center bg-white max-w-3xl">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M11 20a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z" stroke="#697689" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path>
