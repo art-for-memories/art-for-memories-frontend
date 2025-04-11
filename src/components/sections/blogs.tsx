@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react'
 
 function Articles() {
@@ -7,7 +8,7 @@ function Articles() {
             caption: "On sketch pads or computer tablets, a group of young Rwandan artists painstakingly recreate portraits of victims of the 1994 genocide for their loved ones.",
             date: "04 Apr 2024",
             author: "France 24",
-            image: "/images/hero.jpg",
+            image: "https://upload.wikimedia.org/wikipedia/fr/thumb/2/24/Logos_FRANCE24_RVB_2013.svg/langfr-225px-Logos_FRANCE24_RVB_2013.svg.png",
             tag: "Art For Memory",
             link: "https://www.france24.com/en/live-news/20240403-young-rwandan-artists-keep-the-memory-of-genocide-victims-alive?utm_slink=f24.my%2FAEaE"
         },
@@ -16,7 +17,7 @@ function Articles() {
             caption: "A group of artists spearheaded by King Ngabo, launched an initiative, Art for Memories in 2023",
             date: "Monday, 13th November 2023",
             author: "The News Times",
-            image: "/images/hero.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNTTFM2boViSeNYrVDtgHjMTxPx_DZqEtVcw&s",
             tag: "King Ngabo Museum",
             link: "https://www.newtimes.co.rw/article/15841/news/kwibuka/art-for-memories-preserving-photos-of-genocide-victims"
         },
@@ -25,7 +26,7 @@ function Articles() {
             caption: "On sketch pads or computer tablets, a group of young Rwandan artists painstakingly recreate portraits of victims of the 1994 genocide for their loved ones.",
             date: "05 Apr 2024",
             author: "news24",
-            image: "/images/hero.jpg",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2H97Egx3WfuxnACbiTdxynFqd4STSbyOnAg&s",
             tag: "King Ngabo Museum",
             link: "https://www.news24.com/life/arts-and-entertainment/arts/honouring-memories-through-art-young-rwandan-illustrators-keep-the-memory-of-genocide-victims-alive-20240405"
         },
@@ -34,7 +35,7 @@ function Articles() {
             caption: "Elle a survécu aux massacres. Pas ses parents, ni sa grande soeur.",
             date: "04 Apr 2024",
             author: "Courrier International",
-            image: "/images/hero.jpg",
+            image: "https://pbs.twimg.com/profile_images/1630603762359312384/qlV17s06_400x400.jpg",
             tag: "Art For Memory",
             link: "https://www.courrierinternational.com/depeche/rwanda-le-dessin-pour-perpetuer-la-memoire-des-victimes-du-genocide.afp.com.20240403.doc.34nd4gj.xml"
         }
@@ -55,7 +56,11 @@ function Articles() {
                     {articles.map((article, index) => (
                         <div className="w-full md:w-1/2 p-3" key={index}>
                             <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12">
-                                <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight capitalize">{article.author}</span>
+                                <div className='mb-5'>
+                                    <div className='w-20 h-20 rounded-lg mb-3 border border-gray-200'><Image width={500} height={500} src={article.image} alt={article.title} className='w-full h-full rounded-lg' /></div>
+                                    <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight capitalize">{article.author}</span>
+                                </div>
+                                
                                 <a className="block text-neutral-800 text-3xl md:text-4xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href={article.link}>{article.title}</a>
                                 <p className="text-neutral-600 text-lg font-medium mb-8 max-w-lg tracking-tight line-clamp-2">{article.caption}</p>
 

@@ -5,6 +5,15 @@ import Image from 'next/image'
 import React from 'react'
 
 function AboutUs() {
+    const galleryImages = [
+        '/images/gallery/image-1.PNG',
+        '/images/gallery/image-2.PNG',
+        '/images/gallery/image-3.PNG',
+        '/images/gallery/image-4.PNG',
+        '/images/gallery/image-5.PNG',
+        '/images/gallery/image-6.PNG',
+    ];
+
     return (<>
         <Layout>
             <div className="overflow-x-hidden">
@@ -13,7 +22,7 @@ function AboutUs() {
                 </div>
 
                 <section className="py-10 bg-neutral-900 lg:py-0 relative">
-                    <div className="px-4 mx-auto sm:px-6 lg:px-20 max-w-7xl pb-32 bg-neutral-900">
+                    <div className="px-4 mx-auto sm:px-6 lg:px-20 max-w-7xl pb-10 bg-neutral-900">
                         <div className="grid items-stretch grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 xl:gap-x-24">
                             <div className="h-full pr-12 lg:order-2">
                                 <div className="relative h-full lg:h-auto">
@@ -58,6 +67,29 @@ function AboutUs() {
 
                             From this vision, “ART FOR MEMORIES” was born, a project dedicated to preserving the damaged images of the victims, as well as collecting, archiving, and illustrating the stories of Genocide Survivors through art.
                         </p>
+                    </div>
+                </section>
+
+                <section className="bg-neutral-900 lg:py-0 relative">
+                    <div className='px-4 mx-auto sm:px-6 lg:px-20 max-w-7xl pb-32 bg-neutral-900'>
+                        <div className="flex items-center justify-start lg:order-1 sm:py-16 lg:py-10 xl:py-28">
+                            <div>
+                                <p className="text-sm font-semibold tracking-widest text-gray-500 uppercase">Gallery</p>
+                                <h2 className="mt-3 text-3xl font-bold font-boldonse leading-tight text-white sm:text-4xl lg:text-5xl" style={{ lineHeight: '4rem' }}>
+                                    Our Gallery
+                                </h2>
+                            </div>
+                        </div>
+
+                        <div className="h-full lg:order-2">
+                            <div className="relative h-full lg:h-auto">
+                                <div className="relative grid grid-cols-3 gap-x-2 gap-y-4">
+                                    {galleryImages.map((image, index) => (
+                                        <Image key={index} width={300} height={300} className="rounded-lg object-cover h-[300px]" src={image} alt={`Art for memory Gallery`} />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
             </div>
