@@ -6,25 +6,48 @@ import OurCommunity from "@/components/sections/OurCommunity";
 import Blogs from "@/components/sections/blogs";
 
 export const metadata: Metadata = {
-  title: "Art of Memories",
-  description: "A group of artists spearheaded by King Ngabo launched Art for Memories in 2023 to assist Genocide Survivors in keeping memories alive by preserving photos of the victims of the Genocide against Tutsi in 1994. The initiative aims at creating new portraits of the dead and missing derived from old and often damaged photographs, inspired by King Ngabo.",
-  keywords: ["memories", "art", "stories", "creative", "platform", "Genocide Survivors", "King Ngabo", "Ingabo Corner", "African stories"],
+  title: "Art of Memories Rwanda | Preserving Genocide Victims’ Legacy through Art",
+  description:
+    "Art of Memories Rwanda is an initiative led by King Ngabo, launched in 2023 to preserve the legacy of Genocide Survivors by restoring old photos into vivid portraits. We transform memories into meaningful art to honor those lost in the 1994 Genocide against the Tutsi.",
+  keywords: [
+    "Art of Memories Rwanda",
+    "Genocide memorial",
+    "King Ngabo",
+    "Ingabo Corner",
+    "Genocide Survivors",
+    "African stories",
+    "memory preservation",
+    "art for memories",
+    "creative platform Rwanda",
+    "1994 Genocide against Tutsi",
+    "digital portraits",
+    "photo restoration",
+  ],
   robots: "index, follow",
+  metadataBase: new URL("https://artformemories.com"),
   openGraph: {
-    title: "Art of Memories",
-    description: "A group of artists spearheaded by King Ngabo launched Art for Memories in 2023 to assist Genocide Survivors in keeping memories alive by preserving photos of the victims of the Genocide against Tutsi in 1994. The initiative aims at creating new portraits of the dead and missing derived from old and often damaged photographs, inspired by King Ngabo.",
-    url: "https://www.artofmemories.com",
+    title: "Art of Memories Rwanda | Honoring the Past through Artistic Memory",
+    description:
+      "A creative initiative turning damaged memories into portraits to honor victims of the 1994 Genocide against the Tutsi. Led by King Ngabo and fellow Rwandan artists.",
+    url: "https://artformemories.com",
     type: "website",
     images: [
       {
-        url: "/images/logo.png",
-        width: 800,
-        height: 600,
-        alt: "Art of Memories",
+        url: "/images/thumbs.png",
+        width: 1200,
+        height: 630,
+        alt: "Art of Memories Rwanda banner image",
       },
     ],
   },
-  metadataBase: new URL("https://www.artofmemories.com"),
+  twitter: {
+    card: "summary_large_image",
+    site: "@artofmemoriesrw",
+    title: "Art of Memories Rwanda",
+    description:
+      "Honoring the 1994 Genocide victims through art. Discover powerful stories, restored photos, and portraits from Rwandan artists.",
+    images: ["/images/thumbs.png"],
+  },
 };
 
 export const viewport = {
@@ -40,7 +63,7 @@ export default function Home() {
         <OurCommunity />
         <Blogs />
         <Partners />
-      </div >
-    </Layout >
+      </div>
+    </Layout>
   );
 }
