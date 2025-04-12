@@ -41,6 +41,16 @@ export default function SubNav() {
         {isOpen && (
             <div className="absolute top-full left-0 w-full bg-[#F9F3EE] text-slate-700 shadow-md flex flex-col py-4 space-y-4 items-center lg:hidden">
                 <Link href={"/"} className="hover:text-gray-600 text-sm">Home</Link>
+                <div>
+                    {/* Submit Button */}
+                    <button onClick={() => setFormOpen(true)} className="hidden md:block bg-black text-white px-5 py-3 rounded-xl hover:opacity-80 text-sm font-semibold">
+                        Submit Your Memories
+                    </button>
+
+                    <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
+                        <MemoryForm onSuccess={() => {}} />
+                    </FormModal>
+                </div>
                 <Link href={"/preserved-memories"} className="hover:text-gray-600 text-sm">Memories</Link>
                 <Link href={"/stories"} className="hover:text-gray-600 text-sm">Their Stories</Link>
                 <Link href={"/one-day-in-100-days"} className="hover:text-gray-600 text-sm">One Day In 100 Days</Link>
