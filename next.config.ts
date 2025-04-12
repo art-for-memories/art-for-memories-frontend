@@ -9,7 +9,9 @@ const nextConfig: NextConfig = {
       "www.newtimes.co.rw",
       "encrypted-tbn0.gstatic.com",
       "dynamic-media-cdn.tripadvisor.com",
-      "www.passage.law"
+      "www.passage.law",
+      "upload.wikimedia.org",
+      "pbs.twimg.com"
     ],
   },
 };

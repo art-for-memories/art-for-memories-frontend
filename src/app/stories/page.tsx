@@ -11,14 +11,14 @@ export default function Stories() {
     return (<>
         <Layout>
             <PageHeader
-                title='Written & Published Stories'
-                description='Explore inspiring written and published stories shared by our community.'
+                title='Written & Illustrated Stories'
+                description='Explore inspiring written and Illustrated stories shared by our community.'
                 sup_title='Their Stories'
             />
 
             <div className="bg-white">
                 <StoriesList title="Written Stories" data={written_stories} />
-                <StoriesList title="Published Stories" data={published_stories} />
+                <StoriesList title="Illustrated Stories" data={published_stories} />
             </div>
         </Layout>
     </>);

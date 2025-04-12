@@ -16,6 +16,9 @@ const formSchema = z.object({
     images: z.any().refine((files) => files instanceof FileList && files.length > 0, {
         message: "Please upload at least one image",
     }),
+    consent: z.boolean().refine((value) => value === true, {
+        message: "You must agree to share this information",
+    }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -54,23 +57,23 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
 
     const onSubmit = async (data: FormData) => {
         try {
-            const uploadedFiles = await uploadFiles();
+            const formData = new FormData();
+            formData.append("firstname", data.firstName);
+            formData.append("lastname", data.lastName);
+            formData.append("email", data.email);
+            formData.append("phone", data.phone);
+            formData.append("memories", "Memories");
 
-            const formData = {
-                first_name: data.firstName,
-                last_name: data.lastName,
-                email: data.email,
-                phone_number: data.phone,
-                memories: "Memories",
-                images: uploadedFiles,
-            };
+            // Append multiple files
+            for (const file of selectedImages) {
+                formData.append("images", file); // key must match backend
+            }
 
             setLoading(true);
 
             const response = await fetch(`/api/memories`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
+                body: formData,
             });
 
             if (response.ok) {
@@ -233,6 +236,21 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                         ))}
                     </div>
                 )}
+
+                {/* Consent Checkbox */}
+                <div>
+                    <label className="flex items-center space-x-2">
+                        <input
+                            type="checkbox"
+                            className="w-4 h-4 text-black border-gray-300 rounded focus:ring-black"
+                            {...register("consent", { required: "You must agree to share this information" })}
+                        />
+                        <span className="text-sm text-black ml-3">
+                            I allow sharing this information for memory purposes, and I understand that my data will be shared Publicly.
+                        </span>
+                    </label>
+                    {errors.consent && <p className="text-red-500 text-sm">{errors.consent.message}</p>}
+                </div>
 
                 {/* Submit Button */}
                 <div className="flex items-center justify-between mt-5">

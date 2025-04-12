@@ -29,9 +29,9 @@ export default function MemoryCard({ props }: { props: Art }) {
                 <div className="h-1 bg-black flex-grow"></div>
 
                 {/* Logo Circle */}
-                <div className="border-2 border-black rounded-full w-10 h-10 flex items-center justify-center mx-1">
-                    <span className="bg-black text-white px-1 py-1 rounded-full">
-                        <div><Image src={'/images/logo.PNG'} alt={"logo"} width={30} height={30} /></div>
+                <div className="border-2 border-white rounded-full w-10 h-10 flex items-center justify-center mx-1">
+                    <span className="bg-white text-white px-1 py-1 rounded-full">
+                        <div><Image src={'/images/mini-logo.png'} alt={"logo"} className='' width={500} height={500} /></div>
                     </span>
                 </div>
 
@@ -72,8 +72,8 @@ export default function MemoryCard({ props }: { props: Art }) {
                 <div className="bg-black rounded-sm text-white p-10 text-xl text-center">
                     <div>{props.name}</div>
                     <div>AGED: {props.age} years old</div>
-                    <div>Killed on {props.killedOn}</div>
-                    <div>submitted by {props.submittedBy}</div>
+                    {/* <div>Killed on {props.killedOn}</div>
+                    <div>submitted by {props.submittedBy}</div> */}
                 </div>
             )}
         </div>
