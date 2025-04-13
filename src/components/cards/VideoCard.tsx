@@ -21,11 +21,11 @@ export default function VideoCard({ video }: { video: Video }) {
     return (
         <div className="bg-black rounded-lg flex items-center justify-center w-full h-full border border-gray-200 relative group">
             {!isPlaying && (
-                <div className='w-60 h-52 rounded-lg absolute fade-in'>
+                <div className='w-full h-full rounded-lg absolute fade-in'>
                     <Image
                         width={500}
                         height={500}
-                        src={'/images/thumbs.PNG'}
+                        src={video.image ?? '/images/thumbs.PNG'}
                         alt="Video thumbnail"
                         className="w-full h-full object-cover rounded-lg"
                     />

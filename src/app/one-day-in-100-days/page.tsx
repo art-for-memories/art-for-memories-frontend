@@ -7,19 +7,24 @@ import PageHeader from "@/components/headers/page-header";
 export default function Days() {
     const videos = [
         {
-            url: '/videos/UMULISA.mp4',
+            image: '/stories/thumbnails/umulisa.png',
+            url: '/stories/UMULISA.mp4',
         },
         {
-            url: '/videos/ANDRE.mp4',
+            image: '/stories/thumbnails/andre.png',
+            url: '/stories/ANDRE.mp4',
         },
         {
-            url: '/videos/YANKURIJE.mp4',
+            image: '/stories/thumbnails/yankurije.png',
+            url: '/stories/YANKURIJE.mp4',
         },
         {
-            url: '/videos/KAYITESI.mp4',
+            image: '/stories/thumbnails/kayitesi.png',
+            url: '/stories/KAYITESI.mp4',
         },
         {
-            url: '/videos/INGABO.mp4',
+            image: '/stories/thumbnails/ingabo.png',
+            url: '/stories/INGABO.mp4',
         }
     ];
 
