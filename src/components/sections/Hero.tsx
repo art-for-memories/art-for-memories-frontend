@@ -69,9 +69,7 @@ const Hero = () => {
                     </h1>
 
                     <p className="mt-10 text-lg md:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 font-semibold leading-6">
-                        A Dedicated Platform That Preserves In Art The Damaged Images Of The Victims Of The 1994
-                        Genocide Against The Tutsi And To Collect, Archive, And Illustrate Stories Of Genocide
-                        Survivors.
+                        A dedicated platform to preserve memories of the 1994 Genocide Against the Tutsi through Art.
                     </p>
 
                     <div className='mt-10 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4'>

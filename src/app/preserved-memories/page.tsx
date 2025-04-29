@@ -68,10 +68,10 @@ export default function Stories() {
     return (
         <Layout>
             <PageHeader
-                title='Timeless Memories'
-                description='Timeless stories and moments brought back to life through preservation.'
-                sup_title='Memories Reimagined'
-                backgroundImage='https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/7e/99/0d/caption.jpg?w=1400&h=-1&s=1'
+                title='Memories'
+                description='Honoring Lives Through Preserved Images'
+                sup_title=''
+                // backgroundImage='https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/7e/99/0d/caption.jpg?w=1400&h=-1&s=1'
             />
 
             <MemoriesList title="Preserved Memories" data={filteredArts} onSearch={handleKeyDown} loading={loading} />
