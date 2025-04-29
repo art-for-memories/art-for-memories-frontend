@@ -60,7 +60,7 @@ export default function Home() {
     <Layout>
       <div className="overflow-x-hidden">
         <Hero />
-        <OurCommunity />
+        {/* <OurCommunity /> */}
         <Blogs />
         <Partners />
       </div>

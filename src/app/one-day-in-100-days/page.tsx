@@ -32,8 +32,8 @@ export default function Days() {
         <Layout>
             <PageHeader
                 title='One Day In 100 Days'
-                description='A story of resilience and survival, capturing the essence of human strength and memory preservation.'
-                sup_title='Memories Reimagined'
+                description='Which Day Stands Out in Your Memory?'
+                sup_title=''
             />
 
             <section className="px-6 py-16 md:px-20 lg:px-32 bg-white">

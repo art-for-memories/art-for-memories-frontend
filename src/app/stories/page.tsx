@@ -12,7 +12,7 @@ export default function Stories() {
         <Layout>
             <PageHeader
                 title='Written & Illustrated Stories'
-                description='Explore inspiring written and Illustrated stories shared by our community.'
+                description='Memories They Carry, Stories They Share'
                 sup_title='Their Stories'
             />
 
