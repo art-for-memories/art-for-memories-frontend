@@ -2,7 +2,7 @@ import Hero from "@/components/sections/Hero";
 import Partners from "@/components/sections/Partners";
 import type { Metadata } from "next";
 import Layout from "@/components/Layout";
-import OurCommunity from "@/components/sections/OurCommunity";
+// import OurCommunity from "@/components/sections/OurCommunity";
 import Blogs from "@/components/sections/blogs";
 
 export const metadata: Metadata = {
