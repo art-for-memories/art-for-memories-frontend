@@ -4,22 +4,55 @@ import Tiptap from "./Tiptap";
 function WriteStoryForm() {
     const [formData, setFormData] = useState({
         title: "",
+        caption: "",
         author: "",
-        story: "",
+        type: "",
+        date: "",
+        image: null,
+        kinyarwandaContent: "",
+        englishContent: "",
+        frenchContent: "",
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>): void => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
-    const handleContentChange = (content: string): void => {
-        setFormData({ ...formData, story: content });
+    const handleContentChange = (field: string, content: string): void => {
+        setFormData({ ...formData, [field]: content });
     };
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(formData);
-        alert("Story submitted!");
+
+        try {
+            const response = await fetch('/api/stories', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (response.ok) {
+                alert('Story submitted successfully!');
+                setFormData({
+                    title: "",
+                    caption: "",
+                    author: "",
+                    type: "",
+                    date: "",
+                    image: null,
+                    kinyarwandaContent: "",
+                    englishContent: "",
+                    frenchContent: "",
+                });
+            } else {
+                const errorData = await response.json();
+                alert(errorData.message || 'Failed to submit story. Please try again later.');
+            }
+        } catch (error) {
+            console.error('Error submitting story:', error);
+            alert('Failed to submit story. Please try again later.');
+        }
     };
 
     return (
@@ -32,8 +65,47 @@ function WriteStoryForm() {
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold mb-2">Story:</label>
-                <Tiptap onContentChange={handleContentChange} />
+                <label className="block font-semibold ml-2">Caption:</label>
+                <input type="text" name="caption" onChange={handleChange} className="w-full p-2 border rounded" required />
+            </div>
+
+            <div className="mb-5">
+                <label className="block font-semibold ml-2">Author:</label>
+                <input type="text" name="author" onChange={handleChange} className="w-full p-2 border rounded" required />
+            </div>
+
+            <div className="mb-5">
+                <label className="block font-semibold ml-2">Type:</label>
+                <select name="type" onChange={handleChange} className="w-full p-2 border rounded" required>
+                    <option value="">Select Type</option>
+                    <option value="Written Story">Written Story</option>
+                    <option value="Illustrated">Illustrated</option>
+                </select>
+            </div>
+
+            <div className="mb-5">
+                <label className="block font-semibold ml-2">Published Date:</label>
+                <input type="date" name="date" onChange={handleChange} className="w-full p-2 border rounded" required />
+            </div>
+
+            <div className="mb-5">
+                <label className="block font-semibold ml-2">Image url:</label>
+                <input type="text" name="image" onChange={handleChange} className="w-full p-2 border rounded" required />
+            </div>
+
+            <div className="mb-5">
+                <label className="block font-semibold ml-2">Kinyarwanda Content:</label>
+                <Tiptap onContentChange={(content: string) => handleContentChange('kinyarwandaContent', content)} />
+            </div>
+
+            <div className="mb-5">
+                <label className="block font-semibold ml-2">English Content:</label>
+                <Tiptap onContentChange={(content: string) => handleContentChange('englishContent', content)} />
+            </div>
+
+            <div className="mb-5">
+                <label className="block font-semibold ml-2">French Content:</label>
+                <Tiptap onContentChange={(content: string) => handleContentChange('frenchContent', content)} />
             </div>
 
             <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded font-semibold hover:bg-blue-700">

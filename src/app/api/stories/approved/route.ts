@@ -4,21 +4,12 @@ import prisma from "../../../../../lib/prisma";
 export async function GET() {
   try {
     const approvedStories = await prisma.story.findMany({
-      where: {
-        status: "approved",
-      },
       select: {
         id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-        storyType: true,
         title: true,
         author: true,
         date: true,
         image: true,
-        StoryFile: true,
       },
     });
 

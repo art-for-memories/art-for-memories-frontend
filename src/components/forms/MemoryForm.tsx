@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useEffect, useState } from "react";
-import { Memory } from '@/types/memories';
+import { Memory, MemoryImage } from '@/types/memories';
 
 const formSchema = z.object({
     firstName: z.string().nonempty("First name is required"),
@@ -28,6 +28,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [currentImages, setCurrentImages] = useState<MemoryImage[] | null>([]);
 
     const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm<FormData>({
         resolver: zodResolver(formSchema),
@@ -116,11 +117,12 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
 
     useEffect(() => {
         if (currentMemory) {
-            const { firstName, lastName, email, phone, memory } = currentMemory;
+            const { firstName, lastName, email, phone, MemoriesImage } = currentMemory;
             setValue("firstName", firstName);
             setValue("lastName", lastName);
             setValue("email", email);
             setValue("phone", phone);
+            setCurrentImages(MemoriesImage);
         }
     }, [currentMemory, setValue]);
 
@@ -232,6 +234,25 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                                     width={100}
                                     height={100}
                                 />
+                            </div>
+                        ))}
+                    </div>
+                )}
+
+                {currentImages && currentImages.length > 0 && (
+                    <div className="mt-4 grid grid-cols-2 gap-4">
+                        {currentImages.map((image, index) => (
+                            <div key={index} className="relative">
+                                <Image
+                                    src={image.image}
+                                    alt={`Selected ${index}`}
+                                    className="w-full h-32 object-cover rounded-md border border-gray-200"
+                                    width={500}
+                                    height={500}
+                                />
+                                <a href={image.image} download className="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded-md hover:opacity-80">
+                                    Download
+                                </a>
                             </div>
                         ))}
                     </div>

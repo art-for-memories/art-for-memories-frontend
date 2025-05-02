@@ -7,36 +7,28 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const {
-      firstName,
-      lastName,
-      email,
-      phone,
-      storyType,
       title,
+      caption,
       author,
+      type,
       date,
-      files,
-      images,
+      image,
+      kinyarwandaContent,
+      englishContent,
+      frenchContent,
     } = body;
 
     const story = await prisma.story.create({
       data: {
-        firstName,
-        lastName,
-        email,
-        phone,
-        storyType,
         title,
+        caption,
         author,
+        type,
         date: new Date(date),
-        image: images[0],
-        StoryFile: {
-          create: Array.isArray(files)
-            ? files.map((fileUrl: string) => ({
-                url: fileUrl,
-              }))
-            : [],
-        },
+        image,
+        kinyarwandaContent,
+        englishContent,
+        frenchContent,
       },
     });
 
@@ -52,16 +44,15 @@ export async function GET(req: Request) {
     const stories = await prisma.story.findMany({
       select: {
         id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-        storyType: true,
         title: true,
+        caption: true,
         author: true,
+        type: true,
         date: true,
         image: true,
-        StoryFile: true,
+        kinyarwandaContent: true,
+        englishContent: true,
+        frenchContent: true,
       },
     });
 
