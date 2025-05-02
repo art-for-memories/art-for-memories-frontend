@@ -98,19 +98,20 @@ model MemoriesArt {
 }
 
 model Story {
-  id           String         @id @default(cuid()) @map("_id")
-  firstName    String
-  lastName     String
-  email        String
-  phone        String
-  storyType    String
-  title        String
-  author       String
-  date         DateTime
-  status       String         @default("pending")
-  image        String?
-  StoryFile    StoryFile[]
-  StoryContent StoryContent[]
+  id                 String   @id @default(cuid()) @map("_id")
+  title              String
+  caption            String?
+  author             String
+  type               String
+  date               DateTime
+  image              String?
+  kinyarwandaContent String
+  englishContent     String
+  frenchContent      String
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  storyFiles StoryFile[]
 }
 
 model StoryFile {
@@ -137,15 +138,12 @@ model Art {
   updatedAt      DateTime @updatedAt
 }
 
-model StoryContent {
-  id                  String   @id @default(cuid()) @map("_id")
-  kinyarwanda_content String
-  english_content     String
-  french_content      String
-  storyId             String
-  Story               Story    @relation(fields: [storyId], references: [id])
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+model Gallery {
+  id        String   @id @default(cuid()) @map("_id")
+  name      String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 enum Role {

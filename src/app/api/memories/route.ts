@@ -32,18 +32,32 @@ export async function POST(req: Request) {
     });
 
     // Handle multiple file uploads
-    const imagePromises: Promise<{ id: string; createdAt: Date; updatedAt: Date; image: string; memoryId: string; }>[] = [];
+    const imagePromises: Promise<{
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+      image: string;
+      memoryId: string;
+    }>[] = [];
 
     formData.forEach((value, key) => {
       if (key === "images" && value instanceof File) {
         const file = value;
         const fileId = uuidv4();
-        const filePath = path.join(process.cwd(), "public/uploads", `${fileId}-${file.name}`);
-        
-        const bufferPromise = mkdir(path.dirname(filePath), { recursive: true }).then(() =>
-          file.arrayBuffer().then((arrayBuffer) =>
-            writeFile(filePath, Buffer.from(arrayBuffer))
-          )
+        const filePath = path.join(
+          process.cwd(),
+          "public/uploads",
+          `${fileId}-${file.name}`
+        );
+
+        const bufferPromise = mkdir(path.dirname(filePath), {
+          recursive: true,
+        }).then(() =>
+          file
+            .arrayBuffer()
+            .then((arrayBuffer) =>
+              writeFile(filePath, Buffer.from(arrayBuffer))
+            )
         );
 
         const dbPromise = bufferPromise.then(() =>
@@ -73,7 +87,11 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
-    const memories = await prisma.memories.findMany();
+    const memories = await prisma.memories.findMany({
+      include: {
+        MemoriesImage: true,
+      },
+    });
     return NextResponse.json(memories);
   } catch (error) {
     return NextResponse.json(

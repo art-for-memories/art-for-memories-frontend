@@ -23,17 +23,6 @@ function AboutUs() {
                 <section className="py-10 bg-neutral-900 lg:py-0 relative">
                     <div className="px-4 mx-auto sm:px-6 lg:px-20 max-w-7xl pb-10 bg-neutral-900">
                         <div className="grid items-stretch grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12 xl:gap-x-24">
-                            <div className="h-full pr-12 lg:order-2">
-                                <div className="relative h-full lg:h-auto">
-                                    <div className="absolute w-full h-full -mb-12 overflow-hidden bg-gradient-to-r from-[#e4888a] to-[#439ace] top-16 left-12 xl:left-16 lg:top-0 lg:scale-y-105 lg:origin-top">
-                                        <Image width={500} height={500} className="object-cover object-right w-full h-full scale-150" src="https://cdn.rareblocks.xyz/collection/celebration/images/content/2/lines.svg" alt="" />
-                                    </div>
-                                    <div className="relative lg:top-32">
-                                        <Image width={500} height={500} className="" src="/images/about.png" alt="" />
-                                    </div>
-                                </div>
-                            </div>
-
                             <div className="flex items-center justify-start lg:order-1 sm:py-16 lg:py-10 xl:py-28">
                                 <div>
                                     <p className="text-sm font-semibold tracking-widest text-gray-500 uppercase">About us</p>

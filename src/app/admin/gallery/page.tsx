@@ -7,10 +7,10 @@ import React, { useEffect, useState } from 'react'
 import StoriesTable from '@/components/dashboard/StoriesTable';
 import FetchSpinner from '@/components/spinners/fetch-spinner';
 import { Stories as Story } from '@/types/stories';
-import WriteStoryForm from '@/components/forms/WriteStoryForm';
+import GalleryForm from '@/components/forms/GalleryForm';
 
 function Stories() {
-    const [isWriteFormOpen, setWriteForm] = useState(false);
+    const [isFormOpen, setFormOpen] = useState(false);
     const [stories, setStories] = useState<Story[]>([]);
     const [loading, setLoading] = useState(false);
 
@@ -74,22 +74,22 @@ function Stories() {
                 <div className="flex-1 p-6 overflow-auto">
                     <header>
                         <div className="flex justify-between items-center">
-                            <h1 className="text-xl font-semibold text-black">Their Stories</h1>
+                            <h1 className="text-xl font-semibold text-black">Gallery</h1>
 
                             <div className='flex items-center'>
-                                <button onClick={() => setWriteForm(true)} className="bg-black ml-2 text-white px-4 py-2 flex items-center rounded cursor-pointer">
+                                <button onClick={() => setFormOpen(true)} className="bg-black text-white px-4 py-2 flex items-center rounded cursor-pointer">
                                     <span>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5">
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                         </svg>
                                     </span>
-                                    <span>Write Story</span>
+                                    <span>Upload Photo</span>
                                 </button>
                             </div>
                         </div>
 
-                        <FormModal isOpen={isWriteFormOpen} onClose={() => setWriteForm(false)}>
-                            <WriteStoryForm />
+                        <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
+                            <GalleryForm onSuccess={() => setFormOpen(false)} />
                         </FormModal>
                     </header>
 
