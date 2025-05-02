@@ -11,16 +11,10 @@ export async function POST(req: NextRequest) {
       },
       select: {
         id: true,
-        firstName: true,
-        lastName: true,
-        email: true,
-        phone: true,
-        storyType: true,
         title: true,
         author: true,
         date: true,
-        image: true,
-        StoryFile: true,
+        image: true
       },
     });
 
