@@ -7,13 +7,8 @@ function GalleryForm({ onSuccess }: { onSuccess: () => void }) {
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
-        const { name, files } = e.target;
-
-        if (name === "image" && files && files.length > 0) {
-            setFormData({ ...formData, image: files[0] });
-        } else {
-            setFormData({ ...formData, [name]: e.target.value });
-        }
+        const { name } = e.target;
+        setFormData({ ...formData, [name]: e.target.value });
     };
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,14 +19,17 @@ function GalleryForm({ onSuccess }: { onSuccess: () => void }) {
             return;
         }
 
-        const formDataToSend = new FormData();
-        formDataToSend.append("name", formData.name);
-        formDataToSend.append("image", formData.image);
-
         try {
             const response = await fetch('/api/gallery', {
                 method: 'POST',
-                body: formDataToSend,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    image: formData.image,
+                }),
             });
 
             if (response.ok) {
@@ -68,9 +66,9 @@ function GalleryForm({ onSuccess }: { onSuccess: () => void }) {
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2">Image:</label>
+                <label className="block font-semibold ml-2">Image url:</label>
                 <input
-                    type="file"
+                    type="test"
                     name="image"
                     onChange={handleChange}
                     className="w-full p-2 border rounded"

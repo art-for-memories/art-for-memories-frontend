@@ -1,36 +1,25 @@
 import { NextResponse } from "next/server";
 import prisma from "../../../../lib/prisma";
-import { v4 as uuidv4 } from "uuid";
-import path from "path";
-import { mkdir, writeFile } from "fs/promises";
 
 export async function POST(req: Request) {
   try {
-    const body = await req.json();
-    const { name, image } = body;
-
-    if (!name || !image) {
+    let body;
+    try {
+      body = await req.json();
+    } catch (parseError) {
+      console.error("Invalid JSON body:", parseError);
       return NextResponse.json(
-        { error: "Name and image are required" },
+        { error: "Invalid JSON body" },
         { status: 400 }
       );
     }
 
-    const fileId = uuidv4();
-    const filePath = path.join(
-      process.cwd(),
-      "public/uploads",
-      `${fileId}-${image.name}`
-    );
-
-    await mkdir(path.dirname(filePath), { recursive: true });
-    const arrayBuffer = await image.arrayBuffer();
-    await writeFile(filePath, Buffer.from(arrayBuffer));
+    const { name, image } = body;
 
     const gallery = await prisma.gallery.create({
       data: {
         name,
-        image: `/uploads/${fileId}-${image.name}`,
+        image,
       },
     });
 
@@ -39,6 +28,27 @@ export async function POST(req: Request) {
     console.error("Error creating gallery entry:", error);
     return NextResponse.json(
       { error: "Failed to create gallery entry" },
+      { status: 500 }
+    );
+  }
+}
+
+
+export async function GET() {
+  try {
+    const galleries = await prisma.gallery.findMany({
+      select: {
+        id: true,
+        name: true,
+        image: true,
+      },
+    });
+
+    return NextResponse.json(galleries, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching gallery entries:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch gallery entries" },
       { status: 500 }
     );
   }
