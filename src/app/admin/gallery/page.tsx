@@ -4,62 +4,38 @@ import Navbar from '@/components/dashboard/navbar'
 import Sidebar from '@/components/dashboard/sidebar'
 import FormModal from '@/components/models/form-model';
 import React, { useEffect, useState } from 'react'
-import StoriesTable from '@/components/dashboard/StoriesTable';
 import FetchSpinner from '@/components/spinners/fetch-spinner';
-import { Stories as Story } from '@/types/stories';
 import GalleryForm from '@/components/forms/GalleryForm';
+import GalleryTable from '@/components/tables/galleryTable';
 
 function Stories() {
     const [isFormOpen, setFormOpen] = useState(false);
-    const [stories, setStories] = useState<Story[]>([]);
+    const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const headers = ['title', 'author', 'date', 'files', 'status', 'storyType'];
+    const headers = ['name', 'url'];
 
-    const getAllStories = async () => {
+    const getAllImages = async () => {
         try {
             setLoading(true);
 
-            const response = await fetch('/api/stories');
+            const response = await fetch('/api/gallery');
 
             if (response.ok) {
-                const stories = await response.json();
-                setStories(stories);
+                const images = await response.json();
+                setImages(images);
             } else {
-                console.error('Failed to fetch stories');
+                console.error('Failed to fetch images');
             }
 
             setLoading(false);
         } catch (error) {
-            console.error('Error fetching stories:', error);
-        }
-    };
-
-    const handleDelete = async (id: string) => {
-        try {
-            setLoading(true);
-
-            const response = await fetch(`/api/stories`, {
-                method: 'DELETE',
-                body: JSON.stringify({ id }),
-            });
-
-            if (response.ok) {
-                setStories(stories.filter((story) => story.id !== id));
-                setLoading(false);
-            } else {
-                console.error('Failed to delete story');
-            }
-
-            setLoading(false);
-        } catch (error) {
-            console.error('Error deleting story:', error);
-            setLoading(false);
+            console.error('Error fetching images:', error);
         }
     };
 
     useEffect(() => {
-        getAllStories();
+        getAllImages();
     }, []);
 
     return (
@@ -105,12 +81,12 @@ function Stories() {
                     {/* Table */}
                     <div className="mt-4 overflow-auto w-full bg-white px-2">
                         {loading && <div className="my-10"><FetchSpinner /></div>}
-                        <StoriesTable
+                        <GalleryTable
                             headers={headers}
-                            data={stories}
-                            onDelete={handleDelete}
-                            onPreview={() => { }}
-                            onApproved={() => { }}
+                            data={images}
+                            onPreview={(image) => window.open(image.image, '_blank')}
+                            onApproved={(id) => console.log('Approved', id)}
+                            onDelete={(id) => console.log('Delete', id)}
                         />
                     </div>
                 </div>

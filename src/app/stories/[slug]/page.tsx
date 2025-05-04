@@ -5,7 +5,6 @@ import { notFound, useParams } from 'next/navigation';
 import FetchSpinner from '@/components/spinners/fetch-spinner';
 import Layout from '@/components/Layout';
 import PageHeader from '@/components/headers/page-header';
-import stories from '../../../contents/written_stories.json';
 import { TheirStoryProps } from '@/components/cards/StoryCard';
 import "@/styles/story-contents.css";
 
@@ -17,15 +16,39 @@ function Story() {
 
   useEffect(() => {
     const fetchStory = async () => {
-      const storyData: TheirStoryProps | undefined = stories.find((story: TheirStoryProps) => story.id === slug) as TheirStoryProps | undefined;
+      try {
+        const response = await fetch(`/api/stories/${slug}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ slug }),
+        });
+        if (!response.ok) {
+          throw new Error('Story not found');
+        }
+        const data = await response.json();
 
-      if (storyData) {
+        const storyData = {
+          ...data,
+          english: {
+            title: data.title,
+            contents: data.englishContent,
+          },
+          kinyarwanda: {
+            title: data.title,
+            contents: data.kinyarwandaContent,
+          },
+          french: {
+            title: data.title,
+            contents: data.frenchContent,
+          },
+        };
+        console.log(storyData)
         setStory(storyData);
-      } else {
-        setStory(null);
+      } catch (error) {
+        console.error('Error fetching story:', error);
+      } finally {
+        setLoading(false);
       }
-
-      setLoading(false);
     };
 
     fetchStory();

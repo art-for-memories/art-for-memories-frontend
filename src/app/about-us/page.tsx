@@ -1,17 +1,37 @@
+'use client';
+
 import Layout from '@/components/Layout'
 import Navbar from '@/components/Navbar'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 function AboutUs() {
-    const galleryImages = [
-        '/images/gallery/image-1.PNG',
-        '/images/gallery/image-2.PNG',
-        '/images/gallery/image-3.PNG',
-        '/images/gallery/image-4.PNG',
-        '/images/gallery/image-5.PNG',
-        '/images/gallery/image-6.PNG',
-    ];
+    const [galleryImages, setGalleryImages] = useState([]);
+
+    const fetchGalleryImages = async () => {
+        try {
+            const response = await fetch('/api/gallery', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch gallery images');
+            }
+
+            const data = await response.json();
+
+            setGalleryImages(data.map((item: { id: string; name: string; image: string }) => item.image));
+        } catch (error) {
+            console.error('Error fetching gallery images:', error);
+        }
+    }
+
+    useEffect(() => {
+        fetchGalleryImages();
+    });
 
     return (<>
         <Layout>
@@ -73,7 +93,15 @@ function AboutUs() {
                             <div className="relative h-full lg:h-auto">
                                 <div className="relative grid grid-cols-3 gap-x-2 gap-y-4">
                                     {galleryImages.map((image, index) => (
-                                        <Image key={index} width={300} height={300} className="rounded-lg object-cover h-[300px]" src={image} alt={`Art for memory Gallery`} />
+                                        <Image
+                                            key={index}
+                                            width={300}
+                                            height={300}
+                                            className="rounded-lg object-cover h-[300px]"
+                                            src={image}
+                                            alt={`Art for memory Gallery`}
+                                            unoptimized
+                                        />
                                     ))}
                                 </div>
                             </div>

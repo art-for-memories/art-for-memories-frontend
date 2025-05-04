@@ -3,11 +3,33 @@
 import PageHeader from "@/components/headers/page-header";
 import Layout from "@/components/Layout";
 import StoriesList from "@/components/lists/StoriesList";
-
-import written_stories from "../../contents/written_stories.json";
-import published_stories from "../../contents/published_stories.json";
+import type { Stories } from "@/types/stories";
+import { useEffect, useState } from "react";
 
 export default function Stories() {
+    const [writtenStories, setWrittenStories] = useState([]);
+    const [illustratedStories, setIllustratedStories] = useState([]);
+
+    const getAllStories = async () => {
+        try {
+            const response = await fetch('/api/stories');
+
+            if (response.ok) {
+                const allStories = await response.json();
+                setWrittenStories(allStories.filter((story: Stories) => story.type === 'Written Story'));
+                setIllustratedStories(allStories.filter((story: Stories) => story.type === 'Illustrated'));
+            } else {
+                console.error('Failed to fetch stories');
+            }
+        } catch (error) {
+            console.error('Error fetching stories:', error);
+        }
+    }
+
+    useEffect(() => {
+        getAllStories();
+    })
+
     return (<>
         <Layout>
             <PageHeader
@@ -17,8 +39,8 @@ export default function Stories() {
             />
 
             <div className="bg-white">
-                <StoriesList title="Written Stories" data={written_stories} />
-                <StoriesList title="Illustrated Stories" data={published_stories} />
+                <StoriesList title="Written Stories" data={writtenStories} />
+                <StoriesList title="Illustrated Stories" data={illustratedStories} />
             </div>
         </Layout>
     </>);

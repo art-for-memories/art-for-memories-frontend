@@ -56,9 +56,15 @@ export async function GET(req: Request) {
       },
     });
 
-    return NextResponse.json(stories);
+    // Filter out stories with null type values
+    const filteredStories = stories.map((story) => ({
+      ...story,
+      type: story.type || "Unknown",
+    }));
+
+    return NextResponse.json(filteredStories);
   } catch (error) {
     console.error("Error fetching stories:", error);
-    return NextResponse.json({ error: error }, { status: 500 });
+    return NextResponse.json({ error: "Failed to fetch stories" }, { status: 500 });
   }
 }
