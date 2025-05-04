@@ -14,7 +14,7 @@ function Stories() {
     const [stories, setStories] = useState<Story[]>([]);
     const [loading, setLoading] = useState(false);
 
-    const headers = ['title', 'author', 'date', 'files', 'status', 'storyType'];
+    const headers = ['title', 'author', 'date', 'type'];
 
     const getAllStories = async () => {
         try {
