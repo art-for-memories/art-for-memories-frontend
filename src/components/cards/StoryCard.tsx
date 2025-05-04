@@ -33,10 +33,6 @@ export default function StoryCard({ props }: { props: TheirStoryProps }) {
 
                 <div className="flex flex-wrap gap-6 mb-10">
                     <div className="flex items-center gap-2">
-                        <div className="w-3 h-3 bg-green-100"></div>
-                        <p className="text-neutral-600 font-medium tracking-tight">{props.storyType}</p>
-                    </div>
-                    <div className="flex items-center gap-2">
                         <div className="w-3 h-3 bg-orange-200"></div>
                         <p className="text-neutral-600 font-medium tracking-tight">{props.author}</p>
                     </div>

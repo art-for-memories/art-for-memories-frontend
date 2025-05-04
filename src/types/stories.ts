@@ -1,17 +1,14 @@
 export interface Stories {
     id: string;
     title: string;
+    caption: string;
     author: string;
+    type: string;
     date: string;
-    files: string[];
-    status: string;
-    storyType: string;
     image: string;
-    StoryFile: { url: string }[];
-    fitstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
+    kinyarwandaContent: string;
+    englishContent: string;
+    frenchContent: string;
 }
 
 export interface PublicStory {

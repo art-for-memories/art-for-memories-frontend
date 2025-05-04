@@ -9,7 +9,7 @@ function Header() {
     return (
         <header>
             <div className="flex justify-between items-center">
-                <h1 className="text-xl font-semibold text-black">Memories</h1>
+                <h1 className="text-xl font-semibold text-black">Submitted Memories</h1>
 
                 <button onClick={() => setFormOpen(true)} className="bg-black text-white px-4 py-2 flex items-center rounded cursor-pointer">
                     <span>

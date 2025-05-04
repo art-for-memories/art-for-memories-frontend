@@ -12,9 +12,14 @@ export async function POST(req: NextRequest) {
       select: {
         id: true,
         title: true,
+        caption: true,
         author: true,
+        type: true,
         date: true,
-        image: true
+        image: true,
+        kinyarwandaContent: true,
+        englishContent: true,
+        frenchContent: true,
       },
     });
 
