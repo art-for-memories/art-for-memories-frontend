@@ -53,6 +53,7 @@ export default function Memories() {
     const handleSubmitted = () => {
         getMemories();
         setFormOpen(false);
+        window.location.reload();
     }
 
     const searchMemory = async (searchTerm: string) => {

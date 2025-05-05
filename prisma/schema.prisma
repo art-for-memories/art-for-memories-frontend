@@ -124,6 +124,8 @@ model StoryFile {
 model Video {
   id        String   @id @default(cuid()) @map("_id")
   url       String
+  title     String
+  caption   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
