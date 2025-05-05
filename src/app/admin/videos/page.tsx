@@ -17,7 +17,9 @@ function Videos() {
     const [currentVideo, setCurrentVideo] = useState<Video | undefined>(undefined);
 
     const handleDelete = (id: string) => async () => {
-        console.log(id)
+        if (!confirm('Are you sure you want to delete this video?')) {
+            return;
+        }
 
         const response = await fetch(`/api/videos/${id}`, {
             method: 'DELETE',

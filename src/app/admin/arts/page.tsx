@@ -3,92 +3,19 @@
 import ArtsTable from '@/components/dashboard/arts-table';
 import Navbar from '@/components/dashboard/navbar'
 import Sidebar from '@/components/dashboard/sidebar'
+import PreservedMemoryForm from '@/components/forms/PreservedMemoryForm';
 import FormModal from '@/components/models/form-model'
 import FetchSpinner from '@/components/spinners/fetch-spinner';
 import { Art } from '@/types/arts';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 
 function FinalArt() {
     const [isFormOpen, setFormOpen] = useState(false);
-    const [name, setName] = useState('');
-    const [age, setAge] = useState('');
-    const [oldPhoto, setOldPhoto] = useState<File | null>(null);
-    const [preservedPhoto, setPreservedPhoto] = useState<File | null>(null);
-    const [oldPhotoPreview, setOldPhotoPreview] = useState<string | null>(null);
-    const [preservedPhotoPreview, setPreservedPhotoPreview] = useState<string | null>(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
     const [arts, setArts] = useState<Art[]>([]);
     const [loading, setLoading] = useState(false);
+    const [currentMemory, setCurrentMemory] = useState<Art | null>(null);
 
     const headers = ['Name', 'Age', 'Old Photo', 'Preserved Photo'];
-
-    const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>, setFile: React.Dispatch<React.SetStateAction<File | null>>, setPreview: React.Dispatch<React.SetStateAction<string | null>>) => {
-        const files = event.target.files;
-
-        if (!files || files.length === 0) return;
-
-        const file = files[0];
-        if (file.type.startsWith('image/')) {
-            setFile(file);
-            setPreview(URL.createObjectURL(file));
-        }
-    };
-
-    const uploadFile = async (file: File) => {
-        const formData = new FormData();
-
-        formData.append('file', file);
-        formData.append('upload_preset', 'memories_preset'); // Ensure this preset exists in Cloudinary
-
-        const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
-            method: 'POST',
-            body: formData,
-        });
-
-        const data = await response.json();
-        return data.secure_url;
-    };
-
-    const handleSubmit = async (event: React.FormEvent) => {
-        event.preventDefault();
-        setIsSubmitting(true);
-
-        try {
-            const uploadedOldPhoto = oldPhoto ? await uploadFile(oldPhoto) : null;
-            const uploadedPreservedPhoto = preservedPhoto ? await uploadFile(preservedPhoto) : null;
-
-            const formData = {
-                name,
-                age,
-                oldPhoto: uploadedOldPhoto,
-                preservedPhoto: uploadedPreservedPhoto,
-            };
-
-            const response = await fetch('/api/preserved-memories', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                setFormOpen(false);
-                setName('');
-                setAge('');
-                setOldPhoto(null);
-                setPreservedPhoto(null);
-                setOldPhotoPreview(null);
-                setPreservedPhotoPreview(null);
-                getAllArts();
-            } else {
-                console.error('Failed to submit art');
-            }
-        } catch (error) {
-            console.error('Error submitting art:', error);
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
 
     const getAllArts = async () => {
         try {
@@ -108,13 +35,13 @@ function FinalArt() {
     };
 
     const handleDelete = async (id: string) => {
-        if (confirm('Are you sure you want to delete this art?')) {
+        if (confirm('Are you sure you want to delete this Memory?')) {
             setLoading(true);
 
-            await fetch(`/api/preserved-memories`, {
+            await fetch(`/api/preserved-memories/${id}`, {
                 method: 'DELETE',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id }),
+                body: JSON.stringify({ slug: id }),
             });
 
             setLoading(false);
@@ -122,9 +49,33 @@ function FinalArt() {
         }
     };
 
-    const handlePreview = (art: Art) => {
-        console.log(art);
+    const handlePreview = async (art: Art) => {
+        try {
+            const response = await fetch(`/api/preserved-memories/${art.id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ slug: art.id }),
+            });
+
+            if (response.ok) {
+                const story = await response.json();
+                setCurrentMemory(story);
+                setFormOpen(true);
+            } else {
+                console.error('Failed to fetch story details');
+            }
+        } catch (error) {
+            console.error('Error fetching story details:', error);
+        }
     };
+
+    const handleSubmitted = async () => {
+        setFormOpen(false);
+        getAllArts();
+    }
 
     useEffect(() => {
         getAllArts();
@@ -155,67 +106,7 @@ function FinalArt() {
                         </div>
 
                         <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                            <h3 className="text-slate-700 font-semibold">Upload New Story</h3>
-
-                            <form onSubmit={handleSubmit}>
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-bold">Name</label>
-                                    <input
-                                        type="text"
-                                        placeholder="eg: king"
-                                        className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                                        value={name}
-                                        onChange={(e) => setName(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-bold">Age</label>
-                                    <input
-                                        type="number"
-                                        placeholder="79"
-                                        className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                                        value={age}
-                                        onChange={(e) => setAge(e.target.value)}
-                                    />
-                                </div>
-
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-medium">Old Photo</label>
-                                    <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-old-photo')?.click()}>
-                                        <span className="text-gray-400">📎</span>
-                                        <span className="text-gray-400">Attach the old photo</span>
-                                        <input type="file" className="hidden" id='upload-old-photo' accept="image/*" onChange={(e) => handleFileChange(e, setOldPhoto, setOldPhotoPreview)} />
-                                    </div>
-                                    {oldPhotoPreview && (
-                                        <div className="mt-4">
-                                            <Image width={100} height={100} src={oldPhotoPreview} alt="Old Photo Preview" className="w-full h-32 object-cover rounded-md" />
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className="my-5">
-                                    <label className="text-sm text-black font-medium">Preserved Photo</label>
-                                    <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-preserved-photo')?.click()}>
-                                        <span className="text-gray-400">📎</span>
-                                        <span className="text-gray-400">Attach the preserved photo</span>
-                                        <input type="file" className="hidden" id='upload-preserved-photo' accept="image/*" onChange={(e) => handleFileChange(e, setPreservedPhoto, setPreservedPhotoPreview)} />
-                                    </div>
-                                    {preservedPhotoPreview && (
-                                        <div className="mt-4">
-                                            <Image width={100} height={100} src={preservedPhotoPreview} alt="Preserved Photo Preview" className="w-full h-32 object-cover rounded-md" />
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Submit Button */}
-                                <div className='flex items-center justify-between mt-5'>
-                                    {isSubmitting && <div className="my-10"><FetchSpinner /></div>}
-                                    {!isSubmitting && <button type='submit' disabled={isSubmitting} className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80">
-                                        <span className='ml-5'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
-                                    </button>}
-                                </div>
-                            </form>
+                            <PreservedMemoryForm currentMemory={currentMemory} onCallback={handleSubmitted} />
                         </FormModal>
                     </header>
 

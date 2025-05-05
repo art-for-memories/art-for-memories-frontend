@@ -4,26 +4,44 @@ import prisma from "../../../../lib/prisma";
 export async function POST(req: Request) {
   try {
     let body;
+
     try {
       body = await req.json();
     } catch (parseError) {
       console.error("Invalid JSON body:", parseError);
-      return NextResponse.json(
-        { error: "Invalid JSON body" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
     }
 
-    const { name, image } = body;
+    const { name, image, current_image_id } = body;
 
-    const gallery = await prisma.gallery.create({
-      data: {
-        name,
-        image,
-      },
-    });
+    if (current_image_id) {
+      const existingImage = await prisma.gallery.findUnique({
+        where: { id: current_image_id },
+      });
 
-    return NextResponse.json(gallery, { status: 201 });
+      if (!existingImage) {
+        return NextResponse.json({ error: "Image not found" }, { status: 404 });
+      }
+
+      const updatedImage = await prisma.gallery.update({
+        where: { id: current_image_id },
+        data: {
+          name,
+          image,
+        },
+      });
+
+      return NextResponse.json(updatedImage, { status: 200 });
+    } else {
+      const gallery = await prisma.gallery.create({
+        data: {
+          name,
+          image,
+        },
+      });
+
+      return NextResponse.json(gallery, { status: 201 });
+    }
   } catch (error) {
     console.error("Error creating gallery entry:", error);
     return NextResponse.json(
@@ -32,7 +50,6 @@ export async function POST(req: Request) {
     );
   }
 }
-
 
 export async function GET() {
   try {

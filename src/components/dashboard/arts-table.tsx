@@ -1,42 +1,12 @@
 import { ArtTableProps } from '@/types/arts';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
 
 const ArtsTable: React.FC<ArtTableProps> = ({ headers, data, onDelete, onPreview }) => {
-    const [selected, setSelected] = useState<string[]>([]);
-
-    useEffect(() => {
-        setSelected([]);
-    }, [data]);
-
-    const toggleSelect = (id: string) => {
-        setSelected((prevSelected) =>
-            prevSelected.includes(id)
-                ? prevSelected.filter((e) => e !== id)
-                : [...prevSelected, id]
-        );
-    };
-
-    const toggleSelectAll = () => {
-        if (selected.length === data.length) {
-            setSelected([]);
-        } else {
-            setSelected(data.map((art) => art.id));
-        }
-    };
-
     return (
         <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4 w-full'>
             <table className="w-full text-left whitespace-nowrap">
                 <thead className=''>
                     <tr className="bg-gray-100 text-black text-sm">
-                        <th className="p-4">
-                            <input
-                                type="checkbox"
-                                checked={selected.length === data.length}
-                                onChange={toggleSelectAll}
-                            />
-                        </th>
                         {headers.map((header) => (
                             <th key={header} className="p-4">
                                 {header.toUpperCase()}
@@ -60,17 +30,10 @@ const ArtsTable: React.FC<ArtTableProps> = ({ headers, data, onDelete, onPreview
 
                     {data.map((art) => (
                         <tr key={art.id} className="focus:outline-none h-16 border border-gray-100 rounded-lg bg-white text-black text-sm">
-                            <td className="p-4">
-                                <input
-                                    type="checkbox"
-                                    checked={selected.includes(art.id)}
-                                    onChange={() => toggleSelect(art.id)}
-                                />
-                            </td>
-                            <td className={`p-4 ${selected.includes(art.id) ? 'font-bold' : ''}`}>
+                            <td className={`p-4`}>
                                 {art.name}
                             </td>
-                            <td className={`p-4 ${selected.includes(art.id) ? 'font-bold' : ''}`}>
+                            <td className={`p-4`}>
                                 {art.age}
                             </td>
                             <td className="p-4">

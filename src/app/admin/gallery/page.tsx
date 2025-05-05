@@ -12,6 +12,7 @@ function Stories() {
     const [isFormOpen, setFormOpen] = useState(false);
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [currentImage, setCurrentImage] = useState<{id: string; name: string; image: string} | null>(null);
 
     const headers = ['name', 'url'];
 
@@ -33,6 +34,34 @@ function Stories() {
             console.error('Error fetching images:', error);
         }
     };
+
+    const handleDelete = async (id: string) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this image?');
+        if (!confirmDelete) return;
+
+        try {
+            const response = await fetch(`/api/gallery/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                setImages(images.filter((image: { id: string }) => image.id !== id));
+            } else {
+                console.error('Failed to delete image');
+            }
+        } catch (error) {
+            console.error('Error deleting image:', error);
+        }
+    };
+
+    const handlePreview = async (id: string) => {
+        const image = images.find((image: { id: string }) => image.id === id);
+        
+        if (image) {
+            setCurrentImage(image);
+            setFormOpen(true);
+        } 
+    }
 
     useEffect(() => {
         getAllImages();
@@ -65,7 +94,7 @@ function Stories() {
                         </div>
 
                         <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                            <GalleryForm onSuccess={() => setFormOpen(false)} />
+                            <GalleryForm onSuccess={() => setFormOpen(false)} currentImage={currentImage} />
                         </FormModal>
                     </header>
 
@@ -84,9 +113,8 @@ function Stories() {
                         <GalleryTable
                             headers={headers}
                             data={images}
-                            onPreview={(image) => window.open(image.image, '_blank')}
-                            onApproved={(id) => console.log('Approved', id)}
-                            onDelete={(id) => console.log('Delete', id)}
+                            onPreview={handlePreview}
+                            onDelete={handleDelete}
                         />
                     </div>
                 </div>

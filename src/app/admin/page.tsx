@@ -29,8 +29,6 @@ export default function Memories() {
     const handleDelete = async (id: string) => {
         const confirmDelete = confirm('Are you sure you want to delete this memory?');
 
-        console.log(id);
-
         if (confirmDelete) {
             setLoading(true);
 

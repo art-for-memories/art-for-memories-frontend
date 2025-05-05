@@ -1,38 +1,12 @@
 import { TableProps } from '@/types/stories';
 import Image from 'next/image';
-import React, { useState } from 'react';
 
 const StoriesTable: React.FC<TableProps> = ({ headers, data, onDelete, onPreview }) => {
-    const [selected, setSelected] = useState<string[]>([]);
-
-    const toggleSelect = (email: string) => {
-        setSelected((prevSelected) =>
-            prevSelected.includes(email)
-                ? prevSelected.filter((e) => e !== email)
-                : [...prevSelected, email]
-        );
-    };
-
-    const toggleSelectAll = () => {
-        if (selected.length === data.length) {
-            setSelected([]);
-        } else {
-            setSelected(data.map((Stories) => Stories.id));
-        }
-    };
-
     return (
         <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4 w-full'>
             <table className="w-full text-left whitespace-nowrap">
                 <thead className=''>
                     <tr className="bg-gray-100 text-black text-sm">
-                        <th className="p-4">
-                            <input
-                                type="checkbox"
-                                checked={selected.length === data.length}
-                                onChange={toggleSelectAll}
-                            />
-                        </th>
                         {headers.map((header) => (
                             <th key={header} className="p-4">
                                 {header.toUpperCase()}
@@ -55,17 +29,10 @@ const StoriesTable: React.FC<TableProps> = ({ headers, data, onDelete, onPreview
                     )}
                     {data.map((Stories) => (
                         <tr key={Stories.id} className="focus:outline-none h-16 border border-gray-100 rounded-lg bg-white text-black text-sm">
-                            <td className="p-4">
-                                <input
-                                    type="checkbox"
-                                    checked={selected.includes(Stories.id)}
-                                    onChange={() => toggleSelect(Stories.id)}
-                                />
-                            </td>
-                            <td className={`p-4 ${selected.includes(Stories.id) ? 'font-bold' : ''}`}>
+                            <td className={`p-4`}>
                                 {Stories.title}
                             </td>
-                            <td className={`p-4 ${selected.includes(Stories.id) ? 'font-bold' : ''}`}>
+                            <td className={`p-4`}>
                                 {Stories.author}
                             </td>
                             <td className="p-4">{new Date(Stories.date).toLocaleDateString()}</td>
