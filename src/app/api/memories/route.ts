@@ -64,8 +64,7 @@ export async function POST(req: Request) {
     const email = formData.get("email")?.toString() || "";
     const phone = formData.get("phone")?.toString() || "";
     const memories = formData.get("memories")?.toString() || "";
-    const current_memory_id =
-      formData.get("current_memory_id")?.toString() || "";
+    const current_memory_id = formData.get("current_memory_id")?.toString() || "";
 
     if (current_memory_id) {
       const existingMemory = await prisma.memories.findUnique({

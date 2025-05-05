@@ -35,3 +35,23 @@ export async function POST(req: NextRequest) {
     );
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  const { slug } = await req.json();
+
+  try {
+    const deletedStory = await prisma.story.delete({
+      where: {
+        id: slug,
+      },
+    });
+
+    return NextResponse.json(deletedStory, { status: 200 });
+  } catch (error) {
+    console.error("Error deleting story:", error);
+    return NextResponse.json(
+      { error: "Failed to delete story" },
+      { status: 500 }
+    );
+  }
+}
