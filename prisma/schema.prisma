@@ -108,22 +108,16 @@ model Story {
   kinyarwandaContent String
   englishContent     String
   frenchContent      String
+  file               String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
-
-  storyFiles StoryFile[]
-}
-
-model StoryFile {
-  id      String @id @default(cuid()) @map("_id")
-  url     String
-  story   Story  @relation(fields: [storyId], references: [id])
-  storyId String
 }
 
 model Video {
   id        String   @id @default(cuid()) @map("_id")
   url       String
+  title     String
+  caption   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

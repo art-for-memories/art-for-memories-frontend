@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useEditor, EditorContent, Extension } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Bold from "@tiptap/extension-bold";
@@ -46,12 +45,10 @@ const Underline = Extension.create({
   },
 });
 
-const Tiptap = ({ onContentChange }) => {
-  const [language, setLanguage] = useState("en");
-
+const Tiptap = ({ onContentChange, value = "" }) => {
   const editor = useEditor({
     extensions: [StarterKit, Bold, Italic, Strike, Underline],
-    content: "<p>Start writing your story...</p>",
+    content: value,
     onUpdate: ({ editor }) => {
       onContentChange(editor.getHTML());
     },
@@ -87,15 +84,6 @@ const Tiptap = ({ onContentChange }) => {
         >
           <FaStrikethrough />
         </button>
-        <select
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-          className="ml-2 p-1 border rounded"
-        >
-          <option value="en">English</option>
-          <option value="rw">Kinyarwanda</option>
-          <option value="fr">French</option>
-        </select>
       </div>
 
       {/* Text Editor */}

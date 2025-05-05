@@ -13,6 +13,7 @@ function Stories() {
     const [isWriteFormOpen, setWriteForm] = useState(false);
     const [stories, setStories] = useState<Story[]>([]);
     const [loading, setLoading] = useState(false);
+    const [currentStory, setCurrentStory] = useState<Story | null>(null);
 
     const headers = ['title', 'author', 'date', 'type'];
 
@@ -36,12 +37,19 @@ function Stories() {
     };
 
     const handleDelete = async (id: string) => {
+        const confirmDelete = window.confirm('Are you sure you want to delete this story?');
+        if (!confirmDelete) return;
+
         try {
             setLoading(true);
 
-            const response = await fetch(`/api/stories`, {
+            const response = await fetch(`/api/stories/${id}`, {
                 method: 'DELETE',
-                body: JSON.stringify({ id }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ slug: id }),
             });
 
             if (response.ok) {
@@ -57,6 +65,29 @@ function Stories() {
             setLoading(false);
         }
     };
+
+    const handlePreview = async (id: string) => {
+        try {
+            const response = await fetch(`/api/stories/${id}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                },
+                body: JSON.stringify({ slug: id }),
+            });
+
+            if (response.ok) {
+                const story = await response.json();
+                setCurrentStory(story);
+                setWriteForm(true);
+            } else {
+                console.error('Failed to fetch story details');
+            }
+        } catch (error) {
+            console.error('Error fetching story details:', error);
+        }
+    }
 
     useEffect(() => {
         getAllStories();
@@ -89,7 +120,7 @@ function Stories() {
                         </div>
 
                         <FormModal isOpen={isWriteFormOpen} onClose={() => setWriteForm(false)}>
-                            <WriteStoryForm />
+                            <WriteStoryForm currentStory={currentStory} />
                         </FormModal>
                     </header>
 
@@ -109,8 +140,7 @@ function Stories() {
                             headers={headers}
                             data={stories}
                             onDelete={handleDelete}
-                            onPreview={() => { }}
-                            onApproved={() => { }}
+                            onPreview={handlePreview}
                         />
                     </div>
                 </div>

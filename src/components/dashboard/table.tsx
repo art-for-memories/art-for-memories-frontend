@@ -1,38 +1,12 @@
 import { TableProps } from '@/types/memories';
 import Image from 'next/image';
-import React, { useState } from 'react';
 
 const Table: React.FC<TableProps> = ({ headers, data, onDelete, onPreview, onApproved }) => {
-    const [selected, setSelected] = useState<string[]>([]);
-
-    const toggleSelect = (email: string) => {
-        setSelected((prevSelected) =>
-            prevSelected.includes(email)
-                ? prevSelected.filter((e) => e !== email)
-                : [...prevSelected, email]
-        );
-    };
-
-    const toggleSelectAll = () => {
-        if (selected.length === data.length) {
-            setSelected([]);
-        } else {
-            setSelected(data.map((memory) => memory.email));
-        }
-    };
-
     return (
         <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4 w-full'>
             <table className="w-full text-left whitespace-nowrap">
                 <thead className=''>
                     <tr className="bg-gray-100 text-black text-sm">
-                        <th className="p-4">
-                            <input
-                                type="checkbox"
-                                checked={selected.length === data.length}
-                                onChange={toggleSelectAll}
-                            />
-                        </th>
                         {headers.map((header) => (
                             <th key={header} className="p-4">
                                 {header.toUpperCase()}
@@ -56,17 +30,10 @@ const Table: React.FC<TableProps> = ({ headers, data, onDelete, onPreview, onApp
 
                     {data.map((memory) => (
                         <tr key={memory.id} className="focus:outline-none h-16 border border-gray-100 rounded-lg bg-white text-black text-sm">
-                            <td className="p-4">
-                                <input
-                                    type="checkbox"
-                                    checked={selected.includes(memory.email)}
-                                    onChange={() => toggleSelect(memory.email)}
-                                />
-                            </td>
-                            <td className={`p-4 ${selected.includes(memory.email) ? 'font-bold' : ''}`}>
+                            <td className={`p-4`}>
                                 {memory.firstName}
                             </td>
-                            <td className={`p-4 ${selected.includes(memory.email) ? 'font-bold' : ''}`}>
+                            <td className={`p-4`}>
                                 {memory.lastName}
                             </td>
                             <td className="p-4">{memory.email}</td>

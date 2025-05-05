@@ -4,11 +4,55 @@ import path from "path";
 import { mkdir } from "fs/promises";
 import { v4 as uuidv4 } from "uuid";
 import prisma from "../../../../lib/prisma";
+import { Memories } from "@prisma/client";
 
 export const config = {
   api: {
     bodyParser: false,
   },
+};
+
+const handleImages = async (memory: Memories, formData: FormData) => {
+  const imagePromises: Promise<{
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
+    image: string;
+    memoryId: string;
+  }>[] = [];
+
+  formData.forEach((value, key) => {
+    if (key === "images" && value instanceof File) {
+      const file = value;
+      const fileId = uuidv4();
+      const filePath = path.join(
+        process.cwd(),
+        "public/uploads",
+        `${fileId}-${file.name}`
+      );
+
+      const bufferPromise = mkdir(path.dirname(filePath), {
+        recursive: true,
+      }).then(() =>
+        file
+          .arrayBuffer()
+          .then((arrayBuffer) => writeFile(filePath, Buffer.from(arrayBuffer)))
+      );
+
+      const dbPromise = bufferPromise.then(() =>
+        prisma.memoriesImage.create({
+          data: {
+            image: `/uploads/${fileId}-${file.name}`,
+            memoryId: memory.id,
+          },
+        })
+      );
+
+      imagePromises.push(dbPromise);
+    }
+  });
+
+  await Promise.all(imagePromises);
 };
 
 export async function POST(req: Request) {
@@ -20,62 +64,43 @@ export async function POST(req: Request) {
     const email = formData.get("email")?.toString() || "";
     const phone = formData.get("phone")?.toString() || "";
     const memories = formData.get("memories")?.toString() || "";
+    const current_memory_id = formData.get("current_memory_id")?.toString() || "";
 
-    const memory = await prisma.memories.create({
-      data: {
-        firstName: firstname,
-        lastName: lastname,
-        email: email,
-        phone: phone,
-        memory: memories,
-      },
-    });
+    if (current_memory_id) {
+      const existingMemory = await prisma.memories.findUnique({
+        where: { id: current_memory_id },
+      });
 
-    // Handle multiple file uploads
-    const imagePromises: Promise<{
-      id: string;
-      createdAt: Date;
-      updatedAt: Date;
-      image: string;
-      memoryId: string;
-    }>[] = [];
+      if (existingMemory) {
+        const memory = await prisma.memories.update({
+          where: { id: current_memory_id },
+          data: {
+            firstName: firstname,
+            lastName: lastname,
+            email: email,
+            phone: phone,
+            memory: memories,
+          },
+        });
 
-    formData.forEach((value, key) => {
-      if (key === "images" && value instanceof File) {
-        const file = value;
-        const fileId = uuidv4();
-        const filePath = path.join(
-          process.cwd(),
-          "public/uploads",
-          `${fileId}-${file.name}`
-        );
+        await handleImages(memory, formData);
 
-        const bufferPromise = mkdir(path.dirname(filePath), {
-          recursive: true,
-        }).then(() =>
-          file
-            .arrayBuffer()
-            .then((arrayBuffer) =>
-              writeFile(filePath, Buffer.from(arrayBuffer))
-            )
-        );
-
-        const dbPromise = bufferPromise.then(() =>
-          prisma.memoriesImage.create({
-            data: {
-              image: `/uploads/${fileId}-${file.name}`,
-              memoryId: memory.id,
-            },
-          })
-        );
-
-        imagePromises.push(dbPromise);
+        return NextResponse.json({ success: true, message: "Memory updated" });
       }
-    });
+    } else {
+      const memory = await prisma.memories.create({
+        data: {
+          firstName: firstname,
+          lastName: lastname,
+          email: email,
+          phone: phone,
+          memory: memories,
+        },
+      });
 
-    await Promise.all(imagePromises);
-
-    return NextResponse.json({ success: true, memory });
+      await handleImages(memory, formData);
+      return NextResponse.json({ success: true, memory });
+    }
   } catch (error) {
     console.error("Error:", error);
     return NextResponse.json(

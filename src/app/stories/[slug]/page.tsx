@@ -77,7 +77,9 @@ function Story() {
       <div className='bg-white px-5 py-5 md:px-20 md:py-10 text-slate-800'>
         <div
           className='contents prose prose-slate max-w-none text-slate-700'
-          dangerouslySetInnerHTML={{ __html: story[language].contents }}
+          dangerouslySetInnerHTML={{
+            __html: story[language].contents.replace(/<\/?[^>]+(>|$)/g, ''),
+          }}
         />
 
         <div className='border-t border-slate-200 mt-10 pt-5 flex items-center justify-between'>

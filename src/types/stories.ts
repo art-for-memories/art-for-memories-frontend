@@ -9,6 +9,7 @@ export interface Stories {
     kinyarwandaContent: string;
     englishContent: string;
     frenchContent: string;
+    file?: string | null;
 }
 
 export interface PublicStory {
@@ -24,7 +25,6 @@ export interface PublicStory {
 export interface TableProps {
     headers: string[];
     data: Stories[];
-    onDelete: (email: string) => void;
-    onPreview?: (Stories: Stories) => void;
-    onApproved?: (id: string) => void;
+    onDelete: (id: string) => void;
+    onPreview?: (id: string) => void;
 }

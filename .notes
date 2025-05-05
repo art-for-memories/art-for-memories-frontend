@@ -1,0 +1,28 @@
+1. Dashboard
+    - Submitted Memories -- 
+        - View all submitted memories -- ✅
+        - Delete submitted memories -- ✅
+        - Preview Single Memory -- ✅
+        - Approve or Rejected submitted memories -- ✅
+    - Videos
+        - upload videos
+        - View all videos
+        - Delete videos
+        - Preview Single Video
+    - Their Stories
+        - upload stories
+            - Write stories for (written stories)
+            - Upload Stories for (illustrated stories)
+        - View all uploaded their stories
+        - Delete uploaded their stories
+        - Preview Single Story
+    - Preserved Memories
+        - Upload Preserved Memories
+        - View All Preserved Memories
+        - Delete Preserved memories
+        - Preview Single Preserved Memory
+    - Gallery
+        - Upload Gallery Images
+        - View All Gallery Images
+        - Delete Gallery Images
+        - Preview Single Gallery Image

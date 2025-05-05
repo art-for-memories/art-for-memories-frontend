@@ -34,28 +34,6 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
         resolver: zodResolver(formSchema),
     });
 
-    const uploadFiles = async () => {
-        const uploadedFiles: string[] = [];
-        setLoading(true);
-
-        for (const file of selectedImages) {
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('upload_preset', 'memories_preset');
-
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
-                method: 'POST',
-                body: formData,
-            });
-
-            const data = await response.json();
-            uploadedFiles.push(data.secure_url);
-        }
-
-        setLoading(false);
-        return uploadedFiles;
-    };
-
     const onSubmit = async (data: FormData) => {
         try {
             const formData = new FormData();
@@ -71,6 +49,10 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
             }
 
             setLoading(true);
+
+            if (currentMemory) {
+                formData.append("current_memory_id", currentMemory.id);
+            }
 
             const response = await fetch(`/api/memories`, {
                 method: "POST",
@@ -278,9 +260,11 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-md hover:opacity-80"
+                        className={`w-auto flex items-center justify-between py-3 px-4 rounded-md hover:opacity-80 ${
+                            loading ? "bg-gray-400 cursor-not-allowed" : "bg-black text-white"
+                        }`}
                     >
-                        <span>{loading ? "Submitting..." : "Submit"}</span>
+                        <span>{loading ? "Submitting..." : currentMemory ? "Save Changes" : "Submit"}</span>
                     </button>
                 </div>
             </form>
