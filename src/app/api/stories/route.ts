@@ -61,7 +61,7 @@ export async function POST(req: Request) {
         "public/uploads/files",
         fileName
       );
-      const fileUrl = `https://artformemorr.com/uploads/files/${fileName}`;
+      const fileUrl = `https://artformemories.com/uploads/files/${fileName}`;
 
       const bufferPromise = mkdir(path.dirname(filePath), {
         recursive: true,
@@ -104,6 +104,7 @@ export async function GET(req: Request) {
         kinyarwandaContent: true,
         englishContent: true,
         frenchContent: true,
+        file: true,
       },
     });
 
