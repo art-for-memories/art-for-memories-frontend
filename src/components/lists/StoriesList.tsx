@@ -13,7 +13,7 @@ export default function StoriesList({ title, data }: StoriesListProps) {
     const [isFormOpen, setFormOpen] = useState(false);
 
     return (
-        <section className="py-12 md:py-24 bg-neutral-50 px-10 lg:px-20">
+        <section className="py-12 md:py-24 bg-neutral-50 lg:px-20">
             <div className="container mx-auto px-4">
 
                 {/* Section Title */}

@@ -55,7 +55,7 @@ export default function MemoriesList({ title, data, onSearch, loading }: { title
                 </div>
             </div>
 
-            <div className="mt-12">
+            <div className="mt-12 px-2 md:px-0 lg:px-0 max-w-3xl mx-auto">
                 {data.length === 0 && (
                     <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4'>
                         <Image src={'/svgs/empty.svg'} alt='' width={400} height={400} />

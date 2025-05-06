@@ -95,15 +95,15 @@ function AboutUs() {
                             </div>
                         </div>
 
-                        <div className="h-full lg:order-2">
+                        <div className="h-full lg:order-2 mt-5 md:mt-0">
                             <div className="relative h-full lg:h-auto">
-                                <div className="relative grid grid-cols-3 gap-x-2 gap-y-4">
+                                <div className="relative grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-x-2 gap-y-4">
                                     {galleryImages.map((image, index) => (
                                         <Image
                                             key={index}
-                                            width={300}
-                                            height={300}
-                                            className="rounded-lg object-cover h-[300px]"
+                                            width={500}
+                                            height={500}
+                                            className="rounded-lg object-cover w-full h-[150px] sm:h-[200px] md:h-[250px] lg:h-[300px]"
                                             src={image}
                                             alt={`Art for memory Gallery`}
                                             unoptimized

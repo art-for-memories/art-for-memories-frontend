@@ -57,7 +57,7 @@ export default function Days() {
             <section className="px-6 py-16 md:px-20 lg:px-32 bg-white">
                 <div className="mx-auto space-y-8 bg-white max-w-6xl">
                     <div>
-                        <div className="mt-4 bg-black rounded-lg h-92 flex items-center justify-center relative group">
+                        <div className="mt-0 md:mt-4 bg-black rounded-lg h-92 flex items-center justify-center relative group">
                             <video
                                 className={`rounded-lg w-full h-full object-cover ${!isPlaying ? 'opacity-0' : ''}`}
                                 ref={videoRef}

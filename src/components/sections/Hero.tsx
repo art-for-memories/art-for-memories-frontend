@@ -76,9 +76,6 @@ const Hero = () => {
                         <Link href={"/memory"} className="flex items-center text-sm gap-3 py-3 px-6 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
                             HAVE A STORY? SUBMIT IT
                         </Link>
-                        <Link href={"/memory"} className="flex items-center gap-3 px-4 py-3 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
-                            <span className="text-md">↗</span>
-                        </Link>
                     </div>
                 </div>
 
