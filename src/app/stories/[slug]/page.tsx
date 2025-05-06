@@ -81,12 +81,12 @@ function Story() {
           }}
         />
 
-        <div className='border-t border-slate-200 mt-10 pt-5 flex items-center justify-between'>
+        <div className='border-t border-slate-200 mt-10 pt-5 flex items-center justify-between flex-col md:flex-row'>
           <div>
             <span className='text-slate-600 text-sm'>Change Language: </span>
             <span className='text-slate-600 text-sm font-semibold'>{language.charAt(0).toUpperCase() + language.slice(1)}</span>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 mt-5 md:mt-0">
             <button onClick={() => handleLanguageChange('kinyarwanda')} className={`px-4 py-2 rounded ${language === 'kinyarwanda' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}>
               Kinyarwanda
             </button>

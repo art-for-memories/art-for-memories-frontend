@@ -71,7 +71,6 @@ export default function Stories() {
                 title='Memories'
                 description='Honoring Lives Through Preserved Images'
                 sup_title=''
-                // backgroundImage='https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/7e/99/0d/caption.jpg?w=1400&h=-1&s=1'
             />
 
             <MemoriesList title="Preserved Memories" data={filteredArts} onSearch={handleKeyDown} loading={loading} />

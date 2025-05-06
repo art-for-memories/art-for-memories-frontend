@@ -27,7 +27,7 @@ export interface TheirStoryProps {
 export default function StoryCard({ props }: { props: TheirStoryProps }) {
     return (<>
         <div className="w-full md:w-1/2 p-3">
-            <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12">
+            <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12 border border-gray-200">
                 <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight">{props.type}</span>
                 <a className="block text-neutral-800 text-3xl md:text-4xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href="#">{props.title}</a>
                 <p className="text-neutral-600 text-lg font-medium mb-11 max-w-lg tracking-tight">{props.caption}</p>
