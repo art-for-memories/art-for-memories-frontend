@@ -37,6 +37,11 @@ export const authOptions = {
 
       return session;
     },
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    redirect: async ({ baseUrl }: { baseUrl: string }) => {
+      // Redirect all users to /admin after login
+      return "/admin";
+    },
   },
 
   // Prisma adapter to connect NextAuth.js with the database
