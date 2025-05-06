@@ -42,7 +42,6 @@ function Story() {
             contents: data.frenchContent,
           },
         };
-        console.log(storyData)
         setStory(storyData);
       } catch (error) {
         console.error('Error fetching story:', error);
@@ -78,7 +77,7 @@ function Story() {
         <div
           className='contents prose prose-slate max-w-none text-slate-700'
           dangerouslySetInnerHTML={{
-            __html: story[language].contents.replace(/<\/?[^>]+(>|$)/g, ''),
+            __html: story[language].contents,
           }}
         />
 

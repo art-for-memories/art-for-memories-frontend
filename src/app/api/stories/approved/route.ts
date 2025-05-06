@@ -7,9 +7,15 @@ export async function GET() {
       select: {
         id: true,
         title: true,
+        caption: true,
         author: true,
+        type: true,
         date: true,
         image: true,
+        kinyarwandaContent: true,
+        englishContent: true,
+        frenchContent: true,
+        file: true,
       },
     });
 

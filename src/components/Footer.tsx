@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Download from "./sections/download";
 import Link from "next/link";
 
@@ -9,7 +8,7 @@ export default function Footer() {
 
       <section className="overflow-hidden">
         <div className="bg-neutral-900">
-          <div className="py-3 border-b border-neutral-600">
+          {/* <div className="py-3 border-b border-neutral-600">
             <div className="container mx-auto px-4">
               <div className="flex justify-between flex-wrap gap-4">
                 <div className="flex items-center gap-6 sm:gap-18 flex-wrap">
@@ -34,35 +33,13 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-          </div>
-          <div className="py-12 md:pb-20">
-            <div className="mx-auto px-4">
-              <div className="flex flex-wrap -mx-4">
-                <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
-                  <div className="font-bold">
-                    <div className="bg-white text-white px-2 py-2 rounded-xl flex items-center justify-center">
-                      <div><Image src={'/images/ART.PNG'} alt={"logo"} width={200} height={30} /></div>
-                    </div>
-                  </div>
-                </div>
-                <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
-                  <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Who we are</h2>
-                  <ul className="flex flex-col gap-4">
-                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/about-us">About us</Link></li>
-                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/contact-us">Contact us</Link></li>
-                  </ul>
-                </div>
-                <div className="w-full sm:w-1/2 lg:w-1/3 xl:w-1/6 p-4">
-                  <h2 className="text-white text-xl font-semibold tracking-tight mb-8">Resources</h2>
-                  <ul className="flex flex-col gap-4">
-                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/preserved-memories">Memories</Link></li>
-                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/stories">Stories</Link></li>
-                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/one-day-in-100-days">One Day in 100 Days</Link></li>
-                  </ul>
-                </div>
+          </div> */}
 
-                <div className="w-full lg:w-1/2 xl:w-1/3 p-4">
-                  <h2 className="text-white text-lg font-semibold tracking-tight mb-6">Join our Newsletter now</h2>
+          <div className="py-12">
+            <div className="mx-auto px-4">
+              <div className="flex flex-col items-center justify-center">
+                <div className="w-full lg:w-1/2 xl:w-2/3 p-4 text-center">
+                  <h2 className="text-white text-lg font-semibold tracking-tight mb-6">For more Join our Newsletter</h2>
 
                   <form className="mb-6" action="#">
                     <div className="flex flex-wrap -m-2">
@@ -75,7 +52,16 @@ export default function Footer() {
                     </div>
                   </form>
 
-                  <p className="text-neutral-400 text-sm font-semibold max-w-sm tracking-tight">Get the ideas, tools and tips you need to grow your sound straight to your inbox</p>
+                  <p className="text-neutral-400 text-sm font-semibold tracking-tight text-center">
+                    A dedicated platform to preserve memories of the 1994 Genocide Against the Tutsi through Art.
+                  </p>
+
+                  <ul className="flex gap-4 items-center justify-center mt-3 underline">
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/about-us">About us</Link></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/preserved-memories">Preserved Memories</Link></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/stories">Their Stories</Link></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/one-day-in-100-days">One Day in 100 Days</Link></li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -84,8 +70,8 @@ export default function Footer() {
 
         <div className="bg-neutral-800 py-6">
           <div className="container mx-auto px-4">
-            <div className="flex items-center gap-12 flex-wrap text-center">
-              <p className="text-neutral-400 font-semibold tracking-tight text-center">© Convergence. All rights reserved.</p>
+            <div className="flex items-center gap-12 flex-wrap text-center justify-center">
+              <p className="text-white font-semibold tracking-tight text-center">©Art for Memories Rwanda. All rights reserved.</p>
             </div>
           </div>
         </div>

@@ -21,6 +21,7 @@ export interface TheirStoryProps {
         contents: string;
         title: string;
     };
+    file?: string;
 }
 
 export default function StoryCard({ props }: { props: TheirStoryProps }) {
@@ -46,9 +47,13 @@ export default function StoryCard({ props }: { props: TheirStoryProps }) {
                             year: 'numeric'
                         })}
                     </p>
-                    <Link href={`/stories/${props.id}`} className="inline-flex text-slate-800 justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl hover:text-white focus:text-white bg-white hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200">
+                    {props.type === "Illustrated" && props.file ? (
+                        <Link href={props.file} target="_blank" rel="noopener noreferrer" className="inline-flex text-slate-800 justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl hover:text-white focus:text-white bg-white hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200">
+                            Read File
+                        </Link>
+                    ) : (<Link href={`/stories/${props.id}`} className="inline-flex text-slate-800 justify-center items-center text-center h-16 p-5 font-semibold tracking-tight text-xl hover:text-white focus:text-white bg-white hover:bg-neutral-900 focus:bg-neutral-900 border border-neutral-900 rounded-lg focus:ring-4 focus:ring-neutral-400 transition duration-200">
                         Read more
-                    </Link>
+                    </Link>)}
                 </div>
             </div>
         </div>

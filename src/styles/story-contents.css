@@ -2,3 +2,59 @@
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+.contents h1 {
+    font-size: 2em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contents h2 {
+    font-size: 1.5em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contents h3 {
+    font-size: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contents h4 {
+    font-size: 1.1em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contents h5 {
+    font-size: 1em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contents h6 {
+    font-size: 0.9em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.contents ul {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.contents ul li {
+    margin-bottom: 5px;
+}
+
+.contents ol {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.contents ol li {
+    margin-bottom: 5px;
+}

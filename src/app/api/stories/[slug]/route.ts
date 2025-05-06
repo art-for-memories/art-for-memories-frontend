@@ -20,6 +20,7 @@ export async function POST(req: NextRequest) {
         kinyarwandaContent: true,
         englishContent: true,
         frenchContent: true,
+        file: true,
       },
     });
 
