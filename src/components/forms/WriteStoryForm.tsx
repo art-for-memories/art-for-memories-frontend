@@ -3,8 +3,6 @@ import Tiptap from "./Tiptap";
 import { Stories } from "@/types/stories";
 
 function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
-    const [previewCurrentFile, setPreviewCurrentFile] = useState<string | null>(null);
-
     const [formData, setFormData] = useState({
         title: "",
         caption: "",
@@ -102,8 +100,6 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
                 frenchContent: currentStory.frenchContent,
                 file: null
             });
-
-            setPreviewCurrentFile(currentStory.file ?? null);
         }
     }, [currentStory]);
 
@@ -141,7 +137,7 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2">Image URL:</label>
+                <label className="block font-semibold ml-2">Image</label>
                 <input
                     type="file"
                     name="image"
@@ -150,10 +146,6 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
                         if (e.target.files && e.target.files.length > 0) {
                             const file = e.target.files[0];
                             const reader = new FileReader();
-
-                            reader.onload = () => {
-                                setPreviewCurrentFile(reader.result as string);
-                            };
 
                             reader.readAsDataURL(file);
 
@@ -169,13 +161,6 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
                 <div className="mb-5">
                     <label className="block font-semibold ml-2">Upload File:</label>
                     <input type="file" name="file" onChange={handleFileChange} className="w-full p-2 border rounded" required />
-                </div>
-            )}
-
-            {previewCurrentFile && (
-                <div className="mb-5">
-                    <label className="block font-semibold ml-2">Preview:</label>
-                    <a href={previewCurrentFile} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">{previewCurrentFile}</a>
                 </div>
             )}
 
