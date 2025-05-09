@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Video } from '@/types/video';
 import React, { useEffect, useState } from 'react'

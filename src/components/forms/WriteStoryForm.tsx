@@ -11,7 +11,7 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
         author: "",
         type: "",
         date: "",
-        image: null as string | null,
+        image: null as File | null,
         kinyarwandaContent: "",
         englishContent: "",
         frenchContent: "",
@@ -40,8 +40,10 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
             const formDataToSend = new FormData();
 
             Object.entries(formData).forEach(([key, value]) => {
-                if (key === "file" && value instanceof File) {
-                    formDataToSend.append(key, value);
+                if (key === "file" || key === "image" && value instanceof File) {
+                    if (value !== null) {
+                        formDataToSend.append(key, value);
+                    }
                 } else if (key !== "file" && value) {
                     formDataToSend.append(key, value as string);
                 }
@@ -61,7 +63,7 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
 
             if (response.ok) {
                 alert('Story submitted successfully!');
-                
+
                 setFormData({
                     title: "",
                     caption: "",
@@ -140,7 +142,27 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
 
             <div className="mb-5">
                 <label className="block font-semibold ml-2">Image URL:</label>
-                <input type="text" name="image" value={formData.image || ""} onChange={handleChange} className="w-full p-2 border rounded" required />
+                <input
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    onChange={(e) => {
+                        if (e.target.files && e.target.files.length > 0) {
+                            const file = e.target.files[0];
+                            const reader = new FileReader();
+
+                            reader.onload = () => {
+                                setPreviewCurrentFile(reader.result as string);
+                            };
+
+                            reader.readAsDataURL(file);
+
+                            setFormData({ ...formData, image: file });
+                        }
+                    }}
+                    className="w-full p-2 border rounded"
+                    required
+                />
             </div>
 
             {formData.type === "Illustrated" && (
