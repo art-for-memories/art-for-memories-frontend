@@ -15,14 +15,12 @@ export async function POST(req: Request) {
     const author = formData.get("author")?.toString() || "";
     const type = formData.get("type")?.toString() || "";
     const date = formData.get("date")?.toString() || new Date().toISOString();
-    const image = formData.get("image")?.toString() || "";
-    const kinyarwandaContent =
-      formData.get("kinyarwandaContent")?.toString() || "";
+    const image = formData.get("image") as File;
+    const kinyarwandaContent = formData.get("kinyarwandaContent")?.toString() || "";
     const englishContent = formData.get("englishContent")?.toString() || "";
     const frenchContent = formData.get("frenchContent")?.toString() || "";
     const file = formData.get("file") as File | null;
-    const current_story_id =
-      formData.get("current_story_id")?.toString() || null;
+    const current_story_id = formData.get("current_story_id")?.toString() || null;
 
     const story = current_story_id
       ? await prisma.story.update({
@@ -33,7 +31,6 @@ export async function POST(req: Request) {
             author,
             type,
             date: new Date(date),
-            image,
             kinyarwandaContent,
             englishContent,
             frenchContent,
@@ -46,7 +43,6 @@ export async function POST(req: Request) {
             author,
             type,
             date: new Date(date),
-            image,
             kinyarwandaContent: kinyarwandaContent || "No content provided",
             englishContent: englishContent || "No content provided",
             frenchContent: frenchContent || "No content provided",
@@ -80,6 +76,36 @@ export async function POST(req: Request) {
 
       dbPromise.then(() => {
         console.log("File saved to database with URL:", fileUrl);
+      });
+    }
+
+    if (image && image instanceof File) {
+      const imageId = uuidv4();
+      const imageName = `${imageId}-${image.name}`;
+      const imagePath = path.join(
+        process.cwd(),
+        "public/uploads/images",
+        imageName
+      );
+      const imageUrl = `https://artformemories.com/uploads/images/${imageName}`;
+
+      const bufferPromise = mkdir(path.dirname(imagePath), {
+        recursive: true,
+      }).then(() =>
+        image
+          .arrayBuffer()
+          .then((arrayBuffer) => writeFile(imagePath, Buffer.from(arrayBuffer)))
+      );
+
+      const dbPromise = bufferPromise.then(() =>
+        prisma.story.update({
+          where: { id: story.id },
+          data: { image: imageUrl },
+        })
+      );
+
+      dbPromise.then(() => {
+        console.log("Image saved to database with URL:", imageUrl);
       });
     }
 
