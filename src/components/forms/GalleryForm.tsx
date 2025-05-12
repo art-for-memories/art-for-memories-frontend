@@ -69,7 +69,7 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
 
     return (
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-white shadow-lg rounded-3xl text-slate-900">
-            <h2 className="text-2xl font-bold mb-4">Submit Image</h2>
+            <h2 className="text-slate-700 font-semibold">Submit Gallery Image</h2>
 
             <div className="mb-5">
                 <label className="block font-semibold ml-2">Name:</label>
