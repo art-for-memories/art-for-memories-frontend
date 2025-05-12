@@ -138,7 +138,7 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
 
     return (
         <div className="max-w-md md:max-w-lg mx-auto bg-white p-6 rounded-md shadow-md">
-            <h2 className="text-xl font-semibold text-black mb-4">Submit Your Story</h2>
+            <h2 className="text-slate-700 font-semibold">Submit Your Story</h2>
 
             <form className="space-y-4" onSubmit={handleSubmit}>
                 {/* First Name & Last Name */}

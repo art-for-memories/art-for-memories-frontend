@@ -98,32 +98,32 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
                 kinyarwandaContent: currentStory.kinyarwandaContent,
                 englishContent: currentStory.englishContent,
                 frenchContent: currentStory.frenchContent,
-                file: null
+                file: null,
             });
         }
     }, [currentStory]);
 
     return (
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-white shadow-lg rounded-3xl text-slate-900" encType="multipart/form-data">
-            <h2 className="text-2xl font-bold mb-4">Write Your Story</h2>
+            <h2 className="text-slate-700 font-semibold">Write Your Story</h2>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2">Title:</label>
+                <label className="block font-semibold">Title</label>
                 <input type="text" name="title" value={formData.title} onChange={handleChange} className="w-full p-2 border rounded" required />
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2">Caption:</label>
+                <label className="block font-semibold">Caption</label>
                 <input type="text" name="caption" value={formData.caption} onChange={handleChange} className="w-full p-2 border rounded" required />
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2">Author:</label>
+                <label className="block font-semibold">Author</label>
                 <input type="text" name="author" value={formData.author} onChange={handleChange} className="w-full p-2 border rounded" required />
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2">Type:</label>
+                <label className="block font-semibold">Type</label>
                 <select name="type" value={formData.type} onChange={handleChange} className="w-full p-2 border rounded" required>
                     <option value="">Select Type</option>
                     <option value="Written Story">Written Story</option>
@@ -132,7 +132,7 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2">Published Date:</label>
+                <label className="block font-semibold">Published Date</label>
                 <input type="date" name="date" value={formData.date} onChange={handleChange} className="w-full p-2 border rounded" required />
             </div>
 
@@ -145,10 +145,14 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
                     onChange={(e) => {
                         if (e.target.files && e.target.files.length > 0) {
                             const file = e.target.files[0];
+
+                            if (file.size > 1024 * 1024) {
+                                alert("Image size must be under 1MB.");
+                                return;
+                            }
+
                             const reader = new FileReader();
-
                             reader.readAsDataURL(file);
-
                             setFormData({ ...formData, image: file });
                         }
                     }}
@@ -159,25 +163,32 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
 
             {formData.type === "Illustrated" && (
                 <div className="mb-5">
-                    <label className="block font-semibold ml-2">Upload File:</label>
-                    <input type="file" name="file" onChange={handleFileChange} className="w-full p-2 border rounded" required />
+                    <label className="block font-semibold ml-2">Upload PDF File</label>
+                    <input
+                        type="file"
+                        name="file"
+                        accept="application/pdf"
+                        onChange={handleFileChange}
+                        className="w-full p-2 border rounded"
+                        required
+                    />
                 </div>
             )}
 
             {formData.type === "Written Story" && (
                 <>
                     <div className="mb-5">
-                        <label className="block font-semibold ml-2">Kinyarwanda Content:</label>
+                        <label className="block font-semibold ml-2">Kinyarwanda Content</label>
                         <Tiptap value={formData.kinyarwandaContent} onContentChange={(content: string) => handleContentChange('kinyarwandaContent', content)} />
                     </div>
 
                     <div className="mb-5">
-                        <label className="block font-semibold ml-2">English Content:</label>
+                        <label className="block font-semibold ml-2">English Content</label>
                         <Tiptap value={formData.englishContent} onContentChange={(content: string) => handleContentChange('englishContent', content)} />
                     </div>
 
                     <div className="mb-5">
-                        <label className="block font-semibold ml-2">French Content:</label>
+                        <label className="block font-semibold ml-2">French Content</label>
                         <Tiptap value={formData.frenchContent} onContentChange={(content: string) => handleContentChange('frenchContent', content)} />
                     </div>
                 </>

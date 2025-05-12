@@ -101,9 +101,9 @@ function VideoForm({ onCallback, setFormOpen, currentVideo }: { onCallback: () =
     return (<>
         <h3 className="text-slate-700 font-semibold">Upload New Video</h3>
 
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className='mt-5'>
             <div className="mb-5">
-                <label className="block font-semibold ml-2 text-slate-800">Title:</label>
+                <label className="block font-semibold text-slate-800">Title</label>
                 <input
                     type="text"
                     name="title"
@@ -115,7 +115,7 @@ function VideoForm({ onCallback, setFormOpen, currentVideo }: { onCallback: () =
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2 text-slate-800">Caption:</label>
+                <label className="block font-semibold text-slate-800">Caption</label>
                 <input
                     type="text"
                     name="caption"

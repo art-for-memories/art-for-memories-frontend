@@ -5,7 +5,7 @@ import { Art } from '@/types/arts';
 
 function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => void; currentMemory: Art | null }) {
     const [name, setName] = useState('');
-    const [age, setAge] = useState('');
+    const [age, setAge] = useState('0');
     const [oldPhoto, setOldPhoto] = useState<File | null>(null);
     const [preservedPhoto, setPreservedPhoto] = useState<File | null>(null);
     const [oldPhotoPreview, setOldPhotoPreview] = useState<string | null>(null);
@@ -98,8 +98,9 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
     }, [currentMemory]);
 
     return (<>
-        <h3 className="text-slate-700 font-semibold">Upload New Story</h3>
-        <form onSubmit={handleSubmit}>
+        <h3 className="text-slate-700 font-semibold">Upload New Memory</h3>
+        
+        <form onSubmit={handleSubmit} className='mt-5'>
             <div className="my-5">
                 <label className="text-sm text-black font-bold">Name</label>
                 <input
@@ -111,7 +112,7 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
                 />
             </div>
 
-            <div className="my-5">
+            {/* <div className="my-5">
                 <label className="text-sm text-black font-bold">Age</label>
                 <input
                     type="number"
@@ -120,7 +121,7 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
                     value={age}
                     onChange={(e) => setAge(e.target.value)}
                 />
-            </div>
+            </div> */}
 
             <div className="my-5">
                 <label className="text-sm text-black font-medium">Old Photo</label>
