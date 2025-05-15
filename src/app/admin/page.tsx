@@ -48,12 +48,6 @@ export default function Memories() {
         setFormOpen(true);
     }
 
-    const handleSubmitted = () => {
-        getMemories();
-        setFormOpen(false);
-        window.location.reload();
-    }
-
     const searchMemory = async (searchTerm: string) => {
         if (searchTerm.length > 3) {
             setLoading(true);
@@ -103,13 +97,13 @@ export default function Memories() {
 
                     {/* Table */}
                     <div className="mt-4">
-                        {loading && <div className="my-10"><FetchSpinner /></div>} 
+                        {loading && <div className="my-10"><FetchSpinner /></div>}
                         <Table headers={headers} data={memories} onDelete={handleDelete} onPreview={previewMemory} onApproved={approvedMemory} />
                     </div>
                 </div>
 
                 <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                    <MemoryForm currentMemory={currentMemory} onSuccess={() => handleSubmitted()} />
+                    <MemoryForm currentMemory={currentMemory} />
                 </FormModal>
             </div>
         </div>

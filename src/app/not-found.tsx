@@ -1,4 +1,11 @@
 import Link from 'next/link'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Page Not Found",
+  description: "The page you are looking for does not exist. Explore other sections of Art of Memories Rwanda to learn more about our mission and stories.",
+  keywords: ["404", "Page Not Found", "Art of Memories Rwanda", "Error Page"],
+};
 
 export default function NotFound() {
   return (

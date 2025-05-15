@@ -1,35 +1,14 @@
-"use client";
-
 import PageHeader from "@/components/headers/page-header";
 import Layout from "@/components/Layout";
-import StoriesList from "@/components/lists/StoriesList";
-import type { Stories } from "@/types/stories";
-import { useEffect, useState } from "react";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Their Stories",
+    description: "Browse through a collection of stories that preserve the memories and legacy of Genocide Survivors through Art of Memories Rwanda.",
+    keywords: ["Stories", "Art of Memories Rwanda", "Genocide Survivors", "Preserve Memories", "Rwanda", "Art", "Genocide", "Survivors"],
+};
 
 export default function Stories() {
-    const [writtenStories, setWrittenStories] = useState([]);
-    const [illustratedStories, setIllustratedStories] = useState([]);
-
-    const getAllStories = async () => {
-        try {
-            const response = await fetch('/api/stories');
-
-            if (response.ok) {
-                const allStories = await response.json();
-                setWrittenStories(allStories.filter((story: Stories) => story.type === 'Written Story'));
-                setIllustratedStories(allStories.filter((story: Stories) => story.type === 'Illustrated'));
-            } else {
-                console.error('Failed to fetch stories');
-            }
-        } catch (error) {
-            console.error('Error fetching stories:', error);
-        }
-    }
-
-    useEffect(() => {
-        getAllStories();
-    })
-
     return (<>
         <Layout>
             <PageHeader
@@ -39,8 +18,7 @@ export default function Stories() {
             />
 
             <div className="bg-white">
-                <StoriesList title="Written Stories" data={writtenStories} />
-                <StoriesList title="Illustrated Stories" data={illustratedStories} />
+                <Stories />
             </div>
         </Layout>
     </>);

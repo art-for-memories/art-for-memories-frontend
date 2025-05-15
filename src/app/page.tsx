@@ -6,7 +6,7 @@ import Blogs from "@/components/sections/blogs";
 import TwoColumnCarousel from "@/components/TwoColumnCarousel";
 
 export const metadata: Metadata = {
-  title: "Art of Memories Rwanda | Preserving Genocide Victims’ Legacy through Art",
+  title: "Art of Memories Rwanda",
   description:
     "Art of Memories Rwanda is an initiative led by King Ngabo, launched in 2023 to preserve the legacy of Genocide Survivors by restoring old photos into vivid portraits. We transform memories into meaningful art to honor those lost in the 1994 Genocide against the Tutsi.",
   keywords: [
@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     "1994 Genocide against Tutsi",
     "digital portraits",
     "photo restoration",
+    "genocide",
+    "Rwanda",
+    "art",
+    "survivors",
   ],
   robots: "index, follow",
   metadataBase: new URL("https://artformemories.com"),

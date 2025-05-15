@@ -1,6 +1,13 @@
 import Layout from '@/components/Layout'
 import Navbar from '@/components/Navbar'
 import React from 'react'
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact Us",
+  description: "Get in touch with Art of Memories Rwanda for inquiries, collaborations, or support. We are here to help you preserve memories through art.",
+  keywords: ["Contact Art of Memories", "Inquiries", "Support", "Art of Memories Rwanda", "art", "memories", "rwanda", "genocide", "survivors"],
+};
 
 function ContactUs() {
     return (<>
