@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, currentImage: { id: string; name: string; image: string } | null }) {
     const [formData, setFormData] = useState({
         name: "",
-        image: null as string | null,
+        image: null as File | null,
     });
     const [previewCurrentFile, setPreviewCurrentFile] = useState<string | null>(null);
 
@@ -13,18 +13,30 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
         setFormData({ ...formData, [name]: e.target.value });
     };
 
+    const uploadFile = async (file: File) => {
+        const formData = new FormData();
+
+        formData.append('file', file);
+        formData.append('upload_preset', 'memories_preset'); // Ensure this preset exists in Cloudinary
+
+        const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
+            method: 'POST',
+            body: formData,
+        });
+
+        const data = await response.json();
+        return data.secure_url;
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (!formData.image) {
-            alert("Please select an image file.");
-            return;
-        }
+        const uploadedImage = formData.image ? await uploadFile(formData.image) : null;
 
         try {
             const data: { name: string; image: string; current_image_id?: string } = {
                 name: formData.name,
-                image: formData.image,
+                image: uploadedImage,
             };
 
             if (currentImage) {
@@ -61,7 +73,7 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
         if (currentImage) {
             setFormData({
                 name: currentImage.name,
-                image: currentImage.image,
+                image: null,
             });
             setPreviewCurrentFile(currentImage.image);
         }
@@ -71,8 +83,8 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-white shadow-lg rounded-3xl text-slate-900">
             <h2 className="text-slate-700 font-semibold">Submit Gallery Image</h2>
 
-            <div className="mb-5">
-                <label className="block font-semibold ml-2">Name:</label>
+            <div className="mb-5 mt-5">
+                <label className="block font-semibold">Name:</label>
                 <input
                     type="text"
                     name="name"
@@ -84,12 +96,32 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
             </div>
 
             <div className="mb-5">
-                <label className="block font-semibold ml-2">Image url:</label>
+                <label className="block font-semibold">Attach Image</label>
                 <input
-                    type="text"
+                    type="file"
                     name="image"
-                    value={formData.image ?? ""}
-                    onChange={handleChange}
+                    onChange={(e) => {
+                        const file = e.target.files?.[0];
+
+                        if (file) {
+                            if (!file.type.startsWith("image/")) {
+                                alert("Please upload a valid image file.");
+                                return;
+                            }
+
+                            if (file.size > 1024 * 1024) {
+                                alert("Image size must be under 1MB.");
+                                return;
+                            }
+
+                            setFormData({ ...formData, image: file });
+                            const reader = new FileReader();
+                            reader.onloadend = () => {
+                                setPreviewCurrentFile(reader.result as string);
+                            };
+                            reader.readAsDataURL(file);
+                        }
+                    }}
                     className="w-full p-2 border rounded"
                     accept="image/*"
                     required

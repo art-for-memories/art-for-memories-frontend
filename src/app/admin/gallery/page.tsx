@@ -42,6 +42,8 @@ function Stories() {
         try {
             const response = await fetch(`/api/gallery/${id}`, {
                 method: 'DELETE',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ slug: id }),
             });
 
             if (response.ok) {
@@ -94,7 +96,10 @@ function Stories() {
                         </div>
 
                         <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                            <GalleryForm onSuccess={() => setFormOpen(false)} currentImage={currentImage} />
+                            <GalleryForm onSuccess={() => {
+                                setFormOpen(false)
+                                getAllImages();
+                            }} currentImage={currentImage} />
                         </FormModal>
                     </header>
 
