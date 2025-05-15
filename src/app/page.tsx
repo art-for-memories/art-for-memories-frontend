@@ -2,8 +2,8 @@ import Hero from "@/components/sections/Hero";
 import Partners from "@/components/sections/Partners";
 import type { Metadata } from "next";
 import Layout from "@/components/Layout";
-// import OurCommunity from "@/components/sections/OurCommunity";
 import Blogs from "@/components/sections/blogs";
+import TwoColumnCarousel from "@/components/TwoColumnCarousel";
 
 export const metadata: Metadata = {
   title: "Art of Memories Rwanda | Preserving Genocide Victims’ Legacy through Art",
@@ -58,9 +58,9 @@ export const viewport = {
 export default function Home() {
   return (
     <Layout>
-      <div className="overflow-x-hidden">
+      <div className="overflow-x-hidden bg-neutral-50">
         <Hero />
-        {/* <OurCommunity /> */}
+        <TwoColumnCarousel />
         <Blogs />
         <Partners />
       </div>
