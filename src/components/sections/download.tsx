@@ -25,7 +25,7 @@ function Download() {
                         </p>
 
                         <p className="mt-2 text-sm text-yellow-300 sm:text-base leading-6">
-                            Note: The app is currently in the testing phase. We appreciate your feedback to improve the experience.
+                            Note: The app is currently in the testing phase. <br /> We appreciate your feedback to improve the experience.
                         </p>
 
                         <div className="flex flex-col md:items-center mt-8 space-y-4 sm:flex-row sm:space-y-0 lg:mt-12 sm:space-x-4 space-x-4">
@@ -50,7 +50,7 @@ function Download() {
                             </a>
 
                             <a
-                                href="/path-to-your-apk-file.apk"
+                                href="/app-release.apk"
                                 title="Download APK"
                                 className="flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-slate-900 rounded-xl hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
                                 role="button"
