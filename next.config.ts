@@ -11,7 +11,8 @@ const nextConfig: NextConfig = {
       "dynamic-media-cdn.tripadvisor.com",
       "www.passage.law",
       "upload.wikimedia.org",
-      "pbs.twimg.com"
+      "pbs.twimg.com",
+      "images.unsplash.com",
     ],
   },
 };

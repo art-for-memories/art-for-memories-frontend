@@ -50,7 +50,7 @@ export default function MemoriesList({ title, data, onSearch, loading }: { title
                     </button>
 
                     <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                        <MemoryForm onSuccess={() => setFormOpen(false)} />
+                        <MemoryForm />
                     </FormModal>
                 </div>
             </div>

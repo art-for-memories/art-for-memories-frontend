@@ -23,7 +23,7 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory?: Memory | undefined; onSuccess?: () => void }) {
+export default function MemoryForm({ currentMemory }: { currentMemory?: Memory | undefined }) {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [selectedImages, setSelectedImages] = useState<File[]>([]);
@@ -43,9 +43,8 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
             formData.append("phone", data.phone);
             formData.append("memories", "Memories");
 
-            // Append multiple files
             for (const file of selectedImages) {
-                formData.append("images", file); // key must match backend
+                formData.append("images", file);
             }
 
             setLoading(true);
@@ -64,7 +63,6 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                 setSelectedImages([]);
                 setSuccessMessage("Memory submitted successfully!");
                 setErrorMessage(null);
-                onSuccess?.();
             } else {
                 const errorData = await response.json();
                 setErrorMessage(errorData.message || "Failed to submit memory. Please try again later.");
@@ -134,7 +132,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                         <label className="text-sm text-black font-bold">First Name</label>
                         <input
                             type="text"
-                            placeholder="King"
+                            placeholder="name here"
                             className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
                             {...register("firstName")}
                             aria-label="First Name"
@@ -145,7 +143,7 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                         <label className="text-sm text-black font-bold">Last Name</label>
                         <input
                             type="text"
-                            placeholder="Ngabo"
+                            placeholder="name here"
                             className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
                             {...register("lastName")}
                             aria-label="Last Name"
@@ -185,13 +183,13 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
 
                 {/* File Upload */}
                 <div>
-                    <label className="text-sm text-black font-bold">Pictures (Memories)</label>
+                    <label className="text-sm text-black font-bold">Attach Images</label>
                     <div
                         className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer"
                         onClick={() => document.getElementById('upload-images')?.click()}
                     >
                         <span className="text-gray-400">📎</span>
-                        <span className="text-gray-400">Attach pictures of your loved ones</span>
+                        <span className="text-gray-400">image files</span>
                         <input
                             type="file"
                             className="hidden"
@@ -260,9 +258,8 @@ export default function MemoryForm({ currentMemory, onSuccess }: { currentMemory
                     <button
                         type="submit"
                         disabled={loading}
-                        className={`w-auto flex items-center justify-between py-3 px-4 rounded-md hover:opacity-80 ${
-                            loading ? "bg-gray-400 cursor-not-allowed" : "bg-black text-white"
-                        }`}
+                        className={`w-auto flex items-center justify-between py-3 px-4 rounded-md hover:opacity-80 ${loading ? "bg-gray-400 cursor-not-allowed" : "bg-black text-white"
+                            }`}
                     >
                         <span>{loading ? "Submitting..." : currentMemory ? "Save Changes" : "Submit"}</span>
                     </button>

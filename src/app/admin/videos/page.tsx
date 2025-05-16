@@ -107,10 +107,14 @@ function Videos() {
                         <div className='bg-white rounded-xl items-center justify-center p-4 grid grid-cols-3 gap-4 w-full gap-x-4'>
                             {videos && videos.map((video: Video, index: number) => (
                                 <div key={index} className="bg-black rounded-lg relative mx-1 w-[300px]">
-                                    <video width="100%" height="100%" controls className="w-[300px] h-[200px]">
-                                        <source src={video.url} type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
+                                    <iframe
+                                        src={video.url}
+                                        width="100%"
+                                        height="200"
+                                        className="w-[300px] h-[200px] rounded-lg"
+                                        allow="autoplay; encrypted-media"
+                                        allowFullScreen
+                                    ></iframe>
                                     <div className="rounded-lg bottom-0 left-0 bg-black bg-opacity-50 text-white p-2 w-full">
                                         <h3 className="text-sm font-semibold">{video.title}</h3>
                                         <p className="text-xs">{video.caption}</p>

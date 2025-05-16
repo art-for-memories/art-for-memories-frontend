@@ -99,7 +99,7 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
 
     return (<>
         <h3 className="text-slate-700 font-semibold">Upload New Memory</h3>
-        
+
         <form onSubmit={handleSubmit} className='mt-5'>
             <div className="my-5">
                 <label className="text-sm text-black font-bold">Name</label>
@@ -112,23 +112,25 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
                 />
             </div>
 
-            {/* <div className="my-5">
-                <label className="text-sm text-black font-bold">Age</label>
-                <input
-                    type="number"
-                    placeholder="79"
-                    className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
-                    value={age}
-                    onChange={(e) => setAge(e.target.value)}
-                />
-            </div> */}
-
             <div className="my-5">
                 <label className="text-sm text-black font-medium">Old Photo</label>
                 <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-old-photo')?.click()}>
                     <span className="text-gray-400">📎</span>
                     <span className="text-gray-400">Attach the old photo</span>
-                    <input type="file" className="hidden" id='upload-old-photo' accept="image/*" onChange={(e) => handleFileChange(e, setOldPhoto, setOldPhotoPreview)} />
+                    <input
+                        type="file"
+                        className="hidden"
+                        id='upload-old-photo'
+                        accept="image/*"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file && file.size > 1024 * 1024) {
+                                alert('File size must be under 1MB');
+                                return;
+                            }
+                            handleFileChange(e, setOldPhoto, setOldPhotoPreview);
+                        }}
+                    />
                 </div>
                 {oldPhotoPreview && (
                     <div className="mt-4">
@@ -142,7 +144,20 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
                 <div className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer" onClick={() => document.getElementById('upload-preserved-photo')?.click()}>
                     <span className="text-gray-400">📎</span>
                     <span className="text-gray-400">Attach the preserved photo</span>
-                    <input type="file" className="hidden" id='upload-preserved-photo' accept="image/*" onChange={(e) => handleFileChange(e, setPreservedPhoto, setPreservedPhotoPreview)} />
+                    <input
+                        type="file"
+                        className="hidden"
+                        id='upload-preserved-photo'
+                        accept="image/*"
+                        onChange={(e) => {
+                            const file = e.target.files?.[0];
+                            if (file && file.size > 1024 * 1024) {
+                                alert('File size must be under 1MB');
+                                return;
+                            }
+                            handleFileChange(e, setPreservedPhoto, setPreservedPhotoPreview);
+                        }}
+                    />
                 </div>
                 {preservedPhotoPreview && (
                     <div className="mt-4">

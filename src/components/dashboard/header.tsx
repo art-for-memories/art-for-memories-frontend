@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState } from 'react'
 import MemoryForm from '../forms/MemoryForm';
 import FormModal from '../models/form-model';
@@ -22,7 +23,7 @@ function Header() {
             </div>
 
             <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                <MemoryForm onSuccess={() => {}} />
+                <MemoryForm />
             </FormModal>
         </header>
     )

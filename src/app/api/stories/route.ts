@@ -57,7 +57,7 @@ export async function POST(req: Request) {
         "public/uploads/files",
         fileName
       );
-      const fileUrl = `https://artformemories.com/uploads/files/${fileName}`;
+      const fileUrl = `${process.env.NEXT_PUBLIC_URL}/uploads/files/${fileName}`;
 
       const bufferPromise = mkdir(path.dirname(filePath), {
         recursive: true,

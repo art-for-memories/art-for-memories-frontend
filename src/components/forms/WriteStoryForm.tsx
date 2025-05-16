@@ -107,7 +107,7 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
         <form onSubmit={handleSubmit} className="max-w-3xl mx-auto bg-white shadow-lg rounded-3xl text-slate-900" encType="multipart/form-data">
             <h2 className="text-slate-700 font-semibold">Write Your Story</h2>
 
-            <div className="mb-5">
+            <div className="mb-5 mt-5">
                 <label className="block font-semibold">Title</label>
                 <input type="text" name="title" value={formData.title} onChange={handleChange} className="w-full p-2 border rounded" required />
             </div>

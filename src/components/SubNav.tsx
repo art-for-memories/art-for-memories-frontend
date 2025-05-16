@@ -19,7 +19,7 @@ export default function SubNav() {
                     </button>
 
                     <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                        <MemoryForm onSuccess={() => { }} />
+                        <MemoryForm />
                     </FormModal>
                 </div>
             </div>
@@ -27,7 +27,13 @@ export default function SubNav() {
             {/* Menu Links */}
             <Link href={"/about-us"} className="hover:text-gray-600 text-sm">About us</Link>
             <Link href={"/preserved-memories"} className="hover:text-gray-600 text-sm">Memories</Link>
-            <Link href={"/stories"} className="hover:text-gray-600 text-sm">Their Stories</Link>
+            <div className="relative group">
+                <Link href={'/stories'} className="hover:text-gray-600 text-sm">Their Stories</Link>
+                <div className="absolute hidden group-hover:flex flex-col bg-white shadow-md rounded-md w-48">
+                    <Link href={"/stories/written"} className="hover:bg-gray-100 px-4 py-2 text-sm rounded-md text-slate-800">Written Stories</Link>
+                    <Link href={"/stories/illustrated"} className="hover:bg-gray-100 px-4 py-2 text-sm rounded-md text-slate-800">Illustrated Stories</Link>
+                </div>
+            </div>
             <Link href={"/one-day-in-100-days"} className="hover:text-gray-600 text-sm">One Day In 100 Days</Link>
             <Link href={"https://kwibuka.rw"} target="__blank" className="hover:text-gray-600 font-semibold text-sm">Learn More</Link>
         </div>
@@ -60,7 +66,7 @@ export default function SubNav() {
                     </button>
 
                     <FormModal isOpen={isFormOpen} onClose={() => setFormOpen(false)}>
-                        <MemoryForm onSuccess={() => { }} />
+                        <MemoryForm />
                     </FormModal>
                 </div>
             </div>
