@@ -22,8 +22,20 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         if (e.target.files && e.target.files.length > 0) {
-            console.log(e.target.files[0])
-            setFormData({ ...formData, file: e.target.files[0] });
+            const file = e.target.files[0];
+
+            if (file.type !== "application/pdf") {
+                alert("Only PDF files are allowed.");
+                e.target.value = "";
+                return;
+            }
+            if (file.size > 4 * 1024 * 1024) {
+                alert("PDF file size must not exceed 4MB.");
+                e.target.value = "";
+                return;
+            }
+            
+            setFormData({ ...formData, file });
         }
     };
 
