@@ -1,58 +1,11 @@
 import { NextResponse } from "next/server";
-import { writeFile } from "fs/promises";
-import path from "path";
-import { mkdir } from "fs/promises";
-import { v4 as uuidv4 } from "uuid";
 import prisma from "../../../../lib/prisma";
-import { Memories } from "@prisma/client";
+import { uploadFile } from "@/utils/uploadFile";
 
 export const config = {
   api: {
     bodyParser: false,
   },
-};
-
-const handleImages = async (memory: Memories, formData: FormData) => {
-  const imagePromises: Promise<{
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
-    image: string;
-    memoryId: string;
-  }>[] = [];
-
-  formData.forEach((value, key) => {
-    if (key === "images" && value instanceof File) {
-      const file = value;
-      const fileId = uuidv4();
-      const filePath = path.join(
-        process.cwd(),
-        "public/uploads",
-        `${fileId}-${file.name}`
-      );
-
-      const bufferPromise = mkdir(path.dirname(filePath), {
-        recursive: true,
-      }).then(() =>
-        file
-          .arrayBuffer()
-          .then((arrayBuffer) => writeFile(filePath, Buffer.from(arrayBuffer)))
-      );
-
-      const dbPromise = bufferPromise.then(() =>
-        prisma.memoriesImage.create({
-          data: {
-            image: `/uploads/${fileId}-${file.name}`,
-            memoryId: memory.id,
-          },
-        })
-      );
-
-      imagePromises.push(dbPromise);
-    }
-  });
-
-  await Promise.all(imagePromises);
 };
 
 export async function POST(req: Request) {
@@ -64,7 +17,8 @@ export async function POST(req: Request) {
     const email = formData.get("email")?.toString() || "";
     const phone = formData.get("phone")?.toString() || "";
     const memories = formData.get("memories")?.toString() || "";
-    const current_memory_id = formData.get("current_memory_id")?.toString() || "";
+    const current_memory_id =
+      formData.get("current_memory_id")?.toString() || "";
 
     if (current_memory_id) {
       const existingMemory = await prisma.memories.findUnique({
@@ -83,7 +37,24 @@ export async function POST(req: Request) {
           },
         });
 
-        await handleImages(memory, formData);
+        const imagesEntries = formData.getAll("images").filter(Boolean);
+        if (imagesEntries && imagesEntries.length > 0) {
+          await prisma.memoriesImage.deleteMany({
+            where: { memoryId: current_memory_id },
+          });
+
+          for (const entry of imagesEntries) {
+            if (entry instanceof File) {
+              const url = await uploadFile(entry);
+              await prisma.memoriesImage.create({
+                data: {
+                  image: url,
+                  memoryId: memory.id,
+                },
+              });
+            }
+          }
+        }
 
         return NextResponse.json({ success: true, message: "Memory updated" });
       }
@@ -98,7 +69,21 @@ export async function POST(req: Request) {
         },
       });
 
-      await handleImages(memory, formData);
+      const imagesEntries = formData.getAll("images").filter(Boolean);
+      if (imagesEntries && imagesEntries.length > 0) {
+        for (const entry of imagesEntries) {
+          if (entry instanceof File) {
+            const url = await uploadFile(entry);
+            await prisma.memoriesImage.create({
+              data: {
+                image: url,
+                memoryId: memory.id,
+              },
+            });
+          }
+        }
+      }
+
       return NextResponse.json({ success: true, memory });
     }
   } catch (error) {
