@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import FetchSpinner from '../spinners/fetch-spinner';
 import Image from 'next/image';
 import { Art } from '@/types/arts';
+import { uploadFile } from '@/utils/uploadFile';
 
 function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => void; currentMemory: Art | null }) {
     const [name, setName] = useState('');
@@ -22,21 +22,6 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
             setFile(file);
             setPreview(URL.createObjectURL(file));
         }
-    };
-
-    const uploadFile = async (file: File) => {
-        const formData = new FormData();
-
-        formData.append('file', file);
-        formData.append('upload_preset', 'memories_preset'); // Ensure this preset exists in Cloudinary
-
-        const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
-            method: 'POST',
-            body: formData,
-        });
-
-        const data = await response.json();
-        return data.secure_url;
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
@@ -124,8 +109,8 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
                         accept="image/*"
                         onChange={(e) => {
                             const file = e.target.files?.[0];
-                            if (file && file.size > 1024 * 1024) {
-                                alert('File size must be under 1MB');
+                            if (file && file.size > 3 * 1024 * 1024) {
+                                alert('File size must be under 3MB');
                                 return;
                             }
                             handleFileChange(e, setOldPhoto, setOldPhotoPreview);
@@ -151,8 +136,8 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
                         accept="image/*"
                         onChange={(e) => {
                             const file = e.target.files?.[0];
-                            if (file && file.size > 1024 * 1024) {
-                                alert('File size must be under 1MB');
+                            if (file && file.size > 3 * 1024 * 1024) {
+                                alert('File size must be under 3MB');
                                 return;
                             }
                             handleFileChange(e, setPreservedPhoto, setPreservedPhotoPreview);
@@ -168,11 +153,22 @@ function PreservedMemoryForm({ onCallback, currentMemory }: { onCallback: () => 
 
             {/* Submit Button */}
             <div className='flex items-center justify-between mt-5'>
-                {isSubmitting && <div className="my-10"><FetchSpinner /></div>}
-                {!isSubmitting && <button type='submit' disabled={isSubmitting} className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80">
-                    <span>{currentMemory ? 'Save Changes' : 'Submit'}</span>
-                    <span className='ml-2'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
-                </button>}
+                <button type='submit' disabled={isSubmitting} className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80">
+                    {isSubmitting ? (
+                        <span className="flex items-center">
+                            <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                            </svg>
+                            Uploading...
+                        </span>
+                    ) : (
+                        <>
+                            <span>{currentMemory ? 'Save Changes' : 'Submit'}</span>
+                            <span className='ml-2'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
+                        </>
+                    )}
+                </button>
             </div>
         </form>
     </>)

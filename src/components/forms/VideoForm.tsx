@@ -129,9 +129,30 @@ function VideoForm({ onCallback, setFormOpen, currentVideo }: { onCallback: () =
 
             {/* Submit Button */}
             <div className='flex items-center justify-between mt-5'>
-                <button type='submit' disabled={isSubmitting || isPending} className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80">
-                    <span>{isSubmitting ? "Submitting..." : (currentVideo ? "Save Changes" : "Submit")}</span>
-                    <span className='ml-5'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
+                <button
+                    type='submit'
+                    disabled={isSubmitting || isPending}
+                    className="w-auto bg-black text-white flex items-center justify-between py-3 px-4 rounded-[8px] hover:opacity-80"
+                >
+                    {isSubmitting ? (
+                        <span className="flex items-center">
+                            <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                            </svg>
+                            Submitting...
+                        </span>
+                    ) : (
+                        <>
+                            <span>{currentVideo ? "Save Changes" : "Submit"}</span>
+                            <span className='ml-5'>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path>
+                                    <path stroke="#ffffff" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M3.5 12h16.83" opacity=".4"></path>
+                                </svg>
+                            </span>
+                        </>
+                    )}
                 </button>
             </div>
         </form>
