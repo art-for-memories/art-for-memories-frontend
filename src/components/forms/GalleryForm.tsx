@@ -1,3 +1,4 @@
+import { uploadFile } from "@/utils/uploadFile";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -7,30 +8,16 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
         image: null as File | null,
     });
     const [previewCurrentFile, setPreviewCurrentFile] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
         const { name } = e.target;
         setFormData({ ...formData, [name]: e.target.value });
     };
 
-    const uploadFile = async (file: File) => {
-        const formData = new FormData();
-
-        formData.append('file', file);
-        formData.append('upload_preset', 'memories_preset'); // Ensure this preset exists in Cloudinary
-
-        const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
-            method: 'POST',
-            body: formData,
-        });
-
-        const data = await response.json();
-        return data.secure_url;
-    };
-
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
+        setLoading(true);
         const uploadedImage = formData.image ? await uploadFile(formData.image) : null;
 
         try {
@@ -66,6 +53,8 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
         } catch (error) {
             console.error('Error submitting image:', error);
             alert('Failed to submit image. Please try again later.');
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -109,8 +98,8 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
                                 return;
                             }
 
-                            if (file.size > 1024 * 1024) {
-                                alert("Image size must be under 1MB.");
+                            if (file.size > 3 * 1024 * 1024) {
+                                alert("Image size must be under 3MB.");
                                 return;
                             }
 
@@ -142,8 +131,18 @@ function GalleryForm({ onSuccess, currentImage }: { onSuccess: () => void, curre
                 </div>
             )}
 
-            <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded font-semibold hover:bg-blue-700">
-                {currentImage ? "Update Image" : "Submit Image"}
+            <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded font-semibold hover:bg-blue-700" disabled={loading}>
+                {loading ? (
+                    <span className="flex items-center justify-center">
+                        <svg className="animate-spin h-5 w-5 mr-2 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                        </svg>
+                        Uploading...
+                    </span>
+                ) : (
+                    currentImage ? "Update Image" : "Submit Image"
+                )}
             </button>
         </form>
     );
