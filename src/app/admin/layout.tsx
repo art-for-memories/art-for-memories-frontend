@@ -20,7 +20,7 @@ export default async function AdminLayout({ children }: Readonly<{ children: Rea
     return (
         <html lang="en">
             <head>
-                <meta name="apple-mobile-web-app-title" content="Art For Memory" />
+                <meta name="apple-mobile-web-app-title" content="Art For Memories" />
             </head>
             <body className="antialiased">
                 <Suspense fallback={<Loading />}>

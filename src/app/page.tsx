@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   robots: "index, follow",
   metadataBase: new URL("https://artformemories.com"),
   openGraph: {
-    title: "Art of Memories Rwanda | Honoring the Past through Artistic Memory",
+    title: "Art of Memories Rwanda",
     description:
       "A creative initiative turning damaged memories into portraits to honor victims of the 1994 Genocide against the Tutsi. Led by King Ngabo and fellow Rwandan artists.",
     url: "https://artformemories.com",

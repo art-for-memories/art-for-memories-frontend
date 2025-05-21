@@ -9,7 +9,7 @@ function Articles() {
             date: "04 Apr 2024",
             author: "France 24",
             image: "https://upload.wikimedia.org/wikipedia/fr/thumb/2/24/Logos_FRANCE24_RVB_2013.svg/langfr-225px-Logos_FRANCE24_RVB_2013.svg.png",
-            tag: "Art For Memory",
+            tag: "Art For Memories",
             link: "https://www.france24.com/en/live-news/20240403-young-rwandan-artists-keep-the-memory-of-genocide-victims-alive?utm_slink=f24.my%2FAEaE"
         },
         {
@@ -36,7 +36,7 @@ function Articles() {
             date: "04 Apr 2024",
             author: "Courrier International",
             image: "https://pbs.twimg.com/profile_images/1630603762359312384/qlV17s06_400x400.jpg",
-            tag: "Art For Memory",
+            tag: "Art For Memories",
             link: "https://www.courrierinternational.com/depeche/rwanda-le-dessin-pour-perpetuer-la-memoire-des-victimes-du-genocide.afp.com.20240403.doc.34nd4gj.xml"
         }
     ];

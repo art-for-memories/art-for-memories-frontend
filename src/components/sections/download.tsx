@@ -28,22 +28,32 @@ function Download() {
                             Note: The app is currently in the testing phase. <br /> We appreciate your feedback to improve the experience.
                         </p>
 
-                        <div className="flex flex-col md:items-center mt-8 space-y-4 sm:flex-row sm:space-y-0 lg:mt-12 sm:space-x-4 space-x-4">
-                            <a href="#" title="Coming Soon" className="flex opacity-50 cursor-not-allowed" role="button">
+                        <div className="flex flex-col items-stretch mt-8 space-y-4 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-4 lg:mt-12">
+                            <a
+                                href="#"
+                                title="Coming Soon"
+                                className="flex-1 flex justify-center opacity-50 cursor-not-allowed"
+                                role="button"
+                            >
                                 <Image
                                     width={500}
                                     height={500}
-                                    className="w-auto h-12 sm:h-14 rounded-xl"
+                                    className="w-auto h-12 sm:h-14 rounded-xl max-w-[180px]"
                                     src="https://cdn.rareblocks.xyz/collection/celebration/images/cta/8/btn-app-store.svg"
                                     alt="App Store (Coming Soon)"
                                 />
                             </a>
 
-                            <a href="#" title="Coming Soon" className="flex opacity-50 cursor-not-allowed" role="button">
+                            <a
+                                href="#"
+                                title="Coming Soon"
+                                className="flex-1 flex justify-center opacity-50 cursor-not-allowed"
+                                role="button"
+                            >
                                 <Image
                                     width={500}
                                     height={500}
-                                    className="w-auto h-12 sm:h-14 rounded-xl"
+                                    className="w-auto h-12 sm:h-14 rounded-xl max-w-[180px]"
                                     src="https://cdn.rareblocks.xyz/collection/celebration/images/cta/8/btn-play-store.svg"
                                     alt="Google Play Store (Coming Soon)"
                                 />
@@ -52,7 +62,7 @@ function Download() {
                             <a
                                 href="/app-release.apk"
                                 title="Download APK"
-                                className="flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-slate-900 rounded-xl hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
+                                className="flex-1 flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-slate-900 rounded-xl hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 min-w-[180px]"
                                 role="button"
                             >
                                 <svg
@@ -63,7 +73,7 @@ function Download() {
                                 >
                                     <path d="M17.71 7.29a1 1 0 00-1.42 0l-1.3 1.3a7.07 7.07 0 00-6.98 0l-1.3-1.3a1 1 0 00-1.42 1.42l1.3 1.3a7.07 7.07 0 000 6.98l-1.3 1.3a1 1 0 001.42 1.42l1.3-1.3a7.07 7.07 0 006.98 0l1.3 1.3a1 1 0 001.42-1.42l-1.3-1.3a7.07 7.07 0 000-6.98l1.3-1.3a1 1 0 000-1.42zM12 15a3 3 0 113-3 3 3 0 01-3 3z" />
                                 </svg>
-                                Download APK for Android
+                                <span className="truncate">Download APK for Android</span>
                             </a>
                         </div>
                     </div>
