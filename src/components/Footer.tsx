@@ -61,6 +61,7 @@ export default function Footer() {
                     <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/preserved-memories">Preserved Memories</Link></li>
                     <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/stories">Their Stories</Link></li>
                     <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/one-day-in-100-days">One Day in 100 Days</Link></li>
+                    <li><Link className="text-neutral-300 font-medium hover:text-neutral-400 tracking-tight transition duration-200" href="/privacy">Privacy</Link></li>
                   </ul>
                 </div>
               </div>
