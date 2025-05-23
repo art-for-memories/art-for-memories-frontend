@@ -41,7 +41,7 @@ function PrivacyPolicy() {
 
                     <h2 className="text-xl font-semibold mt-8 mb-2">5. Your Rights and Choices</h2>
                     <ul className="list-disc pl-6 mb-4">
-                        <li>You may request access to, correction of, or deletion of your personal information by contacting us at <a href="mailto:info@artofmemories.org" className="underline">info@artofmemories.org</a>.</li>
+                        <li>You may request access to, correction of, or deletion of your personal information by contacting us at <a href="mailto:artformemoriesrwanda@gmail.com" className="underline">artformemoriesrwanda@gmail.com.</a>.</li>
                         <li>You may opt out of receiving communications from us at any time.</li>
                     </ul>
 
@@ -52,7 +52,7 @@ function PrivacyPolicy() {
                     <p className="mb-4">We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page with an updated date.</p>
 
                     <h2 className="text-xl font-semibold mt-8 mb-2">8. Contact Us</h2>
-                    <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:info@artofmemories.org" className="underline">info@artofmemories.org</a>.</p>
+                    <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:artformemoriesrwanda@gmail.com" className="underline">artformemoriesrwanda@gmail.com.</a>.</p>
                 </div>
             </div>
         </Layout>
