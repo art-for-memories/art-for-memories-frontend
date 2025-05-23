@@ -31,7 +31,7 @@ function Download() {
                         <div className="flex flex-col items-stretch mt-8 space-y-4 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-4 lg:mt-12">
                             <a
                                 href="#"
-                                title="Coming Soon"
+                                title="Open Testing"
                                 className="flex-1 flex justify-center"
                                 role="button"
                             >
