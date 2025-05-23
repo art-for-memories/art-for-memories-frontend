@@ -32,7 +32,7 @@ function Download() {
                             <a
                                 href="#"
                                 title="Coming Soon"
-                                className="flex-1 flex justify-center opacity-50 cursor-not-allowed"
+                                className="flex-1 flex justify-center"
                                 role="button"
                             >
                                 <Image
@@ -40,14 +40,14 @@ function Download() {
                                     height={500}
                                     className="w-auto h-12 sm:h-14 rounded-xl max-w-[180px]"
                                     src="https://cdn.rareblocks.xyz/collection/celebration/images/cta/8/btn-app-store.svg"
-                                    alt="App Store (Coming Soon)"
+                                    alt="App Store (TestFlight)"
                                 />
                             </a>
 
                             <a
-                                href="#"
+                                href="https://play.google.com/store/apps/details?id=com.art_for_memories.mobile"
                                 title="Coming Soon"
-                                className="flex-1 flex justify-center opacity-50 cursor-not-allowed"
+                                className="flex-1 flex justify-center"
                                 role="button"
                             >
                                 <Image
@@ -55,25 +55,23 @@ function Download() {
                                     height={500}
                                     className="w-auto h-12 sm:h-14 rounded-xl max-w-[180px]"
                                     src="https://cdn.rareblocks.xyz/collection/celebration/images/cta/8/btn-play-store.svg"
-                                    alt="Google Play Store (Coming Soon)"
+                                    alt="Google Play Store (Open Testing)"
                                 />
                             </a>
 
                             <a
                                 href="/app-release.apk"
                                 title="Download APK"
-                                className="flex-1 flex items-center justify-center px-4 py-2 text-sm font-semibold text-white bg-slate-900 rounded-xl hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 min-w-[180px]"
+                                className="flex-1 flex items-center justify-center px-2 py-1 text-sm font-semibold text-white bg-black rounded-xl hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 min-w-[180px]"
                                 role="button"
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-5 h-5 mr-2"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                >
-                                    <path d="M17.71 7.29a1 1 0 00-1.42 0l-1.3 1.3a7.07 7.07 0 00-6.98 0l-1.3-1.3a1 1 0 00-1.42 1.42l1.3 1.3a7.07 7.07 0 000 6.98l-1.3 1.3a1 1 0 001.42 1.42l1.3-1.3a7.07 7.07 0 006.98 0l1.3 1.3a1 1 0 001.42-1.42l-1.3-1.3a7.07 7.07 0 000-6.98l1.3-1.3a1 1 0 000-1.42zM12 15a3 3 0 113-3 3 3 0 01-3 3z" />
-                                </svg>
-                                <span className="truncate">Download APK for Android</span>
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M11 18v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h2ZM15 18v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h2ZM17 11v5c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2v-5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path opacity=".4" d="M5 11v4c0 .55-.45 1-1 1s-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1ZM21 11v4c0 .55-.45 1-1 1s-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13 18h-2" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path><path opacity=".4" d="M9.6 6.998h4.8c.88 0 1.6-.72 1.6-1.6 0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .88.72 1.6 1.6 1.6Z" stroke="#ffffff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                                </div>
+                                <div className="truncate ml-2">
+                                    <div className="text-[10px] text-slate-400">Download</div>
+                                    <div className="text-lg text-white">APK File</div>
+                                </div>
                             </a>
                         </div>
                     </div>
