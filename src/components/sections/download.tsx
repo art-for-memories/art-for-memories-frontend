@@ -86,7 +86,7 @@ function Download() {
                         </svg>
 
                         <div className="absolute inset-x-0 bottom-0 md:left-1/2 -translate-x-1/2 -mb-72 lg:-mb-96">
-                            <MobileFrame title="" image="/images/phone.png" />
+                            <MobileFrame title="" image="/images/screen1.png" />
                         </div>
                     </div>
                 </div>
