@@ -64,7 +64,7 @@ const Hero = () => {
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-5xl mx-auto md:pr-20 md:mr-10 sm:py-20 md:py-10 lg:py-10 mt-32 mb-20 min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh]">
                 {/* Left Content */}
                 <div className="text-center md:text-left px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold mt-3 font-boldonse leading-tight md:leading-snug">
+                    <h1 className="text-4xl md:text-5xl font-bold mt-3 leading-tight md:leading-snug">
                         Art For <span className="text-gray-300">Memories</span>
                     </h1>
 

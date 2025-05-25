@@ -61,7 +61,7 @@ function Gallery() {
                     <Image
                         src={'/images/memory-logo.png'}
                         alt={`Art for memories`}
-                        className="w-full h-full max-h-[500px] object-cover rounded-tr-2xl rounded-br-2xl"
+                        className="w-full h-full max-h-[500px] object-cover rounded-tr-3xl rounded-br-3xl"
                         width={500}
                         height={500}
                     />
