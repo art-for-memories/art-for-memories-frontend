@@ -44,7 +44,7 @@ const Hero = () => {
     };
 
     return (
-        <section className="relative sm:h-auto md:h-screen lg:h-screen w-full bg-neutral-900 text-white flex items-center justify-center px-6 md:px-12 lg:px-20">
+        <section className="relative min-h-screen w-full bg-neutral-900 text-white flex items-center justify-center px-6 md:px-12 lg:px-20">
             {/* Background Video */}
             <video
                 ref={videoRef}
@@ -61,10 +61,10 @@ const Hero = () => {
             </div>
 
             {/* Hero Content */}
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-5xl mx-auto md:pr-20 md:mr-10 sm:py-20 md:py-10 lg:py-10 mt-32 mb-20">
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-5xl mx-auto md:pr-20 md:mr-10 sm:py-20 md:py-10 lg:py-10 mt-32 mb-20 min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh]">
                 {/* Left Content */}
-                <div className="text-center lg:text-left px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold mt-3 font-boldonse">
+                <div className="text-center md:text-left px-4">
+                    <h1 className="text-4xl md:text-5xl font-bold mt-3 leading-tight md:leading-snug">
                         Art For <span className="text-gray-300">Memories</span>
                     </h1>
 
@@ -80,7 +80,7 @@ const Hero = () => {
                 </div>
 
                 {/* Play Button */}
-                <div className="hidden sm:hidden md:block lg:block relative">
+                <div className="hidden md:hidden lg:block relative">
                     <div className="mt-6 lg:mt-0 bg-transparent rounded-full flex items-center justify-center p-2 ring ring-gray-300">
                         <button onClick={handlePlayVideo} className="bg-white rounded-full p-4 shadow-lg">
                             {isPlaying ? <Pause className="h-10 w-10 text-black" /> : <Play className="h-10 w-10 text-black" />}
