@@ -42,9 +42,10 @@ function Articles() {
     ];
 
     return (
-        <section className="py-10 md:py-12 md:px-16 bg-neutral-50">
-            <div className="container mx-auto px-4">
-                <div className="mb-12 md:mb-24 text-center max-w-6xl mx-auto">
+        <section className="py-10 md:py-12 md:px-10 bg-neutral-50">
+
+            <div className="container mx-auto">
+                <div className="mb-12 md:mb-24 text-center max-w-6xl mx-auto px-4">
                     <h1 className="mb-10 font-semibold text-4xl md:text-6xl font-heading text-slate-700 capitalize">
                         <span>Articles About Our Mission <br className='hidden md:block' />and </span>
                         <span className="bg-[#429cce] rounded-lg px-4 mt-1 inline-block">Shared Stories.</span>
@@ -52,15 +53,15 @@ function Articles() {
                     <p className="font-semibold text-2xl text-neutral-600 tracking-tight">Discover how others are documenting and supporting our journey.</p>
                 </div>
 
-                <div className="flex flex-wrap -m-3">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-2">
                     {articles.map((article, index) => (
-                        <div className="w-full md:w-1/2 p-3" key={index}>
+                        <div className="w-full p-3" key={index}>
                             <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12">
                                 <div className='mb-5'>
                                     <div className='w-20 h-20 rounded-lg mb-3 border border-gray-200'><Image width={500} height={500} src={article.image} alt={article.title} className='w-full h-full rounded-lg' /></div>
                                     <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight capitalize">{article.author}</span>
                                 </div>
-                                
+
                                 <a className="block text-neutral-800 text-3xl md:text-4xl font-semibold hover:underline mb-3 max-w-sm md:max-w-lg tracking-tight" href={article.link}>{article.title}</a>
                                 <p className="text-neutral-600 text-lg font-medium mb-8 max-w-lg tracking-tight line-clamp-2">{article.caption}</p>
 
@@ -80,6 +81,7 @@ function Articles() {
                     ))}
                 </div>
             </div>
+
         </section>
     )
 }
