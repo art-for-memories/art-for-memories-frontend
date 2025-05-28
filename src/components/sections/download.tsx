@@ -24,7 +24,7 @@ function Download() {
                             Experience cleared stories and image sharing with our mobile app. Enhanced features and a user-friendly interface designed for your convenience.
                         </p>
 
-                        <div className="flex flex-col items-stretch mt-8 space-y-4 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-4 lg:mt-12 w-full">
+                        <div className="flex flex-col mt-8 space-y-4 sm:flex-row sm:items-center lg:mt-12 w-full">
                             <a
                                 href="https://testflight.apple.com/join/KNqz1VM8"
                                 title="Open Testing"
@@ -57,7 +57,7 @@ function Download() {
                                 />
                             </a>
 
-                            <a
+                            {/* <a
                                 href="/app-release.apk"
                                 title="Download APK"
                                 className="flex-1 flex items-center justify-center px-2 py-1 text-sm font-semibold text-white bg-black rounded-xl hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 min-w-0 max-w-full sm:w-[180px]"
@@ -71,7 +71,7 @@ function Download() {
                                     <div className="text-[10px] text-slate-400">Download</div>
                                     <div className="text-lg text-white">APK File</div>
                                 </div>
-                            </a>
+                            </a> */}
                         </div>
                     </div>
 
