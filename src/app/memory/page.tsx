@@ -1,4 +1,5 @@
 import MemoryForm from "@/components/forms/MemoryForm";
+import Layout from "@/components/Layout";
 import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 
@@ -9,11 +10,16 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-    return (<div className="bg-white">
-        <Navbar />
+    return (
+        <Layout>
 
-        <div className="my-10">
-            <MemoryForm />
-        </div>
-    </div>);
+            <div className="overflow-x-hidden bg-white">
+                <Navbar />
+
+                <div className="my-10 border border-gray-200 py-20">
+                    <MemoryForm />
+                </div>
+            </div>
+        </Layout>
+    );
 }

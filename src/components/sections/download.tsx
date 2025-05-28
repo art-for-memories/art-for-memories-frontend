@@ -24,11 +24,11 @@ function Download() {
                             Experience cleared stories and image sharing with our mobile app. Enhanced features and a user-friendly interface designed for your convenience.
                         </p>
 
-                        <div className="flex flex-col mt-8 space-y-4 sm:flex-row sm:items-center lg:mt-12 w-full">
+                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-start lg:mt-12 w-full mt-8 gap-4">
                             <a
                                 href="https://testflight.apple.com/join/KNqz1VM8"
                                 title="Open Testing"
-                                className="flex-1 flex justify-center min-w-0"
+                                className="min-w-0"
                                 role="button"
                                 style={{ minWidth: 0 }}
                             >
@@ -44,7 +44,7 @@ function Download() {
                             <a
                                 href="https://play.google.com/store/apps/details?id=com.art_for_memories.mobile&hl=en"
                                 title="Google Play Store"
-                                className="flex-1 flex justify-center min-w-0"
+                                className="min-w-0"
                                 role="button"
                                 style={{ minWidth: 0 }}
                             >
@@ -56,22 +56,6 @@ function Download() {
                                     alt="Google Play Store (Open Testing)"
                                 />
                             </a>
-
-                            {/* <a
-                                href="/app-release.apk"
-                                title="Download APK"
-                                className="flex-1 flex items-center justify-center px-2 py-1 text-sm font-semibold text-white bg-black rounded-xl hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 min-w-0 max-w-full sm:w-[180px]"
-                                role="button"
-                                style={{ minWidth: 0 }}
-                            >
-                                <div>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M11 18v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h2ZM15 18v3c0 .55-.45 1-1 1s-1-.45-1-1v-3h2ZM17 11v5c0 1.1-.9 2-2 2H9c-1.1 0-2-.9-2-2v-5c0-1.1.9-2 2-2h6c1.1 0 2 .9 2 2Z" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"></path><path opacity=".4" d="M5 11v4c0 .55-.45 1-1 1s-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1ZM21 11v4c0 .55-.45 1-1 1s-1-.45-1-1v-4c0-.55.45-1 1-1s1 .45 1 1Z" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"></path><path d="M13 18h-2" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"></path><path opacity=".4" d="M9.6 6.998h4.8c.88 0 1.6-.72 1.6-1.6 0-2.21-1.79-4-4-4s-4 1.79-4 4c0 .88.72 1.6 1.6 1.6Z" stroke="#ffffff" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"></path></svg>
-                                </div>
-                                <div className="truncate ml-2">
-                                    <div className="text-[10px] text-slate-400">Download</div>
-                                    <div className="text-lg text-white">APK File</div>
-                                </div>
-                            </a> */}
                         </div>
                     </div>
 

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 
 function Gallery() {
@@ -39,8 +39,9 @@ function Gallery() {
 
     return (
         <Swiper
-            modules={[Pagination]}
+            modules={[Pagination, Navigation]}
             pagination={{ clickable: true }}
+            navigation
             spaceBetween={20}
             slidesPerView={1}
             className="overflow-hidden h-full"
