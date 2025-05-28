@@ -75,7 +75,7 @@ function AboutUs() {
                                     Our mission is not just about preserving the past but also about inspiring the present and future. Through art and storytelling, we aim to foster healing, promote understanding, and build a world where the lessons of history guide us toward compassion and unity.
                                 </p>
                                 <p className="text-xl leading-relaxed text-gray-200 mt-6">
-                                    Together, we can ensure that the memories of those who came before us are not only preserved but celebrated, serving as a source of hope and inspiration for generations to come.
+                                    Together, we can ensure that the memories of those who came before us are not only preserved but teach, serving as a source of hope and inspiration for generations to come.
                                 </p>
                             </div>
                         </div>
@@ -99,7 +99,7 @@ function AboutUs() {
                                     By leveraging the transformative power of art, we strive to not only restore damaged photographs but also to breathe life into the stories behind them. Our vision is to inspire communities to embrace their shared history, promote empathy, and build a foundation for a more compassionate and connected world.
                                 </p>
                                 <p className="text-xl leading-relaxed text-gray-200 mt-6">
-                                    Together, we can ensure that the memories of the past are not forgotten but celebrated, serving as a beacon of hope and resilience for future generations.
+                                    Together, we can ensure that the memories of the past are not forgotten but preserved, serving as a beacon of hope and resilience for future generations.
                                 </p>
                             </div>
                         </div>

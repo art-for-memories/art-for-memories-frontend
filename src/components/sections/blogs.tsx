@@ -56,7 +56,7 @@ function Articles() {
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-2">
                     {articles.map((article, index) => (
                         <div className="w-full p-3" key={index}>
-                            <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12">
+                            <div className="h-full bg-white rounded-3xl px-6 md:px-12 py-12 border border-gray-2">
                                 <div className='mb-5'>
                                     <div className='w-20 h-20 rounded-lg mb-3 border border-gray-200'><Image width={500} height={500} src={article.image} alt={article.title} className='w-full h-full rounded-lg' /></div>
                                     <span className="block text-neutral-600 text-xl font-semibold mb-6 tracking-tight capitalize">{article.author}</span>

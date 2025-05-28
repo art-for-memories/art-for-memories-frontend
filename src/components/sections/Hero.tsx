@@ -64,17 +64,18 @@ const Hero = () => {
             <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between w-full max-w-5xl mx-auto md:pr-20 md:mr-10 sm:py-20 md:py-10 lg:py-10 mt-32 mb-20 min-h-[60vh] md:min-h-[70vh] lg:min-h-[80vh]">
                 {/* Left Content */}
                 <div className="text-center md:text-left px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold mt-3 leading-tight md:leading-snug">
+                    <h1 className="text-4xl md:text-6xl font-bold mt-3 leading-tight md:leading-snug">
                         Art For <span className="text-gray-300">Memories</span>
                     </h1>
 
-                    <p className="mt-10 text-lg md:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 font-semibold leading-6">
-                        A dedicated platform to preserve memories of the 1994 Genocide Against the Tutsi through Art.
+                    <p className="mt-10 text-lg md:text-xl text-gray-300 max-w-xl mx-auto lg:mx-0 font-semibold leading-6 capitalize">
+                       A Digital platform to preserve the memories of the 1994 genocide against the tutsi ‘through art’.
                     </p>
 
                     <div className='mt-10 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4'>
                         <Link href={"/memory"} className="flex items-center text-sm gap-3 py-3 px-6 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
-                            HAVE A STORY? SUBMIT IT
+                            <span>SUBMIT YOUR MEMORIES</span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#697689" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#697689" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
                         </Link>
                     </div>
                 </div>
