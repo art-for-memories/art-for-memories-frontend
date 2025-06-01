@@ -2,6 +2,8 @@
 
 import Image from 'next/image';
 import React, { useState } from 'react';
+import Tiptap from './Tiptap';
+import { uploadFile } from '@/utils/uploadFile';
 
 function StoryForm({ onSuccess }: { onSuccess: () => void }) {
     const [firstName, setFirstName] = useState('');
@@ -12,76 +14,52 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
     const [title, setTitle] = useState('');
     const [author, setAuthor] = useState('');
     const [date, setDate] = useState('');
-    const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-    const [selectedImages, setSelectedImages] = useState<File[]>([]);
+    const [selectedFile, setSelectedFile] = useState<File | null>(null);
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
+    const [kinyarwandaContent, setKinyarwandaContent] = useState('');
+    const [englishContent, setEnglishContent] = useState('');
+    const [frenchContent, setFrenchContent] = useState('');
+
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+    // Only allow one file for illustrated stories
     const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
 
-        if (!files) return;
+        if (!files || files.length === 0) return;
 
-        const newFiles: File[] = [];
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            if (file.type === 'application/pdf' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-                newFiles.push(file);
-            } else {
-                setErrorMessage('Only PDF or DOCX files are allowed.');
-            }
+        const file = files[0];
+
+        if (file.type === 'application/pdf' || file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+            setSelectedFile(file);
+        } else {
+            setErrorMessage('Only PDF or DOCX files are allowed.');
+            setSelectedFile(null);
         }
-
-        setSelectedFiles(newFiles);
     };
 
+    // Only allow one image
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = event.target.files;
 
-        if (!files) return;
+        if (!files || files.length === 0) return;
 
-        const newImages: File[] = [];
-        for (let i = 0; i < files.length; i++) {
-            const file = files[i];
-            if (file.type.startsWith('image/')) {
-                newImages.push(file);
-            } else {
-                setErrorMessage('Only image files are allowed.');
-            }
+        const file = files[0];
+
+        if (file.type.startsWith('image/')) {
+            setSelectedImage(file);
+        } else {
+            setErrorMessage('Only image files are allowed.');
+            setSelectedImage(null);
         }
-
-        setSelectedImages(newImages);
-    };
-
-    const uploadFiles = async (files: File[], folder: string = 'art-for-memories-stories'): Promise<string[]> => {
-        const uploadedFiles: string[] = [];
-        
-        setLoading(true);
-
-        for (const file of files) {
-            const formData = new FormData();
-            formData.append('file', file);
-            formData.append('upload_preset', 'memories_preset'); // Ensure this preset exists in Cloudinary
-            formData.append('folder', folder); // Specify the folder in Cloudinary
-
-            const response = await fetch(`https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME}/upload`, {
-                method: 'POST',
-                body: formData,
-            });
-
-            const data = await response.json();
-            uploadedFiles.push(data.secure_url);
-        }
-
-        setLoading(false);
-        return uploadedFiles;
     };
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
 
-        if (!firstName || !lastName || !email || !phone || selectedFiles.length === 0) {
+        if (!firstName || !lastName || !email || !phone || !selectedFile) {
             setErrorMessage('All fields are required, and at least one file must be uploaded.');
             return;
         }
@@ -91,26 +69,37 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
             setErrorMessage(null);
             setSuccessMessage(null);
 
-            const uploadedFiles = await uploadFiles(selectedFiles);
-            const uploadedImages = await uploadFiles(selectedImages);
+            let fileUrl = '';
+            let imageUrl = '';
 
-            const formData = {
-                firstName,
-                lastName,
-                email,
-                phone,
-                files: uploadedFiles,
-                storyType,
-                title,
-                author,
-                date,
-                images: uploadedImages,
-            };
+            if (selectedFile) {
+                fileUrl = await uploadFile(selectedFile);
+            }
+            if (selectedImage) {
+                imageUrl = await uploadFile(selectedImage);
+            }
 
-            const response = await fetch('/api/stories', {
+            const payload = new FormData();
+
+            payload.append('firstName', firstName);
+            payload.append('lastName', lastName);
+            payload.append('email', email);
+            payload.append('phone', phone);
+            payload.append('storyType', storyType);
+            payload.append('title', title);
+            payload.append('author', author);
+            payload.append('date', date);
+
+            if (fileUrl) payload.append('file', fileUrl);
+            if (imageUrl) payload.append('image', imageUrl);
+
+            payload.append('kinyarwandaContent', kinyarwandaContent);
+            payload.append('englishContent', englishContent);
+            payload.append('frenchContent', frenchContent);
+
+            const response = await fetch('/api/custom-stories', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData),
+                body: payload,
             });
 
             if (response.ok) {
@@ -118,8 +107,8 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
                 setLastName('');
                 setEmail('');
                 setPhone('');
-                setSelectedFiles([]);
-                setSelectedImages([]);
+                setSelectedFile(null);
+                setSelectedImage(null);
                 setSuccessMessage('Story submitted successfully!');
                 setErrorMessage(null);
                 onSuccess();
@@ -137,17 +126,31 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
     };
 
     return (
-        <div className="max-w-md md:max-w-lg mx-auto bg-white p-6 rounded-md shadow-md">
-            <h2 className="text-slate-700 font-semibold">Submit Your Story</h2>
+        <div className="max-w-md md:max-w-lg mx-auto bg-white rounded-md">
+            <div className="flex items-center space-x-2 justify-between mb-4">
+                <div className="text-2xl font-bold flex items-center">
+                    <span className="bg-white text-white px-1 py-1 rounded">
+                        <div><Image src={'/images/ART.PNG'} alt={"logo"} width={100} height={40} /></div>
+                    </span>
+                </div>
+            </div>
 
-            <form className="space-y-4" onSubmit={handleSubmit}>
+            <h2 className="text-xl font-semibold text-black">
+                {"Submit Your Stories"}
+            </h2>
+
+            <p className="text-gray-500 mb-5 mt-3">
+                Fill your Story details to continue for your Stories Submission
+            </p>
+
+            <form className="space-y-4 mt-5" onSubmit={handleSubmit}>
                 {/* First Name & Last Name */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="text-sm text-black font-bold">First Name</label>
                         <input
                             type="text"
-                            placeholder="King"
+                            placeholder="Enter Firstname"
                             className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
                             value={firstName}
                             onChange={(e) => setFirstName(e.target.value)}
@@ -157,7 +160,7 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
                         <label className="text-sm text-black font-bold">Last Name</label>
                         <input
                             type="text"
-                            placeholder="Ngabo"
+                            placeholder="Enter Lastname"
                             className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
                             value={lastName}
                             onChange={(e) => setLastName(e.target.value)}
@@ -170,7 +173,7 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
                     <label className="text-sm text-black font-bold">Email Address</label>
                     <input
                         type="email"
-                        placeholder="Enter email here"
+                        placeholder="Your Email Address"
                         className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
@@ -200,6 +203,7 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
                         value={storyType}
                         onChange={(e) => setStoryType(e.target.value)}
                     >
+                        <option value="">Select Type</option>
                         <option value="Written Story">Written Story</option>
                         <option value="Illustrated">Illustrated</option>
                     </select>
@@ -219,7 +223,7 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
 
                 {/* Author */}
                 <div>
-                    <label className="text-sm text-black font-bold">Author</label>
+                    <label className="text-sm text-black font-bold">Author / Writter</label>
                     <input
                         type="text"
                         placeholder="Author Name"
@@ -252,7 +256,6 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
                         <input
                             type="file"
                             className="hidden"
-                            multiple
                             id="upload-images"
                             accept="image/*"
                             onChange={handleImageChange}
@@ -261,53 +264,57 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
                 </div>
 
                 {/* Image Previews */}
-                {selectedImages.length > 0 && (
+                {selectedImage && (
                     <div className="mt-4 grid grid-cols-2 gap-4">
-                        {selectedImages.map((file, index) => (
-                            <div key={index} className="relative">
-                                <Image
-                                    width={100}
-                                    height={100}
-                                    src={URL.createObjectURL(file)}
-                                    alt={file.name}
-                                    className="w-full h-32 object-cover rounded-md"
-                                />
-                                <p className="text-sm text-black mt-2">{file.name}</p>
-                            </div>
-                        ))}
+                        <div className="relative">
+                            <Image
+                                width={100}
+                                height={100}
+                                src={URL.createObjectURL(selectedImage)}
+                                alt={"Selected Image"}
+                                className="w-full h-32 object-cover rounded-md"
+                            />
+                            <p className="text-sm text-black mt-2">{"Selected Image"}</p>
+                        </div>
                     </div>
                 )}
 
-                {/* File Upload */}
-                <div>
-                    <label className="text-sm text-black font-bold">Story Document (PDF or DOCX)</label>
-                    <div
-                        className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer"
-                        onClick={() => document.getElementById('upload-files')?.click()}
-                    >
-                        <span className="text-gray-400">📎</span>
-                        <span className="text-gray-400">Attach PDF or DOCX</span>
-                        <input
-                            type="file"
-                            className="hidden"
-                            multiple
-                            id="upload-files"
-                            onChange={handleFileChange}
-                            accept=".pdf,.docx"
-                        />
+                {/* File Upload for Illustrated Stories */}
+                {storyType === "Illustrated" && (
+                    <div>
+                        <label className="text-sm text-black font-bold">Story Document (PDF or DOCX)</label>
+                        <div
+                            className="border border-gray-300 rounded-md p-2 flex items-center space-x-2 cursor-pointer"
+                            onClick={() => document.getElementById('upload-files')?.click()}
+                        >
+                            <span className="text-gray-400">📎</span>
+                            <span className="text-gray-400">Attach PDF or DOCX</span>
+                            <input
+                                type="file"
+                                className="hidden"
+                                id="upload-files"
+                                onChange={handleFileChange}
+                                accept=".pdf,.docx"
+                            />
+                        </div>
                     </div>
-                </div>
+                )}
 
-                {/* File Previews */}
-                {selectedFiles.length > 0 && (
-                    <div className="mt-4">
-                        <ul className="list-disc pl-5">
-                            {selectedFiles.map((file, index) => (
-                                <li key={index} className="text-sm text-gray-700">
-                                    {file.name}
-                                </li>
-                            ))}
-                        </ul>
+                {/* Tiptap for Written Stories */}
+                {storyType === "Written Story" && (
+                    <div className="text-slate-800">
+                        <div className="mb-5">
+                            <label className="block font-semibold mb-1">Kinyarwanda Content</label>
+                            <Tiptap value={kinyarwandaContent} onContentChange={(content: string) => setKinyarwandaContent(content)} />
+                        </div>
+                        <div className="mb-5">
+                            <label className="block font-semibold mb-1">English Content</label>
+                            <Tiptap value={englishContent} onContentChange={(content: string) => setEnglishContent(content)} />
+                        </div>
+                        <div className="mb-5">
+                            <label className="block font-semibold mb-1">French Content</label>
+                            <Tiptap value={frenchContent} onContentChange={(content: string) => setFrenchContent(content)} />
+                        </div>
                     </div>
                 )}
 
