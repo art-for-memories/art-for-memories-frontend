@@ -26,7 +26,7 @@ function Stories() {
 
     useEffect(() => {
         getAllStories();
-    })
+    }, [])
     return (
         <>
             <StoriesList title="Written Stories" data={writtenStories} />
