@@ -11,6 +11,7 @@ import { Memory, MemoryImage } from '@/types/memories';
 const formSchema = z.object({
     firstName: z.string().nonempty("First name is required"),
     lastName: z.string().nonempty("Last name is required"),
+    victimFullName: z.string().nonempty("Victim full name is required"),
     email: z.string().email("Invalid email address"),
     phone: z.string().min(10, "Phone number must be at least 10 digits"),
     images: z.any().refine((files) => files instanceof FileList && files.length > 0, {
@@ -39,6 +40,7 @@ export default function MemoryForm({ currentMemory }: { currentMemory?: Memory |
             const formData = new FormData();
             formData.append("firstname", data.firstName);
             formData.append("lastname", data.lastName);
+            formData.append("victim_full_name", data.victimFullName);
             formData.append("email", data.email);
             formData.append("phone", data.phone);
             formData.append("memories", "Memories");
@@ -237,6 +239,19 @@ export default function MemoryForm({ currentMemory }: { currentMemory?: Memory |
                         ))}
                     </div>
                 )}
+
+                {/* Victim Full Name */}
+                <div>
+                    <label className="text-sm text-black font-bold">Victim Full Name</label>
+                    <input
+                        type="text"
+                        placeholder="Victim's full name"
+                        className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
+                        {...register("victimFullName")}
+                        aria-label="Victim Full Name"
+                    />
+                    {errors.victimFullName && <p className="text-red-500 text-sm">{errors.victimFullName.message}</p>}
+                </div>
 
                 {/* Consent Checkbox */}
                 <div>

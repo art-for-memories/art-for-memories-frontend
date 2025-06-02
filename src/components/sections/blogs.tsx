@@ -4,6 +4,15 @@ import React from 'react'
 function Articles() {
     const articles = [
         {
+            title: "Inside King Ngabo’s digital platform for preserving Genocide stories",
+            caption: "“Art for Memories”, a digital platform dedicated to preserving the memories of the 1994 Genocide against the Tutsi through art, was officially launched in Kigali on Thursday, May 29.",
+            date: "30 May 2025",
+            author: "The New Times",
+            image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNTTFM2boViSeNYrVDtgHjMTxPx_DZqEtVcw&s",
+            tag: "Art For Memories",
+            link: "https://www.newtimes.co.rw/article/26852/entertainment/art/inside-king-ngabos-digital-platform-for-preserving-genocide-stories"
+        },
+        {
             title: "Young Rwandan artists keep the memory of genocide victims alive",
             caption: "On sketch pads or computer tablets, a group of young Rwandan artists painstakingly recreate portraits of victims of the 1994 genocide for their loved ones.",
             date: "04 Apr 2024",

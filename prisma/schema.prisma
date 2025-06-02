@@ -63,15 +63,16 @@ model VerificationToken {
 }
 
 model Memories {
-  id        String   @id @default(cuid()) @map("_id")
-  firstName String
-  lastName  String
-  email     String
-  phone     String
-  memory    String
-  status    String   @default("pending")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id             String   @id @default(cuid()) @map("_id")
+  firstName      String
+  lastName       String
+  email          String
+  phone          String
+  memory         String
+  victimFullName String?
+  status         String   @default("pending")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
   MemoriesImage MemoriesImage[]
   MemoriesArt   MemoriesArt[]

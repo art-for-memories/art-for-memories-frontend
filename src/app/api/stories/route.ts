@@ -11,7 +11,8 @@ export async function POST(req: Request) {
     const type = formData.get("type")?.toString() || "";
     const date = formData.get("date")?.toString() || new Date().toISOString();
     const image = formData.get("image") as string;
-    const kinyarwandaContent = formData.get("kinyarwandaContent")?.toString() || "";
+    const kinyarwandaContent =
+      formData.get("kinyarwandaContent")?.toString() || "";
     const englishContent = formData.get("englishContent")?.toString() || "";
     const frenchContent = formData.get("frenchContent")?.toString() || "";
     const file = formData.get("file") as string | null;
@@ -71,6 +72,9 @@ export async function GET() {
         englishContent: true,
         frenchContent: true,
         file: true,
+      },
+      orderBy: {
+        date: "desc",
       },
     });
 

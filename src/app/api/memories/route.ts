@@ -19,6 +19,7 @@ export async function POST(req: Request) {
     const memories = formData.get("memories")?.toString() || "";
     const current_memory_id =
       formData.get("current_memory_id")?.toString() || "";
+    const victim_full_name = formData.get("victim_full_name")?.toString() || "";
 
     if (current_memory_id) {
       const existingMemory = await prisma.memories.findUnique({
@@ -34,10 +35,12 @@ export async function POST(req: Request) {
             email: email,
             phone: phone,
             memory: memories,
+            victimFullName: victim_full_name,
           },
         });
 
         const imagesEntries = formData.getAll("images").filter(Boolean);
+
         if (imagesEntries && imagesEntries.length > 0) {
           await prisma.memoriesImage.deleteMany({
             where: { memoryId: current_memory_id },
@@ -66,6 +69,7 @@ export async function POST(req: Request) {
           email: email,
           phone: phone,
           memory: memories,
+          victimFullName: victim_full_name,
         },
       });
 
@@ -100,6 +104,9 @@ export async function GET() {
     const memories = await prisma.memories.findMany({
       include: {
         MemoriesImage: true,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
     return NextResponse.json(memories);

@@ -57,6 +57,9 @@ export async function GET() {
         oldPhoto: true,
         preservedPhoto: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     return NextResponse.json(arts);
   } catch {

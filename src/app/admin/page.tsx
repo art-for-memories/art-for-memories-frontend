@@ -12,7 +12,7 @@ import { Memory } from "@/types/memories";
 import { useEffect, useState } from "react";
 
 export default function Memories() {
-    const headers = ['First Name', 'Last Name', 'Email', 'Phone Number', 'Memory', 'Status'];
+    const headers = ['First Name', 'Last Name', 'Email', 'Phone Number', 'Victim', 'Memory', 'Status'];
     const [memories, setMemories] = useState<Memory[]>([]);
     const [isFormOpen, setFormOpen] = useState(false);
     const [currentMemory, setCurrentMemory] = useState<Memory | undefined>(undefined);

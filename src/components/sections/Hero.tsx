@@ -75,7 +75,7 @@ const Hero = () => {
                     <div className='mt-10 flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-4'>
                         <Link href={"/memory"} className="flex items-center text-sm gap-3 py-3 px-6 bg-white text-black rounded-full font-semibold hover:bg-gray-300 transition">
                             <span>SUBMIT YOUR MEMORIES</span>
-                            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#697689" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#697689" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"><path stroke="#697689" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M14.43 5.93L20.5 12l-6.07 6.07"></path><path stroke="#697689" strokeLinecap="round" strokeLinejoin="round" strokeMiterlimit="10" strokeWidth="1.5" d="M3.5 12h16.83" opacity=".4"></path></svg></span>
                         </Link>
                     </div>
                 </div>

@@ -17,6 +17,9 @@ export async function GET() {
         frenchContent: true,
         file: true,
       },
+      orderBy: {
+        date: "desc",
+      },
     });
 
     return NextResponse.json({ success: true, data: approvedStories });

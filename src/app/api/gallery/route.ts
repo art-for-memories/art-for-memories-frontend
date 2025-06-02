@@ -59,6 +59,9 @@ export async function GET() {
         name: true,
         image: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     return NextResponse.json(galleries, { status: 200 });
