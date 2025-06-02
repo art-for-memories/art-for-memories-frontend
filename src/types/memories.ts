@@ -8,6 +8,7 @@ export interface Memory {
   lastName: string;
   email: string;
   phone: string;
+  victimFullName: string;
   memory: string;
   status: string;
   art: string;

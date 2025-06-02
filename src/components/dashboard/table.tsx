@@ -38,6 +38,7 @@ const Table: React.FC<TableProps> = ({ headers, data, onDelete, onPreview, onApp
                             </td>
                             <td className="p-4">{memory.email}</td>
                             <td className="p-4">{memory.phone}</td>
+                            <td className="p-4">{memory.victimFullName}</td>
                             <td className="p-4">{memory.memory}</td>
                             <td className="p-4 text-sm">
                                 {memory.status === 'approved' ? (

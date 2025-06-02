@@ -7,7 +7,10 @@ export async function POST(req: Request) {
     const { files, title, caption, current_video_id } = body;
 
     if (!files || !Array.isArray(files) || files.length === 0) {
-      return NextResponse.json({ error: "Files must be a non-empty array" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Files must be a non-empty array" },
+        { status: 400 }
+      );
     }
 
     if (current_video_id) {
@@ -28,7 +31,10 @@ export async function POST(req: Request) {
         },
       });
 
-      return NextResponse.json({ message: "Video updated successfully" }, { status: 200 });
+      return NextResponse.json(
+        { message: "Video updated successfully" },
+        { status: 200 }
+      );
     }
 
     const createPromises = files.map((fileUrl) =>
@@ -43,7 +49,10 @@ export async function POST(req: Request) {
 
     await Promise.all(createPromises);
 
-    return NextResponse.json({ message: "Videos created successfully" }, { status: 201 });
+    return NextResponse.json(
+      { message: "Videos created successfully" },
+      { status: 201 }
+    );
   } catch (error) {
     console.error("Error processing video request:", error);
     return NextResponse.json(
@@ -62,10 +71,16 @@ export async function GET() {
         title: true,
         caption: true,
       },
+      orderBy: {
+        createdAt: "desc",
+      },
     });
     return NextResponse.json(videos, { status: 200 });
   } catch (error) {
     console.error("Error fetching videos:", error);
-    return NextResponse.json({ error: "Failed to fetch videos" }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to fetch videos" },
+      { status: 500 }
+    );
   }
 }
