@@ -1,51 +1,32 @@
-import { useState, useRef } from 'react';
 import { Video } from '@/types/video';
-import { Play, Pause } from 'lucide-react';
-import Image from 'next/image';
+import { useState } from 'react';
 
 export default function VideoCard({ video }: { video: Video }) {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const videoRef = useRef<HTMLVideoElement>(null);
-
-    const handlePlayPause = () => {
-        if (videoRef.current) {
-            if (isPlaying) {
-                videoRef.current.pause();
-            } else {
-                videoRef.current.play();
-            }
-            setIsPlaying(!isPlaying);
-        }
-    };
-
+    const [expanded, setExpanded] = useState(false);
     return (
-        <div className="bg-black rounded-lg flex items-center justify-center w-full h-full border border-gray-200 relative group">
-            {!isPlaying && (
-                <div className='w-full h-full rounded-lg absolute fade-in'>
-                    <Image
-                        width={500}
-                        height={500}
-                        src={video.image ?? '/images/thumbs.PNG'}
-                        alt="Video thumbnail"
-                        className="w-full h-full object-cover rounded-lg"
-                    />
-                </div>
+        <div
+            className={`bg-black rounded-lg flex items-center justify-center w-full h-full border border-gray-200 relative group min-h-[200px] aspect-video transition-all duration-300 cursor-pointer ${expanded ? 'z-50 fixed inset-0 m-auto max-w-3xl max-h-[80vh] p-4' : ''}`}
+            onClick={() => setExpanded(!expanded)}
+            style={expanded ? { background: 'rgba(0,0,0,0.95)' } : {}}
+        >
+            <iframe
+                src={video.url}
+                className="w-full h-full rounded-lg"
+                allow="autoplay; encrypted-media"
+                allowFullScreen
+                frameBorder="0"
+                title="YouTube Video"
+            ></iframe>
+            
+            {expanded && (
+                <button
+                    className="absolute top-2 right-2 text-white text-2xl bg-black bg-opacity-60 rounded-full px-3 py-1 z-50 hover:bg-opacity-90"
+                    onClick={e => { e.stopPropagation(); setExpanded(false); }}
+                    aria-label="Close video preview"
+                >
+                    &times;
+                </button>
             )}
-
-            <video
-                ref={videoRef}
-                className={`w-full h-full object-cover rounded-lg ${!isPlaying ? 'opacity-0' : ''}`}
-            >
-                <source src={video.url} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
-            <button
-                onClick={handlePlayPause}
-                className="bg-white rounded-full p-4 shadow-lg absolute opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
-            >
-                {isPlaying ? <Pause className="h-10 w-10 text-black" /> : <Play className="h-10 w-10 text-black" />}
-            </button>
         </div>
     );
 }

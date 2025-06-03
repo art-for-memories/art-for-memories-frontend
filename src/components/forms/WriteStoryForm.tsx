@@ -146,7 +146,6 @@ function WriteStoryForm({ currentStory }: { currentStory: Stories | null }) {
                 window.location.reload();
             } else {
                 const errorData = await response.json();
-                console.log(errorData)
                 alert(errorData.message || 'Failed to submit story. Please try again later.');
             }
         } catch (error) {

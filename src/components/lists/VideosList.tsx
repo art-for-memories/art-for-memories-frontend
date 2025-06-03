@@ -18,7 +18,7 @@ export default function VideosList({ title, data }: VideosListProps) {
             <h2 className="text-3xl sm:text-4xl font-bold text-black text-center md:text-left">{title}</h2>
 
             <div className="flex flex-col items-center md:items-start">
-                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 gap-4 items-center">
+                <div className="mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 items-center">
                     {(currentData() as Video[]).map((video: Video, index: number) => (
                         <VideoCard key={index} video={video} />
                     ))}

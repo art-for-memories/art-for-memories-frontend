@@ -11,8 +11,6 @@ const MyPDFViewer = ({ pdfUrl }: MyPDFViewerProps) => {
     const [numPages, setNumPages] = useState<number | null>(null);
     const [pageNumber, setPageNumber] = useState(1);
 
-    console.log(pdfUrl);
-
     function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
         setNumPages(numPages);
     }
