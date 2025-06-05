@@ -118,7 +118,7 @@ function Page() {
           <div className="mt-4 overflow-auto w-full bg-white px-2">
             {loading && <div className="my-10"><FetchSpinner /></div>}
 
-            <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4 w-full'>
+            <div className='bg-white rounded-xl flex flex-col items-center justify-center p-4 w-full overflow-auto'>
               <table className="w-full text-left whitespace-nowrap">
                 <thead className=''>
                   <tr className="bg-gray-100 text-black text-sm">
