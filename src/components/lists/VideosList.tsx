@@ -10,7 +10,7 @@ interface VideosListProps {
 }
 
 export default function VideosList({ title, data }: VideosListProps) {
-    const itemsPerPage = 5;
+    const itemsPerPage = 6;
     const { next, prev, currentData, currentPage, maxPage, setCurrentPage } = usePagination(data, itemsPerPage);
 
     return (

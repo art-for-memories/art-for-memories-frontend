@@ -19,6 +19,7 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
     const [kinyarwandaContent, setKinyarwandaContent] = useState('');
     const [englishContent, setEnglishContent] = useState('');
     const [frenchContent, setFrenchContent] = useState('');
+    const [language, setLanguage] = useState('English');
 
     const [loading, setLoading] = useState(false);
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
@@ -136,7 +137,7 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
             </div>
 
             <h2 className="text-xl font-semibold text-black">
-                {"Submit Your Stories"}
+                {"Submit Your Story"}
             </h2>
 
             <p className="text-gray-500 mb-5 mt-3">
@@ -300,21 +301,37 @@ function StoryForm({ onSuccess }: { onSuccess: () => void }) {
                     </div>
                 )}
 
-                {/* Tiptap for Written Stories */}
-                {storyType === "Written Story" && (
-                    <div className="text-slate-800">
-                        <div className="mb-5">
-                            <label className="block font-semibold mb-1">Kinyarwanda Content</label>
-                            <Tiptap value={kinyarwandaContent} onContentChange={(content: string) => setKinyarwandaContent(content)} />
-                        </div>
-                        <div className="mb-5">
-                            <label className="block font-semibold mb-1">English Content</label>
-                            <Tiptap value={englishContent} onContentChange={(content: string) => setEnglishContent(content)} />
-                        </div>
-                        <div className="mb-5">
-                            <label className="block font-semibold mb-1">French Content</label>
-                            <Tiptap value={frenchContent} onContentChange={(content: string) => setFrenchContent(content)} />
-                        </div>
+                {/* Language Selector */}
+                <div>
+                    <label className="text-sm text-black font-bold">Language</label>
+                    <select
+                        className="w-full border border-gray-300 rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-black"
+                        value={language}
+                        onChange={(e) => setLanguage(e.target.value)}
+                    >
+                        <option value="English">English</option>
+                        <option value="Kinyarwanda">Kinyarwanda</option>
+                        <option value="French">French</option>
+                    </select>
+                </div>
+
+                {/* Show only the textarea for the selected language */}
+                {language === 'English' && (
+                    <div className="text-slate-900">
+                        <label className="block font-semibold mb-1">English Content</label>
+                        <Tiptap value={englishContent} onContentChange={setEnglishContent} />
+                    </div>
+                )}
+                {language === 'Kinyarwanda' && (
+                    <div className="text-slate-900">
+                        <label className="block font-semibold mb-1">Kinyarwanda Content</label>
+                        <Tiptap value={kinyarwandaContent} onContentChange={setKinyarwandaContent} />
+                    </div>
+                )}
+                {language === 'French' && (
+                    <div className="text-slate-900">
+                        <label className="block font-semibold mb-1">French Content</label>
+                        <Tiptap value={frenchContent} onContentChange={setFrenchContent} />
                     </div>
                 )}
 
